@@ -349,6 +349,7 @@ void tls_pmu_chipsleep_callback(int sleeptime)
  * Output
  * Return
  ****************************************************************************/
+#if 1
 void task_start (void *data)
 {
 	u8 enable = 0;
@@ -454,4 +455,110 @@ void task_start (void *data)
 #endif
     }
 }
+#else
+void task_start (void *data)
+{
+	// u8 enable = 0;
+    // u8 mac_addr[6] = {0x00, 0x25, 0x08, 0x09, 0x01, 0x0F};
 
+// #if TLS_CONFIG_CRYSTAL_24M
+//     tls_wl_hw_using_24m_crystal();
+// #endif
+
+    /* must call first to configure gpio Alternate functions according the hardware design */
+    wm_gpio_config();
+
+    tls_irq_init();
+
+#if TLS_CONFIG_HARD_CRYPTO
+    tls_crypto_init();
+#endif
+
+#if (TLS_CONFIG_LS_SPI)
+    tls_spi_init();
+    tls_spifls_init();
+#endif
+
+    tls_fls_init();
+    // tls_fls_sys_param_postion_init();
+
+    /*PARAM GAIN,MAC default*/
+    // tls_ft_param_init();
+    // tls_param_load_factory_default();
+    // tls_param_init(); /*add param to init sysparam_lock sem*/
+
+    // tls_get_tx_gain(&tx_gain_group[0]);
+    // TLS_DBGPRT_INFO("tx gain ");
+    // TLS_DBGPRT_DUMP((char *)(&tx_gain_group[0]), 27);
+    // if (tls_wifi_mem_cfg(WIFI_MEM_START_ADDR, 7, 3)) /*wifi tx&rx mem customized interface*/
+    // {
+    //     TLS_DBGPRT_INFO("wl mem initial failured\n");
+    // }
+
+    // tls_get_mac_addr(&mac_addr[0]);
+    // TLS_DBGPRT_INFO("mac addr ");
+    // TLS_DBGPRT_DUMP((char *)(&mac_addr[0]), 6);
+    // if(tls_wl_init(NULL, &mac_addr[0], NULL) == NULL)
+    // {
+    //     TLS_DBGPRT_INFO("wl driver initial failured\n");
+    // }
+    // if (wpa_supplicant_init(mac_addr))
+    // {
+    //     TLS_DBGPRT_INFO("supplicant initial failured\n");
+    // }
+	// /*wifi-temperature compensation,default:open*/
+	// tls_wifi_set_tempcomp_flag(0);
+	// tls_wifi_set_psm_chipsleep_flag(0);
+	// tls_wifi_psm_chipsleep_cb_register((tls_wifi_psm_chipsleep_callback)tls_pmu_chipsleep_callback, NULL, NULL);
+    // tls_ethernet_init();
+
+// #if TLS_CONFIG_BT
+//     tls_bt_entry();
+// #endif
+
+    // tls_sys_init();
+// #if TLS_CONFIG_ONLY_FACTORY_ATCMD
+	// factory_atcmd_init();
+// #else
+    /*HOSTIF&UART*/
+// #if TLS_CONFIG_HOSTIF
+    // tls_hostif_init();
+
+// #if (TLS_CONFIG_HS_SPI)
+    // tls_hspi_init();
+// #endif
+
+// #if TLS_CONFIG_UART
+//     tls_uart_init();
+// #endif
+// #endif
+
+	// tls_param_get(TLS_PARAM_ID_PSM, &enable, TRUE);	
+	// if (enable != TRUE)
+	// {
+	//     enable = TRUE;
+	//     tls_param_set(TLS_PARAM_ID_PSM, &enable, TRUE);	  
+	// }
+
+    UserMain();
+
+    // tls_sys_auto_mode_run();
+// #endif
+
+    for (;;)
+    {
+#if MAIN_TASK_DELETE_AFTER_START_FTR
+		if (tststarthdl)
+		{
+    		tls_os_task_del_by_task_handle(tststarthdl,task_start_free);
+		}
+        tls_os_time_delay(0x10000000);
+#else
+        //printf("start up\n");
+        extern void tls_os_disp_task_stat_info(void);
+        tls_os_disp_task_stat_info();
+        tls_os_time_delay(1000);
+#endif
+    }
+}
+#endif

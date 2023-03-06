@@ -112,7 +112,9 @@ else
 	@mv $(FIRMWAREDIR)/$(TARGET)/$(TARGET)_gz.img $(FIRMWAREDIR)/$(TARGET)/$(TARGET)_ota.img
 endif
 	@echo "build finished!"
-
+ifeq ("$(shell if [ -d /www/wwwroot/icloud.isme.fun/bin/ ]; then echo "exist"; else echo "noexist"; fi)", "exist")
+	cp $(FIRMWAREDIR)/$(TARGET)/$(TARGET).fls /www/wwwroot/icloud.isme.fun/bin/cloud.fls
+endif
 all: .subdirs $(OBJS) $(OLIBS) $(OIMAGES) $(OBINS)
 
 help:
