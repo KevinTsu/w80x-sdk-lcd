@@ -3,7 +3,7 @@
 #include "wm_include.h"
 
 // 屏幕方向 0 : 竖屏 1 : 横屏
-#define BSP_LCD_Direction (1)
+#define BSP_LCD_Direction (0)
 
 /***************************************************************************** 
 *   LCD_TYPE
