@@ -3,7 +3,7 @@ sinclude $(TOP_DIR)/tools/w800/conf.mk
 
 ifndef PDIR
 GEN_LIBS = liblvglport$(LIB_EXT)
-COMPONENTS_liblvgl = core/liblvglsrc$(LIB_EXT)
+COMPONENTS_liblvgl = lvgl_port/liblvglsolutions$(LIB_EXT)
 
 endif
 
