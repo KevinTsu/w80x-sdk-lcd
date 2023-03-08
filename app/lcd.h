@@ -13,8 +13,8 @@
 *   3   ili9488                
 *   4   nv3401n     480*272
 *****************************************************************************/ 
-#define LCD_TYPE  (1)
-#define LCD_SIZE  (3)
+#define LCD_TYPE  (2)
+#define LCD_SIZE  (2)
 // 屏幕分辨率
 #if   (LCD_SIZE == 1)
 #define LCD_WIDTH        320
