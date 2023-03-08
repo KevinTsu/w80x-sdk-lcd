@@ -349,7 +349,7 @@ void tls_pmu_chipsleep_callback(int sleeptime)
  * Output
  * Return
  ****************************************************************************/
-#if 1
+#if 0
 void task_start (void *data)
 {
 	u8 enable = 0;

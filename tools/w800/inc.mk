@@ -45,6 +45,7 @@ INCLUDES += -I $(TOP_DIR)/src/os/rtos/include
 INCLUDES += -I $(TOP_DIR)/src/app/factorycmd
 INCLUDES += -I $(TOP_DIR)/src/app/bleapp
 INCLUDES += -I $(TOP_DIR)/demo
+INCLUDES += -I $(TOP_DIR)/app
 #nimble host
 INCLUDES += -I $(TOP_DIR)/src/bt/blehost/ext/tinycrypt/include
 INCLUDES += -I $(TOP_DIR)/src/bt/blehost/nimble/host/include

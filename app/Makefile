@@ -3,7 +3,11 @@ sinclude $(TOP_DIR)/tools/w800/conf.mk
 
 ifndef PDIR
 GEN_LIBS = libuser$(LIB_EXT)
+COMPONENTS_libuser = button/libbutton$(LIB_EXT) \
+					 xmodem/libxmodem$(LIB_EXT) \
+					 spiflash/libspiflash$(LIB_EXT)
 endif
+
 
 #DEFINES +=
 
