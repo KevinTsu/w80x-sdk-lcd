@@ -19,8 +19,8 @@
 #include "psram.h"
 #include "wm_flash.h"
 
-#include "../components/lvgl/lvgl.h"
-#include "../components/lvgl_port/lvgl_task.h"
+#include "lvgl.h"
+#include "lvgl_task.h"
 
 /**
 *   DEMO 0  LCD lvgl、触摸、编码器、软键盘、lvgl组件测试
@@ -30,12 +30,12 @@
 *   DEMO 4  psram 测试
 *   DEMO 5  LCD 串口工具将图片转二进制文件，通过xmodem下载到spi flash显示
 */
-#define RUN_DEMO_NUM  (0)
+#define RUN_DEMO_NUM  (10)
 
 #if (RUN_DEMO_NUM == 5)
 #include "button/multi_button.h"
 #include "xmodem/xmodem.h"
-#include "spiflash/spiflash.h"
+#include "spiflash.h"
 bool xmodem_flag = 0;
 struct Button btn1;
 void BTN1_LONG_PRESS_START_Handler(void* btn)

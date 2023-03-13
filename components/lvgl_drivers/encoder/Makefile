@@ -2,11 +2,7 @@ TOP_DIR = ../../..
 sinclude $(TOP_DIR)/tools/w800/conf.mk
 
 ifndef PDIR
-GEN_LIBS = liblvglsolutions$(LIB_EXT)
-COMPONENTS_liblvglsolutions = switch_panel/liblvglswitch_panel$(LIB_EXT) \
-					 		  ebike/liblvglebike$(LIB_EXT)
-
-
+GEN_LIBS = lib_encoder$(LIB_EXT)
 endif
 
 #DEFINES +=

@@ -2,7 +2,7 @@ TOP_DIR = ../../../..
 sinclude $(TOP_DIR)/tools/w800/conf.mk
 
 ifndef PDIR
-GEN_LIBS = libcore$(LIB_EXT)
+GEN_LIBS = liblvglcore$(LIB_EXT)
 endif
 
 #DEFINES +=

@@ -4,7 +4,8 @@ sinclude $(TOP_DIR)/tools/w800/conf.mk
 ifndef PDIR
 GEN_LIBS = libcomponents$(LIB_EXT)
 COMPONENTS_libcomponents = lvgl/liblvgl$(LIB_EXT) \
-						   lvgl_port/liblvglport$(LIB_EXT) 
+						   lvgl_port/liblvglport$(LIB_EXT) \
+						   lvgl_drivers/liblvgldrivers$(LIB_EXT) 
 
 
 endif

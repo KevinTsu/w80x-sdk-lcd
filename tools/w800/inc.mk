@@ -45,6 +45,14 @@ INCLUDES += -I $(TOP_DIR)/src/os/rtos/include
 INCLUDES += -I $(TOP_DIR)/src/app/factorycmd
 INCLUDES += -I $(TOP_DIR)/src/app/bleapp
 INCLUDES += -I $(TOP_DIR)/demo
+#lvgl
+INCLUDES += -I $(TOP_DIR)/components/lvgl
+INCLUDES += -I $(TOP_DIR)/components/lvgl_port
+INCLUDES += -I $(TOP_DIR)/components/lvgl_drivers/encoder
+INCLUDES += -I $(TOP_DIR)/components/lvgl_drivers/lcd
+INCLUDES += -I $(TOP_DIR)/components/lvgl_drivers/psram
+INCLUDES += -I $(TOP_DIR)/components/lvgl_drivers/spiflash
+INCLUDES += -I $(TOP_DIR)/components/lvgl_drivers/touchpad
 INCLUDES += -I $(TOP_DIR)/app
 #nimble host
 INCLUDES += -I $(TOP_DIR)/src/bt/blehost/ext/tinycrypt/include

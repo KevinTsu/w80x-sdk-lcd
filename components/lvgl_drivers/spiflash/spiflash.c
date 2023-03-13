@@ -1,6 +1,8 @@
 #include "wm_include.h"
 #include "wm_flash.h"
-#include "../lcd.h"
+#include "lcd.h"
+#include "spiflash.h"
+
 extern bool xmodem_flag;
 
 typedef struct

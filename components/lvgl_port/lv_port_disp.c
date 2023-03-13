@@ -1,5 +1,4 @@
 #include "lv_port_disp.h"
-
 // #define USE_PSRAM
 
 #ifdef USE_PSRAM

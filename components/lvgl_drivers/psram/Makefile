@@ -1,8 +1,8 @@
-TOP_DIR = ../../../..
+TOP_DIR = ../../..
 sinclude $(TOP_DIR)/tools/w800/conf.mk
 
 ifndef PDIR
-GEN_LIBS = liblvglebike$(LIB_EXT)
+GEN_LIBS = lib_psram$(LIB_EXT)
 endif
 
 #DEFINES +=
