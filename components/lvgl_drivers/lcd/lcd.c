@@ -5,7 +5,7 @@
 #include "wm_flash.h"
 // #include "picture.h"
 
-
+#if   (LCD_TYPE == 0)
 // ST7789初始化
 const uint8_t st7789_init_seq[] = {
     /*  len , delay, cmd, data ... */
@@ -20,7 +20,7 @@ const uint8_t st7789_init_seq[] = {
         0x01, 0x02, 0x29,                         // Main screen turn on, then wait 500 ms
         0                                         // Terminate list
 };
-
+#elif (LCD_TYPE == 1)
 /**
 *   注意：
 *   使用RGB666时，需要lvgl库中配置  #define LV_COLOR_16_SWAP   0
@@ -69,7 +69,7 @@ const uint8_t ili9341_init_seq[] = {
         0
 };
 
-
+#elif (LCD_TYPE == 2)
 // ILI9488初始化
 const uint8_t ili9488_init_seq[] = {
     /*  len , delay, cmd, data ... */
@@ -91,7 +91,7 @@ const uint8_t ili9488_init_seq[] = {
         0x01, 0x02, 0x29,
         0
 };
-
+#elif (LCD_TYPE == 3)
 // ST7796S初始化
 const uint8_t st7796s_init_seq[] = {
     /*  len , delay, cmd, data ... */
@@ -134,7 +134,7 @@ const uint8_t st7796s_init_seq[] = {
 #endif
         0
 };
-
+#elif (LCD_TYPE == 4)
 // NV3041初始化
 const uint8_t nv3041n_init_seq[] = {
     /*  len , delay, cmd, data ... */
@@ -265,6 +265,8 @@ const uint8_t nv3041n_init_seq[] = {
         // 0x02, 0x74, 0x2C,
         0
 };
+
+
 /************************** io模拟spi ****************************/
 void  SendDataSPI(unsigned char dat)
 {  
@@ -517,6 +519,7 @@ void NV3041_Init(void)
     tls_os_time_delay(20);
 } 
 //////////////////////////////////////////////////////////////////////////////////////////
+#endif
 
 //---------Reset LCD Driver -------// 
 void lcd_reset_pin()
@@ -562,7 +565,7 @@ void lcd_gpio_init()
 #endif
 }
 
-#if (1)
+#if (CHIP_TYPE == 0)
 void lcd_back_on()
 {
     tls_bitband_write(HR_GPIOA_DATA, LCD_LED, 1);
@@ -577,6 +580,22 @@ void lcd_set_dc_cs(bool dc, bool cs)
 {
     tls_bitband_write(HR_GPIOA_DATA, LCD_DC, dc);
     tls_bitband_write(HR_GPIOA_DATA, LCD_CS, cs);
+}
+#elif (CHIP_TYPE == 1)
+void lcd_back_on()
+{
+    tls_bitband_write(HR_GPIOB_DATA, LCD_LED, 1);
+}
+
+void lcd_back_off(void)
+{
+    tls_bitband_write(HR_GPIOB_DATA, LCD_LED, 0);
+}
+
+void lcd_set_dc_cs(bool dc, bool cs) 
+{
+    tls_bitband_write(HR_GPIOB_DATA, LCD_DC, dc);
+    tls_bitband_write(HR_GPIOB_DATA, LCD_CS, cs);
 }
 #else
 void lcd_back_on()
