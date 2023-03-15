@@ -30,7 +30,7 @@
 *   DEMO 4  psram 测试
 *   DEMO 5  LCD 串口工具将图片转二进制文件，通过xmodem下载到spi flash显示
 */
-#define RUN_DEMO_NUM  (10)
+#define RUN_DEMO_NUM  (0)
 
 #if (RUN_DEMO_NUM == 5)
 #include "button/multi_button.h"

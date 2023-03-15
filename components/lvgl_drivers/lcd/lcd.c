@@ -514,6 +514,8 @@ void NV3041_Init(void)
     tls_os_time_delay(20);
 } 
 //////////////////////////////////////////////////////////////////////////////////////////
+#endif
+
 //---------Reset LCD Driver -------// 
 void lcd_reset_pin()
 {
@@ -557,7 +559,6 @@ void lcd_gpio_init()
     }
 #endif
 }
-#endif
 
 #if (CHIP_TYPE == 0)
 void lcd_back_on()
