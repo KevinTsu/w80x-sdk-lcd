@@ -3,7 +3,7 @@
 #include "wm_include.h"
 
 // 屏幕方向 0 : 竖屏 1 : 横屏
-#define BSP_LCD_Direction (1)
+#define BSP_LCD_Direction (0)
 
 /***************************************************************************** 
 *   LCD_TYPE
@@ -13,8 +13,8 @@
 *   3   ili9488                
 *   4   nv3401n     480*272
 *****************************************************************************/ 
-#define LCD_TYPE  (1)
-#define LCD_SIZE  (1)
+#define LCD_TYPE  (0)
+#define LCD_SIZE  (2)
 // 屏幕分辨率
 #if   (LCD_SIZE == 1)
 #define LCD_WIDTH        320
