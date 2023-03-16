@@ -677,7 +677,7 @@ void bsp_lcd_init()
 
 #if   (LCD_TYPE == 0)
     init_sdio_spi_mode();
-    spi_lcd_init_cmd(st7789_init_seq)
+    spi_lcd_init_cmd(st7789_init_seq);
 #elif (LCD_TYPE == 1)
     init_sdio_spi_mode();
     spi_lcd_init_cmd(st7796s_init_seq);
