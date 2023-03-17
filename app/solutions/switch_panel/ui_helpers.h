@@ -1,10 +1,10 @@
 // SquareLine LVGL GENERATED FILE
 // EDITOR VERSION: SquareLine Studio 1.2.1
-// LVGL VERSION: 8.3.3
-// PROJECT: Thermostat
+// LVGL VERSION: 8.3.4
+// PROJECT: SquareLine_Project
 
-#ifndef _THERMOSTAT_UI_HELPERS_H
-#define _THERMOSTAT_UI_HELPERS_H
+#ifndef _SQUARELINE_PROJECT_UI_HELPERS_H
+#define _SQUARELINE_PROJECT_UI_HELPERS_H
 
 #include "ui.h"
 
