@@ -107,6 +107,7 @@ endif
 LIB_EXT = .a
 
 CCFLAGS := -Wall \
+	-DLV_LVGL_H_INCLUDE_SIMPLE=1 \
     -DTLS_CONFIG_CPU_XT804=1 \
     -DGCC_COMPILE=1 \
     -DNO_PERSISTENCE=1 \
@@ -122,6 +123,7 @@ CCFLAGS := -Wall \
     -ffunction-sections
 
 CXXFLAGS := -Wall \
+	-DLV_LVGL_H_INCLUDE_SIMPLE=1 \
     -DTLS_CONFIG_CPU_XT804=1 \
     -DGCC_COMPILE=1 \
     -mcpu=ck804ef \
@@ -134,6 +136,7 @@ CXXFLAGS := -Wall \
     -ffunction-sections
 
 ASMFLAGS := -Wall \
+	-DLV_LVGL_H_INCLUDE_SIMPLE=1 \
     -DTLS_CONFIG_CPU_XT804=1 \
     -DGCC_COMPILE=1 \
     -mcpu=ck804ef \
