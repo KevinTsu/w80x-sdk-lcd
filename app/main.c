@@ -50,7 +50,7 @@ void BTN1_LONG_PRESS_START_Handler(void* btn)
 
 void UserMain(void)
 {
-	tls_sys_clk_set(CPU_CLK_80M);
+	tls_sys_clk_set(CPU_CLK_240M);
 	// extern int tls_get_mac_addr(u8 *mac);
 	// extern int tls_get_bt_mac_addr(u8 *mac);
 	extern u32 tls_mem_get_avail_heapsize(void);
