@@ -50,7 +50,7 @@ void BTN1_LONG_PRESS_START_Handler(void* btn)
 
 void UserMain(void)
 {
-	tls_sys_clk_set(CPU_CLK_240M);
+	tls_sys_clk_set(CPU_CLK_80M);
 	// extern int tls_get_mac_addr(u8 *mac);
 	// extern int tls_get_bt_mac_addr(u8 *mac);
 	extern u32 tls_mem_get_avail_heapsize(void);
@@ -82,12 +82,15 @@ void UserMain(void)
     u16 buff[]={RED,GREEN,BLUE,BRED,YELLOW,RED,GRAY};
     while(1)
     {
-        if(++index>=3)
+        if(++index>=7)
         {
             index = 0;
         }
-        lcd_clear(buff[index]);
-        tls_os_time_delay(5*HZ);
+        lcd_clear(RED);
+        // lcd_clear(0b1111100000000000);
+        // lcd_clear(buff[index]);
+        tls_os_time_delay(1*HZ);
+        
     }
 #elif(RUN_DEMO_NUM == 2) // 图片数组测试
     printf("---> RUN DEMO [%d] IMAGE C ARRAY \n", RUN_DEMO_NUM);

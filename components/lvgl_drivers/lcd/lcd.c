@@ -9,8 +9,8 @@
 const uint8_t st7789_init_seq[] = {
     /* ST7789V2-BOE2.83IPS(2.83  GV028QVQ-N81-3QP0-Q-)_Gamma2.2-20211207 */
     /*  len , delay, cmd, data ... */
-        0x01, 0x0A, 0x11,                         // Exit sleep mode
-        0x02, 0x00, 0x36, 0x40,                   // Set MADCTL
+        0x01, 0x78, 0x11,                         // Exit sleep mode
+        0x02, 0x00, 0x36, 0x48,                   // Set MADCTL
         0x02, 0x00, 0x3A, 0x55,                   // Set colour mode to 16 bit
         0x06, 0x00, 0xB2, 0x0C, 0x0C, 0x00, 0x33, 0x33,
         0x02, 0x00, 0xB7, 0x46,                   // VGH=13.65V,VGL=-11.38V
@@ -24,8 +24,8 @@ const uint8_t st7789_init_seq[] = {
         0x02, 0x00, 0xD6, 0xA1,
         0x0F, 0x00, 0xE0, 0xF0, 0x00, 0x06, 0x04, 0x05, 0x05, 0x31, 0x44, 0x48, 0x36, 0x12, 0x12, 0x2B, 0x34,
         0x0F, 0x00, 0xE1, 0xF0, 0x0B, 0x0F, 0x0F, 0x0D, 0x26, 0x31, 0x43, 0x47, 0x38, 0x14, 0x14, 0x2C, 0x32,       
-        0x01, 0x02, 0x21,                         // Inversion on, then 10 ms delay (supposedly a hack?)
-        0x01, 0x02, 0x29,                         // Main screen turn on, then wait 500 ms
+        // 0x01, 0x78, 0x21,                         // Inversion on, then 10 ms delay (supposedly a hack?)
+        0x01, 0x78, 0x29,                         // Main screen turn on, then wait 500 ms
         0                                         // Terminate list
 };
 // const uint8_t st7789_init_seq[] = {
@@ -699,15 +699,19 @@ void bsp_lcd_init()
 #if   (LCD_TYPE == 0)
     init_sdio_spi_mode();
     spi_lcd_init_cmd(st7789_init_seq);
+    printf("---> st7789\n");
 #elif (LCD_TYPE == 1)
     init_sdio_spi_mode();
     spi_lcd_init_cmd(st7796s_init_seq);
+    printf("---> st7796s\n");
 #elif (LCD_TYPE == 2)
     init_sdio_spi_mode();
     spi_lcd_init_cmd(ili9341_init_seq);
+    printf("---> ili9341\n");
 #elif (LCD_TYPE == 3)
     init_sdio_spi_mode();
     spi_lcd_init_cmd(ili9488_init_seq);
+    printf("---> ili9488\n");
 #elif (LCD_TYPE == 4)
     #if (1)  // gpio 模拟 spi
         NV3041_Init();
@@ -716,6 +720,7 @@ void bsp_lcd_init()
         init_sdio_spi_mode();
         spi_lcd_init_cmd(nv3041n_init_seq);
     #endif
+    printf("---> nv3041n\n");
 #else
     printf("---> lcd driver module not beed installed!\n");
     return;
