@@ -86,9 +86,9 @@ void UserMain(void)
         {
             index = 0;
         }
-        lcd_clear(RED);
+        // lcd_clear(RED);
         // lcd_clear(0b1111100000000000);
-        // lcd_clear(buff[index]);
+        lcd_clear(buff[index]);
         tls_os_time_delay(1*HZ);
         
     }
