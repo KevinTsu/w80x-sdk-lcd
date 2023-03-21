@@ -7,40 +7,201 @@
 #if   (LCD_TYPE == 0)
 // ST7789初始化
 const uint8_t st7789_init_seq[] = {
-    /* ST7789V2-BOE2.83IPS(2.83  GV028QVQ-N81-3QP0-Q-)_Gamma2.2-20211207 */
     /*  len , delay, cmd, data ... */
-        0x01, 0x78, 0x11,                         // Exit sleep mode
-        0x02, 0x00, 0x36, 0x48,                   // Set MADCTL
-        0x02, 0x00, 0x3A, 0x55,                   // Set colour mode to 16 bit
-        0x06, 0x00, 0xB2, 0x0C, 0x0C, 0x00, 0x33, 0x33,
-        0x02, 0x00, 0xB7, 0x46,                   // VGH=13.65V,VGL=-11.38V
-        0x02, 0x00, 0xBB, 0x1B, 
-        0x02, 0x00, 0xC0, 0x2C, 
-        0x02, 0x00, 0xC2, 0x01, 
-        0x02, 0x00, 0xC3, 0x0F, 
-        0x02, 0x00, 0xC4, 0x20, 
-        0x02, 0x00, 0xC6, 0x0F,
-        0x03, 0x00, 0xD0, 0xA4, 0xA1,
-        0x02, 0x00, 0xD6, 0xA1,
-        0x0F, 0x00, 0xE0, 0xF0, 0x00, 0x06, 0x04, 0x05, 0x05, 0x31, 0x44, 0x48, 0x36, 0x12, 0x12, 0x2B, 0x34,
-        0x0F, 0x00, 0xE1, 0xF0, 0x0B, 0x0F, 0x0F, 0x0D, 0x26, 0x31, 0x43, 0x47, 0x38, 0x14, 0x14, 0x2C, 0x32,       
-        // 0x01, 0x78, 0x21,                         // Inversion on, then 10 ms delay (supposedly a hack?)
-        0x01, 0x78, 0x29,                         // Main screen turn on, then wait 500 ms
+        0x01, 0x14, 0x01,                         // Software reset
+        0x01, 0x0A, 0x11,                         // Exit sleep mode
+        0x02, 0x02, 0x3A, 0x55,                   // Set colour mode to 16 bit
+        0x02, 0x00, 0x36, 0x00,                   // Set MADCTL: row then column, refresh is bottom to top ????
+        0x05, 0x00, 0x2A, 0x00, 0x00, 0x00, 0xf0, // CASET: column addresses from 0 to 240 (f0)
+        0x05, 0x00, 0x2B, 0x00, 0x00, 0x01, 0x40, // RASET: row addresses from 0 to 240 (f0)
+        0x01, 0x02, 0x21,                         // Inversion on, then 10 ms delay (supposedly a hack?)
+        0x01, 0x02, 0x13,                         // Normal display on, then 10 ms delay
+        0x01, 0x02, 0x29,                         // Main screen turn on, then wait 500 ms
         0                                         // Terminate list
 };
-// const uint8_t st7789_init_seq[] = {
-//     /*  len , delay, cmd, data ... */
-//         0x01, 0x14, 0x01,                         // Software reset
-//         0x01, 0x0A, 0x11,                         // Exit sleep mode
-//         0x02, 0x02, 0x3A, 0x55,                   // Set colour mode to 16 bit
-//         0x02, 0x00, 0x36, 0x00,                   // Set MADCTL: row then column, refresh is bottom to top ????
-//         0x05, 0x00, 0x2A, 0x00, 0x00, 0x00, 0xf0, // CASET: column addresses from 0 to 240 (f0)
-//         0x05, 0x00, 0x2B, 0x00, 0x00, 0x01, 0x40, // RASET: row addresses from 0 to 240 (f0)
-//         0x01, 0x02, 0x21,                         // Inversion on, then 10 ms delay (supposedly a hack?)
-//         0x01, 0x02, 0x13,                         // Normal display on, then 10 ms delay
-//         0x01, 0x02, 0x29,                         // Main screen turn on, then wait 500 ms
-//         0                                         // Terminate list
-// };
+/* ST7789V2-BOE2.83IPS RL028P2123-14A1 */
+void st7789_init(void)
+{
+    tls_os_time_delay(120);       
+    WriteComm(0xDF); // Password
+    WriteData(0x98);
+    WriteData(0x51);
+    WriteData(0xE9);
+
+    WriteComm(0xDE);
+    WriteData(0x00);
+
+    WriteComm(0xB7);
+    WriteData(0x1E); // 1E
+    WriteData(0x85); // 81
+    WriteData(0x1E); // 1E
+    WriteData(0x33); // 2F
+
+    WriteComm(0xC8);
+    WriteData(0x3F);
+    WriteData(0x2E);
+    WriteData(0x25);
+    WriteData(0x21);
+    WriteData(0x22);
+    WriteData(0x25);
+    WriteData(0x1F);
+    WriteData(0x1E);
+    WriteData(0x1C);
+    WriteData(0x1B);
+    WriteData(0x19);
+    WriteData(0x11);
+    WriteData(0x0E);
+    WriteData(0x0A);
+    WriteData(0x06);
+    WriteData(0x0E);
+    WriteData(0x3F);
+    WriteData(0x2E);
+    WriteData(0x25);
+    WriteData(0x21);
+    WriteData(0x22);
+    WriteData(0x25);
+    WriteData(0x1F);
+    WriteData(0x1E);
+    WriteData(0x1C);
+    WriteData(0x1B);
+    WriteData(0x19);
+    WriteData(0x11);
+    WriteData(0x0E);
+    WriteData(0x0A);
+    WriteData(0x06);
+    WriteData(0x0E);
+
+    WriteComm(0xB9);
+    WriteData(0x33);
+    WriteData(0x08);
+    WriteData(0xCC);
+
+    WriteComm(0xBB);
+    WriteData(0x44); // VGH 14.75,VGL-9.6
+    WriteData(0x7A);
+    WriteData(0x30);
+    WriteData(0x40); // 3
+    WriteData(0x7C); // 6
+    WriteData(0x60);
+    WriteData(0x70); // 50
+    WriteData(0x70);
+
+    WriteComm(0xBC);
+    WriteData(0x38);
+    WriteData(0x3C);
+
+    WriteComm(0xC0);
+    WriteData(0x31);
+    WriteData(0x20);
+
+    WriteComm(0xC1);
+    WriteData(0x12);
+
+    //WriteComm(0xC2);
+    //WriteData(0x08);
+
+    WriteComm(0xC3);
+    WriteData(0x08);
+    WriteData(0x00);
+    WriteData(0x0A);
+    WriteData(0x10);
+    WriteData(0x08);
+    WriteData(0x54);
+    WriteData(0x45);
+    WriteData(0x71);
+    WriteData(0x2C);
+
+    WriteComm(0xC4);
+    WriteData(0x00);
+    WriteData(0xA0);
+    WriteData(0x79);
+    WriteData(0x0E);
+    WriteData(0x0A);
+    WriteData(0x16);
+    WriteData(0x79);
+    WriteData(0x0E);
+    WriteData(0x0A);
+    WriteData(0x16);
+    WriteData(0x79);
+    WriteData(0x0E);
+    WriteData(0x0A);
+    WriteData(0x16);
+    WriteData(0x82);
+    WriteData(0x00);
+    WriteData(0x03);
+
+
+    WriteComm(0xD0);
+    WriteData(0x04);
+    WriteData(0x0C);
+    WriteData(0x6A);
+    WriteData(0x0F);
+    WriteData(0x00);
+    WriteData(0x03);
+
+    WriteComm(0xD7);
+    WriteData(0x00);
+    WriteData(0x00);
+
+    WriteComm(0xDE);
+    WriteData(0x02);
+
+    WriteComm(0xB8);
+    WriteData(0x1D);
+    WriteData(0xA0);
+    WriteData(0x2F);
+    WriteData(0x2C);
+    WriteData(0x2B);
+
+    WriteComm(0xC1);
+    WriteData(0x10);
+    WriteData(0x66);
+    WriteData(0x66);
+    WriteData(0x01);
+
+    WriteComm(0xDE);
+    WriteData(0x00);
+
+
+    WriteComm(0x11);  	// SLPOUT
+    tls_os_time_delay(120);
+
+
+    WriteComm(0xDE);
+    WriteData(0x02);
+
+    WriteComm(0xC5);
+    WriteData(0x4E);
+    WriteData(0x00);
+    WriteData(0x00);
+
+    WriteComm(0xCA);
+    WriteData(0x30);
+    WriteData(0x20);
+    WriteData(0xF4);
+
+    WriteComm(0xDE);
+    WriteData(0x04);
+
+    WriteComm(0xD3);
+    WriteData(0x3C);
+    WriteComm(0xDE);
+    WriteData(0x00);
+
+#if BSP_LCD_Direction == 0
+    WriteComm(0x36);
+    WriteData(0x00); 	// 0°
+#else
+    WriteComm(0x36);
+    WriteData(0xB0); 	// 0xB0 1011 0000 90°
+#endif
+
+    WriteComm(0x3A);
+    WriteData(0x55); 	// rgb 565 bit
+
+    WriteComm(0x29);  	// SLPOUT
+}
+
 #elif (LCD_TYPE == 1)
 // ST7796S初始化
 const uint8_t st7796s_init_seq[] = {
@@ -283,49 +444,9 @@ const uint8_t nv3041n_init_seq[] = {
         0
 };
 
-/************************** io模拟spi ****************************/
-void  SendDataSPI(unsigned char dat)
-{  
-//    printf("---> %s\r\n",__func__);
-   unsigned char i;
-   
-   for(i=0; i<8; i++)			
-   {  
-      if( (dat&0x80)!=0 ) tls_bitband_write(HR_GPIOA_DATA, LCD_MOSI, 1);
-        else tls_bitband_write(HR_GPIOA_DATA, LCD_MOSI, 0);
-
-      dat <<= 1;
-
-	  tls_bitband_write(HR_GPIOA_DATA, LCD_SCL, 0);
-      tls_bitband_write(HR_GPIOA_DATA, LCD_SCL, 1);			
-   }
-}
-
-void WriteComm(unsigned int i)
-{
-
-    tls_bitband_write(HR_GPIOA_DATA, LCD_CS, 0);
-	tls_bitband_write(HR_GPIOA_DATA, LCD_DC, 0);
-
-	SendDataSPI(i);
-
-	tls_bitband_write(HR_GPIOA_DATA, LCD_CS, 1);
-
-}
-
-void WriteData(unsigned int i)
-{
-    // printf("---> %s\r\n",__func__);
-    tls_bitband_write(HR_GPIOA_DATA, LCD_CS, 0);
-	tls_bitband_write(HR_GPIOA_DATA, LCD_DC, 1);
-
-	SendDataSPI(i);
-
-	tls_bitband_write(HR_GPIOA_DATA, LCD_CS, 1);
-}
 
 // (1) pixel 5-6-5 --8bit and serial interface code 
-void NV3041_Init(void)
+void nv3041_init(void)
 { 
     //---------Start Initial Code ------//  
     WriteComm(0xff); 
@@ -537,6 +658,47 @@ void NV3041_Init(void)
 //////////////////////////////////////////////////////////////////////////////////////////
 #endif
 
+/************************** io模拟spi ****************************/
+void  SendDataSPI(unsigned char dat)
+{  
+//    printf("---> %s\r\n",__func__);
+   unsigned char i;
+   
+   for(i=0; i<8; i++)			
+   {  
+      if( (dat&0x80)!=0 ) tls_bitband_write(HR_GPIOA_DATA, LCD_MOSI, 1);
+        else tls_bitband_write(HR_GPIOA_DATA, LCD_MOSI, 0);
+
+      dat <<= 1;
+
+	  tls_bitband_write(HR_GPIOA_DATA, LCD_SCL, 0);
+      tls_bitband_write(HR_GPIOA_DATA, LCD_SCL, 1);			
+   }
+}
+
+void WriteComm(unsigned int i)
+{
+
+    tls_bitband_write(HR_GPIOA_DATA, LCD_CS, 0);
+	tls_bitband_write(HR_GPIOA_DATA, LCD_DC, 0);
+
+	SendDataSPI(i);
+
+	tls_bitband_write(HR_GPIOA_DATA, LCD_CS, 1);
+
+}
+
+void WriteData(unsigned int i)
+{
+    // printf("---> %s\r\n",__func__);
+    tls_bitband_write(HR_GPIOA_DATA, LCD_CS, 0);
+	tls_bitband_write(HR_GPIOA_DATA, LCD_DC, 1);
+
+	SendDataSPI(i);
+
+	tls_bitband_write(HR_GPIOA_DATA, LCD_CS, 1);
+}
+
 //---------Reset LCD Driver -------// 
 void lcd_reset_pin()
 {
@@ -695,10 +857,14 @@ void bsp_lcd_init()
 {
     lcd_gpio_init();
     lcd_reset_pin();
-
 #if   (LCD_TYPE == 0)
-    init_sdio_spi_mode();
-    spi_lcd_init_cmd(st7789_init_seq);
+    #if (1)  // gpio 模拟 spi
+        st7789_init();
+        init_sdio_spi_mode();
+    #else
+        init_sdio_spi_mode();
+        spi_lcd_init_cmd(st7789_init_seq);
+    #endif
     printf("---> st7789\n");
 #elif (LCD_TYPE == 1)
     init_sdio_spi_mode();
@@ -714,7 +880,7 @@ void bsp_lcd_init()
     printf("---> ili9488\n");
 #elif (LCD_TYPE == 4)
     #if (1)  // gpio 模拟 spi
-        NV3041_Init();
+        nv3041_init();
         init_sdio_spi_mode();
     #else
         init_sdio_spi_mode();
