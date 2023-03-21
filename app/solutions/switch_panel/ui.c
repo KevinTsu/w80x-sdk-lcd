@@ -24,6 +24,7 @@ lv_obj_t * ui_Panel1;
 lv_obj_t * ui_ImageClock;
 lv_obj_t * ui_LabelTime1;
 lv_obj_t * ui_LabelClock;
+void ui_event_Panel2(lv_event_t * e);
 lv_obj_t * ui_Panel2;
 lv_obj_t * ui_ImageSpeed;
 lv_obj_t * ui_LabelSpeed;
@@ -89,6 +90,14 @@ void ui_event_Screen2(lv_event_t * e)
     }
     if(event_code == LV_EVENT_GESTURE &&  lv_indev_get_gesture_dir(lv_indev_get_act()) == LV_DIR_RIGHT) {
         _ui_screen_change(ui_Screen1, LV_SCR_LOAD_ANIM_FADE_ON, 0, 0);
+    }
+}
+void ui_event_Panel2(lv_event_t * e)
+{
+    lv_event_code_t event_code = lv_event_get_code(e);
+    lv_obj_t * target = lv_event_get_target(e);
+    if(event_code == LV_EVENT_CLICKED) {
+        _ui_image_set_property(ui_ImageSpeed, _UI_IMAGE_PROPERTY_IMAGE, & ui_img_icn_wind_speed_1_png);
     }
 }
 void ui_event_Screen3(lv_event_t * e)
@@ -243,7 +252,7 @@ void ui_Screen2_screen_init(void)
     lv_obj_set_width(ui_LabelTime1, LV_SIZE_CONTENT);   /// 1
     lv_obj_set_height(ui_LabelTime1, LV_SIZE_CONTENT);    /// 1
     lv_obj_set_align(ui_LabelTime1, LV_ALIGN_TOP_MID);
-    lv_label_set_text(ui_LabelTime1, "18 :10");
+    lv_label_set_text(ui_LabelTime1, "18 : 10");
     lv_obj_set_style_text_color(ui_LabelTime1, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_opa(ui_LabelTime1, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_font(ui_LabelTime1, &lv_font_montserrat_32, LV_PART_MAIN | LV_STATE_DEFAULT);
@@ -272,7 +281,7 @@ void ui_Screen2_screen_init(void)
     lv_obj_set_style_outline_pad(ui_Panel2, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     ui_ImageSpeed = lv_img_create(ui_Panel2);
-    lv_img_set_src(ui_ImageSpeed, &ui_img_icn_wind_speed_png);
+    lv_img_set_src(ui_ImageSpeed, &ui_img_icn_wind_speed_3_png);
     lv_obj_set_width(ui_ImageSpeed, LV_SIZE_CONTENT);   /// 37
     lv_obj_set_height(ui_ImageSpeed, LV_SIZE_CONTENT);    /// 30
     lv_obj_set_x(ui_ImageSpeed, -5);
@@ -391,6 +400,7 @@ void ui_Screen2_screen_init(void)
     lv_obj_set_style_text_opa(ui_LabelWiFi, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_font(ui_LabelWiFi, &lv_font_montserrat_14, LV_PART_MAIN | LV_STATE_DEFAULT);
 
+    lv_obj_add_event_cb(ui_Panel2, ui_event_Panel2, LV_EVENT_ALL, NULL);
     lv_obj_add_event_cb(ui_Screen2, ui_event_Screen2, LV_EVENT_ALL, NULL);
 
 }

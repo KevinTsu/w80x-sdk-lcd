@@ -29,6 +29,7 @@ extern lv_obj_t * ui_Panel1;
 extern lv_obj_t * ui_ImageClock;
 extern lv_obj_t * ui_LabelTime1;
 extern lv_obj_t * ui_LabelClock;
+void ui_event_Panel2(lv_event_t * e);
 extern lv_obj_t * ui_Panel2;
 extern lv_obj_t * ui_ImageSpeed;
 extern lv_obj_t * ui_LabelSpeed;
@@ -69,8 +70,16 @@ LV_IMG_DECLARE(ui_img_icn_wifi_png);    // assets\icn_wifi.png
 LV_IMG_DECLARE(ui_img_weather_sun_png);    // assets\weather_sun.png
 LV_IMG_DECLARE(ui_img_icn_wifi_28x22_png);    // assets\icn_wifi_28x22.png
 LV_IMG_DECLARE(ui_img_icn_clock_png);    // assets\icn_clock.png
-LV_IMG_DECLARE(ui_img_icn_wind_speed_png);    // assets\icn_wind_speed.png
+LV_IMG_DECLARE(ui_img_icn_wind_speed_1_png);    // assets\icn_wind_speed_1.png
+LV_IMG_DECLARE(ui_img_icn_wind_speed_3_png);    // assets\icn_wind_speed_3.png
 LV_IMG_DECLARE(ui_img_icn_snow_png);    // assets\icn_snow.png
+LV_IMG_DECLARE(ui_img_icn_bluetooth_png);    // assets\icn_bluetooth.png
+LV_IMG_DECLARE(ui_img_weather_cloud_png);    // assets\weather_cloud.png
+LV_IMG_DECLARE(ui_img_weather_cloud_fog_png);    // assets\weather_cloud_fog.png
+LV_IMG_DECLARE(ui_img_weather_sun_cloud_png);    // assets\weather_sun_cloud.png
+LV_IMG_DECLARE(ui_img_icn_wind_speed_2_png);    // assets\icn_wind_speed_2.png
+LV_IMG_DECLARE(ui_img_icn_wind_speed_4_png);    // assets\icn_wind_speed_4.png
+LV_IMG_DECLARE(ui_img_icn_wind_speed_5_png);    // assets\icn_wind_speed_5.png
 
 
 
