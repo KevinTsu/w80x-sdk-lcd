@@ -22,6 +22,8 @@
 #include "lvgl.h"
 #include "lvgl_task.h"
 
+#include "user_button.h"
+
 /**
 *   DEMO 0  LCD lvgl、触摸、编码器、软键盘、lvgl组件测试
 *   DEMO 1  LCD 颜色填充测试
@@ -136,7 +138,7 @@ void UserMain(void)
     get_image_list_show();
 #endif
 
-
+    user_button_init();
 
 #if DEMO_CONSOLE
 	CreateDemoTask();
