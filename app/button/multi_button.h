@@ -7,7 +7,7 @@
 //According to your need to modify the constants.
 #define TICKS_INTERVAL    10	//ms
 #define DEBOUNCE_TICKS    3	//MAX 8
-#define SHORT_TICKS       (300 /TICKS_INTERVAL)
+#define SHORT_TICKS       (30 /TICKS_INTERVAL)
 #define LONG_TICKS        (1000 /TICKS_INTERVAL)
 
 typedef void (*BtnCallback)(void*);
