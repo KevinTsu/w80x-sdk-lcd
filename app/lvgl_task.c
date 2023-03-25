@@ -5,7 +5,7 @@
 #include "lv_port_disp.h"
 #include "lv_port_indev.h"
 #include "../lvgl/demos/lv_demos.h"
-// #include "solutions/ebike/ui.h"
+#include "solutions/ebike/ui.h"
 #include "solutions/switch_panel/ui.h"
 
 static OS_STK TaskStk[LVGL_TASK_STACK_SIZE];
@@ -121,8 +121,10 @@ static void lvgl_task_start(void *data)
     // lv_demo_stress();            
     // lv_example_flex_5();
     // lv_example_get_started_1();
+
     // lv_example_meter_1();
-    ui_init();
+    lv_example_meter_2();
+    // ui_init();
 
     // u32 tick = 0;
     while(1) {
