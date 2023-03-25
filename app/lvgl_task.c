@@ -123,8 +123,8 @@ static void lvgl_task_start(void *data)
     // lv_example_get_started_1();
 
     // lv_example_meter_1();
-    lv_example_meter_2();
-    // ui_init();
+    // lv_example_meter_2();
+    ui_init();
 
     // u32 tick = 0;
     while(1) {
