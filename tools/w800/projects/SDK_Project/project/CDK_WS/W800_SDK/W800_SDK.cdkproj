@@ -1761,9 +1761,6 @@
         </File>
       </VirtualDirectory>
     </VirtualDirectory>
-    <File Name="../../../../../../../app/main.c">
-      <FileOption/>
-    </File>
     <VirtualDirectory Name="bt">
       <VirtualDirectory Name="blehost">
         <VirtualDirectory Name="docs">
@@ -3227,6 +3224,1508 @@
   <VendorInfo>
     <VendorName>NULL</VendorName>
   </VendorInfo>
+  <DebugSessions>
+    <watchExpressions/>
+    <memoryExpressions/>
+    <statistics/>
+    <peripheralTabs/>
+    <WatchDisplayFormat/>
+    <LocalDisplayFormat/>
+    <debugLayout/>
+    <memoryTabColSizeExpressions/>
+  </DebugSessions>
+  <VirtualDirectory Name="app">
+    <VirtualDirectory Name="button">
+      <File Name="../../../../../../../app/button/multi_button.c">
+        <FileOption/>
+      </File>
+      <File Name="../../../../../../../app/button/multi_button.h">
+        <FileOption/>
+      </File>
+    </VirtualDirectory>
+    <File Name="../../../../../../../app/lvgl_task.c">
+      <FileOption/>
+    </File>
+    <File Name="../../../../../../../app/lvgl_task.h">
+      <FileOption/>
+    </File>
+    <File Name="../../../../../../../app/main.c">
+      <FileOption/>
+    </File>
+    <File Name="../../../../../../../app/picture.h">
+      <FileOption/>
+    </File>
+    <VirtualDirectory Name="xmodem">
+      <File Name="../../../../../../../app/xmodem/xmodem.c">
+        <FileOption/>
+      </File>
+      <File Name="../../../../../../../app/xmodem/xmodem.h">
+        <FileOption/>
+      </File>
+    </VirtualDirectory>
+  </VirtualDirectory>
+  <VirtualDirectory Name="components">
+    <VirtualDirectory Name="lvgl">
+      <VirtualDirectory Name="demos">
+        <VirtualDirectory Name="benchmark">
+          <VirtualDirectory Name="assets">
+            <File Name="../../../../../../../components/lvgl/demos/benchmark/assets/img_benchmark_cogwheel_alpha16.c">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/demos/benchmark/assets/img_benchmark_cogwheel_argb.c">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/demos/benchmark/assets/img_benchmark_cogwheel_chroma_keyed.c">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/demos/benchmark/assets/img_benchmark_cogwheel_indexed16.c">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/demos/benchmark/assets/img_benchmark_cogwheel_rgb.c">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/demos/benchmark/assets/img_benchmark_cogwheel_rgb565a8.c">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/demos/benchmark/assets/lv_font_bechmark_montserrat_12_compr_az.c.c">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/demos/benchmark/assets/lv_font_bechmark_montserrat_16_compr_az.c.c">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/demos/benchmark/assets/lv_font_bechmark_montserrat_28_compr_az.c.c">
+              <FileOption/>
+            </File>
+          </VirtualDirectory>
+          <File Name="../../../../../../../components/lvgl/demos/benchmark/lv_demo_benchmark.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/demos/benchmark/lv_demo_benchmark.h">
+            <FileOption/>
+          </File>
+        </VirtualDirectory>
+        <VirtualDirectory Name="keypad_encoder">
+          <File Name="../../../../../../../components/lvgl/demos/keypad_encoder/lv_demo_keypad_encoder.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/demos/keypad_encoder/lv_demo_keypad_encoder.h">
+            <FileOption/>
+          </File>
+        </VirtualDirectory>
+        <File Name="../../../../../../../components/lvgl/demos/lv_demos.h">
+          <FileOption/>
+        </File>
+        <VirtualDirectory Name="music">
+          <VirtualDirectory Name="assets">
+            <File Name="../../../../../../../components/lvgl/demos/music/assets/img_lv_demo_music_btn_corner_large.c">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/demos/music/assets/img_lv_demo_music_btn_list_pause.c">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/demos/music/assets/img_lv_demo_music_btn_list_pause_large.c">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/demos/music/assets/img_lv_demo_music_btn_list_play.c">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/demos/music/assets/img_lv_demo_music_btn_list_play_large.c">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/demos/music/assets/img_lv_demo_music_btn_loop.c">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/demos/music/assets/img_lv_demo_music_btn_loop_large.c">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/demos/music/assets/img_lv_demo_music_btn_next.c">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/demos/music/assets/img_lv_demo_music_btn_next_large.c">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/demos/music/assets/img_lv_demo_music_btn_pause.c">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/demos/music/assets/img_lv_demo_music_btn_pause_large.c">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/demos/music/assets/img_lv_demo_music_btn_play.c">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/demos/music/assets/img_lv_demo_music_btn_play_large.c">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/demos/music/assets/img_lv_demo_music_btn_prev.c">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/demos/music/assets/img_lv_demo_music_btn_prev_large.c">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/demos/music/assets/img_lv_demo_music_btn_rnd.c">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/demos/music/assets/img_lv_demo_music_btn_rnd_large.c">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/demos/music/assets/img_lv_demo_music_corner_left.c">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/demos/music/assets/img_lv_demo_music_corner_left_large.c">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/demos/music/assets/img_lv_demo_music_corner_right.c">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/demos/music/assets/img_lv_demo_music_corner_right_large.c">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/demos/music/assets/img_lv_demo_music_cover_1.c">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/demos/music/assets/img_lv_demo_music_cover_1_large.c">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/demos/music/assets/img_lv_demo_music_cover_2.c">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/demos/music/assets/img_lv_demo_music_cover_2_large.c">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/demos/music/assets/img_lv_demo_music_cover_3.c">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/demos/music/assets/img_lv_demo_music_cover_3_large.c">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/demos/music/assets/img_lv_demo_music_icon_1.c">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/demos/music/assets/img_lv_demo_music_icon_1_large.c">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/demos/music/assets/img_lv_demo_music_icon_2.c">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/demos/music/assets/img_lv_demo_music_icon_2_large.c">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/demos/music/assets/img_lv_demo_music_icon_3.c">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/demos/music/assets/img_lv_demo_music_icon_3_large.c">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/demos/music/assets/img_lv_demo_music_icon_4.c">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/demos/music/assets/img_lv_demo_music_icon_4_large.c">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/demos/music/assets/img_lv_demo_music_list_border.c">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/demos/music/assets/img_lv_demo_music_list_border_large.c">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/demos/music/assets/img_lv_demo_music_logo.c">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/demos/music/assets/img_lv_demo_music_slider_knob.c">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/demos/music/assets/img_lv_demo_music_slider_knob_large.c">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/demos/music/assets/img_lv_demo_music_wave_bottom.c">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/demos/music/assets/img_lv_demo_music_wave_bottom_large.c">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/demos/music/assets/img_lv_demo_music_wave_top.c">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/demos/music/assets/img_lv_demo_music_wave_top_large.c">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/demos/music/assets/spectrum_1.h">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/demos/music/assets/spectrum_2.h">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/demos/music/assets/spectrum_3.h">
+              <FileOption/>
+            </File>
+          </VirtualDirectory>
+          <File Name="../../../../../../../components/lvgl/demos/music/lv_demo_music.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/demos/music/lv_demo_music.h">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/demos/music/lv_demo_music_list.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/demos/music/lv_demo_music_list.h">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/demos/music/lv_demo_music_main.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/demos/music/lv_demo_music_main.h">
+            <FileOption/>
+          </File>
+        </VirtualDirectory>
+        <VirtualDirectory Name="stress">
+          <File Name="../../../../../../../components/lvgl/demos/stress/lv_demo_stress.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/demos/stress/lv_demo_stress.h">
+            <FileOption/>
+          </File>
+        </VirtualDirectory>
+        <VirtualDirectory Name="widgets">
+          <VirtualDirectory Name="assets">
+            <File Name="../../../../../../../components/lvgl/demos/widgets/assets/img_clothes.c">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/demos/widgets/assets/img_demo_widgets_avatar.c">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/demos/widgets/assets/img_lvgl_logo.c">
+              <FileOption/>
+            </File>
+          </VirtualDirectory>
+          <File Name="../../../../../../../components/lvgl/demos/widgets/lv_demo_widgets.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/demos/widgets/lv_demo_widgets.h">
+            <FileOption/>
+          </File>
+        </VirtualDirectory>
+      </VirtualDirectory>
+      <File Name="../../../../../../../components/lvgl/lvgl.h">
+        <FileOption/>
+      </File>
+      <File Name="../../../../../../../components/lvgl/lv_conf_template.h">
+        <FileOption/>
+      </File>
+      <VirtualDirectory Name="src">
+        <VirtualDirectory Name="core">
+          <File Name="../../../../../../../components/lvgl/src/core/lv_disp.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/core/lv_disp.h">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/core/lv_event.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/core/lv_event.h">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/core/lv_group.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/core/lv_group.h">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/core/lv_indev.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/core/lv_indev.h">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/core/lv_indev_scroll.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/core/lv_indev_scroll.h">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/core/lv_obj.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/core/lv_obj.h">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/core/lv_obj_class.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/core/lv_obj_class.h">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/core/lv_obj_draw.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/core/lv_obj_draw.h">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/core/lv_obj_pos.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/core/lv_obj_pos.h">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/core/lv_obj_scroll.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/core/lv_obj_scroll.h">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/core/lv_obj_style.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/core/lv_obj_style.h">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/core/lv_obj_style_gen.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/core/lv_obj_style_gen.h">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/core/lv_obj_tree.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/core/lv_obj_tree.h">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/core/lv_refr.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/core/lv_refr.h">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/core/lv_theme.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/core/lv_theme.h">
+            <FileOption/>
+          </File>
+        </VirtualDirectory>
+        <VirtualDirectory Name="draw">
+          <VirtualDirectory Name="arm2d">
+            <File Name="../../../../../../../components/lvgl/src/draw/arm2d/lv_gpu_arm2d.c">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/src/draw/arm2d/lv_gpu_arm2d.h">
+              <FileOption/>
+            </File>
+          </VirtualDirectory>
+          <File Name="../../../../../../../components/lvgl/src/draw/lv_draw.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/draw/lv_draw.h">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/draw/lv_draw_arc.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/draw/lv_draw_arc.h">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/draw/lv_draw_img.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/draw/lv_draw_img.h">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/draw/lv_draw_label.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/draw/lv_draw_label.h">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/draw/lv_draw_layer.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/draw/lv_draw_layer.h">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/draw/lv_draw_line.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/draw/lv_draw_line.h">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/draw/lv_draw_mask.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/draw/lv_draw_mask.h">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/draw/lv_draw_rect.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/draw/lv_draw_rect.h">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/draw/lv_draw_transform.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/draw/lv_draw_transform.h">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/draw/lv_draw_triangle.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/draw/lv_draw_triangle.h">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/draw/lv_img_buf.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/draw/lv_img_buf.h">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/draw/lv_img_cache.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/draw/lv_img_cache.h">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/draw/lv_img_decoder.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/draw/lv_img_decoder.h">
+            <FileOption/>
+          </File>
+          <VirtualDirectory Name="nxp">
+            <File Name="../../../../../../../components/lvgl/src/draw/nxp/lv_gpu_nxp.c">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/src/draw/nxp/lv_gpu_nxp.h">
+              <FileOption/>
+            </File>
+            <VirtualDirectory Name="pxp">
+              <File Name="../../../../../../../components/lvgl/src/draw/nxp/pxp/lv_draw_pxp_blend.c">
+                <FileOption/>
+              </File>
+              <File Name="../../../../../../../components/lvgl/src/draw/nxp/pxp/lv_draw_pxp_blend.h">
+                <FileOption/>
+              </File>
+              <File Name="../../../../../../../components/lvgl/src/draw/nxp/pxp/lv_gpu_nxp_pxp.c">
+                <FileOption/>
+              </File>
+              <File Name="../../../../../../../components/lvgl/src/draw/nxp/pxp/lv_gpu_nxp_pxp.h">
+                <FileOption/>
+              </File>
+              <File Name="../../../../../../../components/lvgl/src/draw/nxp/pxp/lv_gpu_nxp_pxp_osa.c">
+                <FileOption/>
+              </File>
+              <File Name="../../../../../../../components/lvgl/src/draw/nxp/pxp/lv_gpu_nxp_pxp_osa.h">
+                <FileOption/>
+              </File>
+            </VirtualDirectory>
+            <VirtualDirectory Name="vglite">
+              <File Name="../../../../../../../components/lvgl/src/draw/nxp/vglite/lv_draw_vglite_arc.c">
+                <FileOption/>
+              </File>
+              <File Name="../../../../../../../components/lvgl/src/draw/nxp/vglite/lv_draw_vglite_arc.h">
+                <FileOption/>
+              </File>
+              <File Name="../../../../../../../components/lvgl/src/draw/nxp/vglite/lv_draw_vglite_blend.c">
+                <FileOption/>
+              </File>
+              <File Name="../../../../../../../components/lvgl/src/draw/nxp/vglite/lv_draw_vglite_blend.h">
+                <FileOption/>
+              </File>
+              <File Name="../../../../../../../components/lvgl/src/draw/nxp/vglite/lv_draw_vglite_rect.c">
+                <FileOption/>
+              </File>
+              <File Name="../../../../../../../components/lvgl/src/draw/nxp/vglite/lv_draw_vglite_rect.h">
+                <FileOption/>
+              </File>
+              <File Name="../../../../../../../components/lvgl/src/draw/nxp/vglite/lv_gpu_nxp_vglite.c">
+                <FileOption/>
+              </File>
+              <File Name="../../../../../../../components/lvgl/src/draw/nxp/vglite/lv_gpu_nxp_vglite.h">
+                <FileOption/>
+              </File>
+            </VirtualDirectory>
+          </VirtualDirectory>
+          <VirtualDirectory Name="sdl">
+            <File Name="../../../../../../../components/lvgl/src/draw/sdl/lv_draw_sdl.c">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/src/draw/sdl/lv_draw_sdl.h">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/src/draw/sdl/lv_draw_sdl_arc.c">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/src/draw/sdl/lv_draw_sdl_bg.c">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/src/draw/sdl/lv_draw_sdl_composite.c">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/src/draw/sdl/lv_draw_sdl_composite.h">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/src/draw/sdl/lv_draw_sdl_img.c">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/src/draw/sdl/lv_draw_sdl_img.h">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/src/draw/sdl/lv_draw_sdl_label.c">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/src/draw/sdl/lv_draw_sdl_layer.c">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/src/draw/sdl/lv_draw_sdl_layer.h">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/src/draw/sdl/lv_draw_sdl_line.c">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/src/draw/sdl/lv_draw_sdl_mask.c">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/src/draw/sdl/lv_draw_sdl_mask.h">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/src/draw/sdl/lv_draw_sdl_polygon.c">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/src/draw/sdl/lv_draw_sdl_priv.h">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/src/draw/sdl/lv_draw_sdl_rect.c">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/src/draw/sdl/lv_draw_sdl_rect.h">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/src/draw/sdl/lv_draw_sdl_stack_blur.c">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/src/draw/sdl/lv_draw_sdl_stack_blur.h">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/src/draw/sdl/lv_draw_sdl_texture_cache.c">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/src/draw/sdl/lv_draw_sdl_texture_cache.h">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/src/draw/sdl/lv_draw_sdl_utils.c">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/src/draw/sdl/lv_draw_sdl_utils.h">
+              <FileOption/>
+            </File>
+          </VirtualDirectory>
+          <VirtualDirectory Name="stm32_dma2d">
+            <File Name="../../../../../../../components/lvgl/src/draw/stm32_dma2d/lv_gpu_stm32_dma2d.c">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/src/draw/stm32_dma2d/lv_gpu_stm32_dma2d.h">
+              <FileOption/>
+            </File>
+          </VirtualDirectory>
+          <VirtualDirectory Name="sw">
+            <File Name="../../../../../../../components/lvgl/src/draw/sw/lv_draw_sw.c">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/src/draw/sw/lv_draw_sw.h">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/src/draw/sw/lv_draw_sw_arc.c">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/src/draw/sw/lv_draw_sw_blend.c">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/src/draw/sw/lv_draw_sw_blend.h">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/src/draw/sw/lv_draw_sw_dither.c">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/src/draw/sw/lv_draw_sw_dither.h">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/src/draw/sw/lv_draw_sw_gradient.c">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/src/draw/sw/lv_draw_sw_gradient.h">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/src/draw/sw/lv_draw_sw_img.c">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/src/draw/sw/lv_draw_sw_layer.c">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/src/draw/sw/lv_draw_sw_letter.c">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/src/draw/sw/lv_draw_sw_line.c">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/src/draw/sw/lv_draw_sw_polygon.c">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/src/draw/sw/lv_draw_sw_rect.c">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/src/draw/sw/lv_draw_sw_transform.c">
+              <FileOption/>
+            </File>
+          </VirtualDirectory>
+          <VirtualDirectory Name="swm341_dma2d">
+            <File Name="../../../../../../../components/lvgl/src/draw/swm341_dma2d/lv_gpu_swm341_dma2d.c">
+              <FileOption/>
+            </File>
+            <File Name="../../../../../../../components/lvgl/src/draw/swm341_dma2d/lv_gpu_swm341_dma2d.h">
+              <FileOption/>
+            </File>
+          </VirtualDirectory>
+        </VirtualDirectory>
+        <VirtualDirectory Name="extra">
+          <VirtualDirectory Name="layouts">
+            <VirtualDirectory Name="flex">
+              <File Name="../../../../../../../components/lvgl/src/extra/layouts/flex/lv_flex.c">
+                <FileOption/>
+              </File>
+              <File Name="../../../../../../../components/lvgl/src/extra/layouts/flex/lv_flex.h">
+                <FileOption/>
+              </File>
+            </VirtualDirectory>
+            <VirtualDirectory Name="grid">
+              <File Name="../../../../../../../components/lvgl/src/extra/layouts/grid/lv_grid.c">
+                <FileOption/>
+              </File>
+              <File Name="../../../../../../../components/lvgl/src/extra/layouts/grid/lv_grid.h">
+                <FileOption/>
+              </File>
+            </VirtualDirectory>
+            <File Name="../../../../../../../components/lvgl/src/extra/layouts/lv_layouts.h">
+              <FileOption/>
+            </File>
+          </VirtualDirectory>
+          <VirtualDirectory Name="libs">
+            <VirtualDirectory Name="bmp">
+              <File Name="../../../../../../../components/lvgl/src/extra/libs/bmp/lv_bmp.c">
+                <FileOption/>
+              </File>
+              <File Name="../../../../../../../components/lvgl/src/extra/libs/bmp/lv_bmp.h">
+                <FileOption/>
+              </File>
+            </VirtualDirectory>
+            <VirtualDirectory Name="ffmpeg">
+              <File Name="../../../../../../../components/lvgl/src/extra/libs/ffmpeg/lv_ffmpeg.c">
+                <FileOption/>
+              </File>
+              <File Name="../../../../../../../components/lvgl/src/extra/libs/ffmpeg/lv_ffmpeg.h">
+                <FileOption/>
+              </File>
+            </VirtualDirectory>
+            <VirtualDirectory Name="freetype">
+              <File Name="../../../../../../../components/lvgl/src/extra/libs/freetype/lv_freetype.c">
+                <FileOption/>
+              </File>
+              <File Name="../../../../../../../components/lvgl/src/extra/libs/freetype/lv_freetype.h">
+                <FileOption/>
+              </File>
+            </VirtualDirectory>
+            <VirtualDirectory Name="fsdrv">
+              <File Name="../../../../../../../components/lvgl/src/extra/libs/fsdrv/lv_fsdrv.h">
+                <FileOption/>
+              </File>
+              <File Name="../../../../../../../components/lvgl/src/extra/libs/fsdrv/lv_fs_fatfs.c">
+                <FileOption/>
+              </File>
+              <File Name="../../../../../../../components/lvgl/src/extra/libs/fsdrv/lv_fs_posix.c">
+                <FileOption/>
+              </File>
+              <File Name="../../../../../../../components/lvgl/src/extra/libs/fsdrv/lv_fs_stdio.c">
+                <FileOption/>
+              </File>
+              <File Name="../../../../../../../components/lvgl/src/extra/libs/fsdrv/lv_fs_win32.c">
+                <FileOption/>
+              </File>
+            </VirtualDirectory>
+            <VirtualDirectory Name="gif">
+              <File Name="../../../../../../../components/lvgl/src/extra/libs/gif/gifdec.c">
+                <FileOption/>
+              </File>
+              <File Name="../../../../../../../components/lvgl/src/extra/libs/gif/gifdec.h">
+                <FileOption/>
+              </File>
+              <File Name="../../../../../../../components/lvgl/src/extra/libs/gif/lv_gif.c">
+                <FileOption/>
+              </File>
+              <File Name="../../../../../../../components/lvgl/src/extra/libs/gif/lv_gif.h">
+                <FileOption/>
+              </File>
+            </VirtualDirectory>
+            <File Name="../../../../../../../components/lvgl/src/extra/libs/lv_libs.h">
+              <FileOption/>
+            </File>
+            <VirtualDirectory Name="png">
+              <File Name="../../../../../../../components/lvgl/src/extra/libs/png/lodepng.c">
+                <FileOption/>
+              </File>
+              <File Name="../../../../../../../components/lvgl/src/extra/libs/png/lodepng.h">
+                <FileOption/>
+              </File>
+              <File Name="../../../../../../../components/lvgl/src/extra/libs/png/lv_png.c">
+                <FileOption/>
+              </File>
+              <File Name="../../../../../../../components/lvgl/src/extra/libs/png/lv_png.h">
+                <FileOption/>
+              </File>
+            </VirtualDirectory>
+            <VirtualDirectory Name="qrcode">
+              <File Name="../../../../../../../components/lvgl/src/extra/libs/qrcode/lv_qrcode.c">
+                <FileOption/>
+              </File>
+              <File Name="../../../../../../../components/lvgl/src/extra/libs/qrcode/lv_qrcode.h">
+                <FileOption/>
+              </File>
+              <File Name="../../../../../../../components/lvgl/src/extra/libs/qrcode/qrcodegen.c">
+                <FileOption/>
+              </File>
+              <File Name="../../../../../../../components/lvgl/src/extra/libs/qrcode/qrcodegen.h">
+                <FileOption/>
+              </File>
+            </VirtualDirectory>
+            <VirtualDirectory Name="rlottie">
+              <File Name="../../../../../../../components/lvgl/src/extra/libs/rlottie/lv_rlottie.c">
+                <FileOption/>
+              </File>
+              <File Name="../../../../../../../components/lvgl/src/extra/libs/rlottie/lv_rlottie.h">
+                <FileOption/>
+              </File>
+            </VirtualDirectory>
+            <VirtualDirectory Name="sjpg">
+              <File Name="../../../../../../../components/lvgl/src/extra/libs/sjpg/lv_sjpg.c">
+                <FileOption/>
+              </File>
+              <File Name="../../../../../../../components/lvgl/src/extra/libs/sjpg/lv_sjpg.h">
+                <FileOption/>
+              </File>
+              <File Name="../../../../../../../components/lvgl/src/extra/libs/sjpg/tjpgd.c">
+                <FileOption/>
+              </File>
+              <File Name="../../../../../../../components/lvgl/src/extra/libs/sjpg/tjpgd.h">
+                <FileOption/>
+              </File>
+              <File Name="../../../../../../../components/lvgl/src/extra/libs/sjpg/tjpgdcnf.h">
+                <FileOption/>
+              </File>
+            </VirtualDirectory>
+          </VirtualDirectory>
+          <File Name="../../../../../../../components/lvgl/src/extra/lv_extra.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/extra/lv_extra.h">
+            <FileOption/>
+          </File>
+          <VirtualDirectory Name="others">
+            <VirtualDirectory Name="fragment">
+              <File Name="../../../../../../../components/lvgl/src/extra/others/fragment/lv_fragment.c">
+                <FileOption/>
+              </File>
+              <File Name="../../../../../../../components/lvgl/src/extra/others/fragment/lv_fragment.h">
+                <FileOption/>
+              </File>
+              <File Name="../../../../../../../components/lvgl/src/extra/others/fragment/lv_fragment_manager.c">
+                <FileOption/>
+              </File>
+            </VirtualDirectory>
+            <VirtualDirectory Name="gridnav">
+              <File Name="../../../../../../../components/lvgl/src/extra/others/gridnav/lv_gridnav.c">
+                <FileOption/>
+              </File>
+              <File Name="../../../../../../../components/lvgl/src/extra/others/gridnav/lv_gridnav.h">
+                <FileOption/>
+              </File>
+            </VirtualDirectory>
+            <VirtualDirectory Name="ime">
+              <File Name="../../../../../../../components/lvgl/src/extra/others/ime/lv_ime_pinyin.c">
+                <FileOption/>
+              </File>
+              <File Name="../../../../../../../components/lvgl/src/extra/others/ime/lv_ime_pinyin.h">
+                <FileOption/>
+              </File>
+            </VirtualDirectory>
+            <VirtualDirectory Name="imgfont">
+              <File Name="../../../../../../../components/lvgl/src/extra/others/imgfont/lv_imgfont.c">
+                <FileOption/>
+              </File>
+              <File Name="../../../../../../../components/lvgl/src/extra/others/imgfont/lv_imgfont.h">
+                <FileOption/>
+              </File>
+            </VirtualDirectory>
+            <File Name="../../../../../../../components/lvgl/src/extra/others/lv_others.h">
+              <FileOption/>
+            </File>
+            <VirtualDirectory Name="monkey">
+              <File Name="../../../../../../../components/lvgl/src/extra/others/monkey/lv_monkey.c">
+                <FileOption/>
+              </File>
+              <File Name="../../../../../../../components/lvgl/src/extra/others/monkey/lv_monkey.h">
+                <FileOption/>
+              </File>
+            </VirtualDirectory>
+            <VirtualDirectory Name="msg">
+              <File Name="../../../../../../../components/lvgl/src/extra/others/msg/lv_msg.c">
+                <FileOption/>
+              </File>
+              <File Name="../../../../../../../components/lvgl/src/extra/others/msg/lv_msg.h">
+                <FileOption/>
+              </File>
+            </VirtualDirectory>
+            <VirtualDirectory Name="snapshot">
+              <File Name="../../../../../../../components/lvgl/src/extra/others/snapshot/lv_snapshot.c">
+                <FileOption/>
+              </File>
+              <File Name="../../../../../../../components/lvgl/src/extra/others/snapshot/lv_snapshot.h">
+                <FileOption/>
+              </File>
+            </VirtualDirectory>
+          </VirtualDirectory>
+          <VirtualDirectory Name="themes">
+            <VirtualDirectory Name="basic">
+              <File Name="../../../../../../../components/lvgl/src/extra/themes/basic/lv_theme_basic.c">
+                <FileOption/>
+              </File>
+              <File Name="../../../../../../../components/lvgl/src/extra/themes/basic/lv_theme_basic.h">
+                <FileOption/>
+              </File>
+            </VirtualDirectory>
+            <VirtualDirectory Name="default">
+              <File Name="../../../../../../../components/lvgl/src/extra/themes/default/lv_theme_default.c">
+                <FileOption/>
+              </File>
+              <File Name="../../../../../../../components/lvgl/src/extra/themes/default/lv_theme_default.h">
+                <FileOption/>
+              </File>
+            </VirtualDirectory>
+            <File Name="../../../../../../../components/lvgl/src/extra/themes/lv_themes.h">
+              <FileOption/>
+            </File>
+            <VirtualDirectory Name="mono">
+              <File Name="../../../../../../../components/lvgl/src/extra/themes/mono/lv_theme_mono.c">
+                <FileOption/>
+              </File>
+              <File Name="../../../../../../../components/lvgl/src/extra/themes/mono/lv_theme_mono.h">
+                <FileOption/>
+              </File>
+            </VirtualDirectory>
+          </VirtualDirectory>
+          <VirtualDirectory Name="widgets">
+            <VirtualDirectory Name="animimg">
+              <File Name="../../../../../../../components/lvgl/src/extra/widgets/animimg/lv_animimg.c">
+                <FileOption/>
+              </File>
+              <File Name="../../../../../../../components/lvgl/src/extra/widgets/animimg/lv_animimg.h">
+                <FileOption/>
+              </File>
+            </VirtualDirectory>
+            <VirtualDirectory Name="calendar">
+              <File Name="../../../../../../../components/lvgl/src/extra/widgets/calendar/lv_calendar.c">
+                <FileOption/>
+              </File>
+              <File Name="../../../../../../../components/lvgl/src/extra/widgets/calendar/lv_calendar.h">
+                <FileOption/>
+              </File>
+              <File Name="../../../../../../../components/lvgl/src/extra/widgets/calendar/lv_calendar_header_arrow.c">
+                <FileOption/>
+              </File>
+              <File Name="../../../../../../../components/lvgl/src/extra/widgets/calendar/lv_calendar_header_arrow.h">
+                <FileOption/>
+              </File>
+              <File Name="../../../../../../../components/lvgl/src/extra/widgets/calendar/lv_calendar_header_dropdown.c">
+                <FileOption/>
+              </File>
+              <File Name="../../../../../../../components/lvgl/src/extra/widgets/calendar/lv_calendar_header_dropdown.h">
+                <FileOption/>
+              </File>
+            </VirtualDirectory>
+            <VirtualDirectory Name="chart">
+              <File Name="../../../../../../../components/lvgl/src/extra/widgets/chart/lv_chart.c">
+                <FileOption/>
+              </File>
+              <File Name="../../../../../../../components/lvgl/src/extra/widgets/chart/lv_chart.h">
+                <FileOption/>
+              </File>
+            </VirtualDirectory>
+            <VirtualDirectory Name="colorwheel">
+              <File Name="../../../../../../../components/lvgl/src/extra/widgets/colorwheel/lv_colorwheel.c">
+                <FileOption/>
+              </File>
+              <File Name="../../../../../../../components/lvgl/src/extra/widgets/colorwheel/lv_colorwheel.h">
+                <FileOption/>
+              </File>
+            </VirtualDirectory>
+            <VirtualDirectory Name="imgbtn">
+              <File Name="../../../../../../../components/lvgl/src/extra/widgets/imgbtn/lv_imgbtn.c">
+                <FileOption/>
+              </File>
+              <File Name="../../../../../../../components/lvgl/src/extra/widgets/imgbtn/lv_imgbtn.h">
+                <FileOption/>
+              </File>
+            </VirtualDirectory>
+            <VirtualDirectory Name="keyboard">
+              <File Name="../../../../../../../components/lvgl/src/extra/widgets/keyboard/lv_keyboard.c">
+                <FileOption/>
+              </File>
+              <File Name="../../../../../../../components/lvgl/src/extra/widgets/keyboard/lv_keyboard.h">
+                <FileOption/>
+              </File>
+            </VirtualDirectory>
+            <VirtualDirectory Name="led">
+              <File Name="../../../../../../../components/lvgl/src/extra/widgets/led/lv_led.c">
+                <FileOption/>
+              </File>
+              <File Name="../../../../../../../components/lvgl/src/extra/widgets/led/lv_led.h">
+                <FileOption/>
+              </File>
+            </VirtualDirectory>
+            <VirtualDirectory Name="list">
+              <File Name="../../../../../../../components/lvgl/src/extra/widgets/list/lv_list.c">
+                <FileOption/>
+              </File>
+              <File Name="../../../../../../../components/lvgl/src/extra/widgets/list/lv_list.h">
+                <FileOption/>
+              </File>
+            </VirtualDirectory>
+            <File Name="../../../../../../../components/lvgl/src/extra/widgets/lv_widgets.h">
+              <FileOption/>
+            </File>
+            <VirtualDirectory Name="menu">
+              <File Name="../../../../../../../components/lvgl/src/extra/widgets/menu/lv_menu.c">
+                <FileOption/>
+              </File>
+              <File Name="../../../../../../../components/lvgl/src/extra/widgets/menu/lv_menu.h">
+                <FileOption/>
+              </File>
+            </VirtualDirectory>
+            <VirtualDirectory Name="meter">
+              <File Name="../../../../../../../components/lvgl/src/extra/widgets/meter/lv_meter.c">
+                <FileOption/>
+              </File>
+              <File Name="../../../../../../../components/lvgl/src/extra/widgets/meter/lv_meter.h">
+                <FileOption/>
+              </File>
+            </VirtualDirectory>
+            <VirtualDirectory Name="msgbox">
+              <File Name="../../../../../../../components/lvgl/src/extra/widgets/msgbox/lv_msgbox.c">
+                <FileOption/>
+              </File>
+              <File Name="../../../../../../../components/lvgl/src/extra/widgets/msgbox/lv_msgbox.h">
+                <FileOption/>
+              </File>
+            </VirtualDirectory>
+            <VirtualDirectory Name="span">
+              <File Name="../../../../../../../components/lvgl/src/extra/widgets/span/lv_span.c">
+                <FileOption/>
+              </File>
+              <File Name="../../../../../../../components/lvgl/src/extra/widgets/span/lv_span.h">
+                <FileOption/>
+              </File>
+            </VirtualDirectory>
+            <VirtualDirectory Name="spinbox">
+              <File Name="../../../../../../../components/lvgl/src/extra/widgets/spinbox/lv_spinbox.c">
+                <FileOption/>
+              </File>
+              <File Name="../../../../../../../components/lvgl/src/extra/widgets/spinbox/lv_spinbox.h">
+                <FileOption/>
+              </File>
+            </VirtualDirectory>
+            <VirtualDirectory Name="spinner">
+              <File Name="../../../../../../../components/lvgl/src/extra/widgets/spinner/lv_spinner.c">
+                <FileOption/>
+              </File>
+              <File Name="../../../../../../../components/lvgl/src/extra/widgets/spinner/lv_spinner.h">
+                <FileOption/>
+              </File>
+            </VirtualDirectory>
+            <VirtualDirectory Name="tabview">
+              <File Name="../../../../../../../components/lvgl/src/extra/widgets/tabview/lv_tabview.c">
+                <FileOption/>
+              </File>
+              <File Name="../../../../../../../components/lvgl/src/extra/widgets/tabview/lv_tabview.h">
+                <FileOption/>
+              </File>
+            </VirtualDirectory>
+            <VirtualDirectory Name="tileview">
+              <File Name="../../../../../../../components/lvgl/src/extra/widgets/tileview/lv_tileview.c">
+                <FileOption/>
+              </File>
+              <File Name="../../../../../../../components/lvgl/src/extra/widgets/tileview/lv_tileview.h">
+                <FileOption/>
+              </File>
+            </VirtualDirectory>
+            <VirtualDirectory Name="win">
+              <File Name="../../../../../../../components/lvgl/src/extra/widgets/win/lv_win.c">
+                <FileOption/>
+              </File>
+              <File Name="../../../../../../../components/lvgl/src/extra/widgets/win/lv_win.h">
+                <FileOption/>
+              </File>
+            </VirtualDirectory>
+          </VirtualDirectory>
+        </VirtualDirectory>
+        <VirtualDirectory Name="font">
+          <File Name="../../../../../../../components/lvgl/src/font/lv_font.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/font/lv_font.h">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/font/lv_font_dejavu_16_persian_hebrew.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/font/lv_font_fmt_txt.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/font/lv_font_fmt_txt.h">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/font/lv_font_loader.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/font/lv_font_loader.h">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/font/lv_font_montserrat_10.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/font/lv_font_montserrat_12.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/font/lv_font_montserrat_12_subpx.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/font/lv_font_montserrat_14.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/font/lv_font_montserrat_16.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/font/lv_font_montserrat_18.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/font/lv_font_montserrat_20.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/font/lv_font_montserrat_22.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/font/lv_font_montserrat_24.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/font/lv_font_montserrat_26.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/font/lv_font_montserrat_28.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/font/lv_font_montserrat_28_compressed.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/font/lv_font_montserrat_30.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/font/lv_font_montserrat_32.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/font/lv_font_montserrat_34.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/font/lv_font_montserrat_36.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/font/lv_font_montserrat_38.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/font/lv_font_montserrat_40.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/font/lv_font_montserrat_42.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/font/lv_font_montserrat_44.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/font/lv_font_montserrat_46.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/font/lv_font_montserrat_48.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/font/lv_font_montserrat_8.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/font/lv_font_simsun_16_cjk.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/font/lv_font_unscii_16.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/font/lv_font_unscii_8.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/font/lv_symbol_def.h">
+            <FileOption/>
+          </File>
+        </VirtualDirectory>
+        <VirtualDirectory Name="hal">
+          <File Name="../../../../../../../components/lvgl/src/hal/lv_hal.h">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/hal/lv_hal_disp.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/hal/lv_hal_disp.h">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/hal/lv_hal_indev.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/hal/lv_hal_indev.h">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/hal/lv_hal_tick.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/hal/lv_hal_tick.h">
+            <FileOption/>
+          </File>
+        </VirtualDirectory>
+        <File Name="../../../../../../../components/lvgl/src/lvgl.h">
+          <FileOption/>
+        </File>
+        <File Name="../../../../../../../components/lvgl/src/lv_api_map.h">
+          <FileOption/>
+        </File>
+        <File Name="../../../../../../../components/lvgl/src/lv_conf_internal.h">
+          <FileOption/>
+        </File>
+        <File Name="../../../../../../../components/lvgl/src/lv_conf_kconfig.h">
+          <FileOption/>
+        </File>
+        <VirtualDirectory Name="misc">
+          <File Name="../../../../../../../components/lvgl/src/misc/lv_anim.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/misc/lv_anim.h">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/misc/lv_anim_timeline.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/misc/lv_anim_timeline.h">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/misc/lv_area.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/misc/lv_area.h">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/misc/lv_assert.h">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/misc/lv_async.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/misc/lv_async.h">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/misc/lv_bidi.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/misc/lv_bidi.h">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/misc/lv_color.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/misc/lv_color.h">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/misc/lv_fs.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/misc/lv_fs.h">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/misc/lv_gc.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/misc/lv_gc.h">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/misc/lv_ll.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/misc/lv_ll.h">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/misc/lv_log.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/misc/lv_log.h">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/misc/lv_lru.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/misc/lv_lru.h">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/misc/lv_math.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/misc/lv_math.h">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/misc/lv_mem.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/misc/lv_mem.h">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/misc/lv_printf.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/misc/lv_printf.h">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/misc/lv_style.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/misc/lv_style.h">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/misc/lv_style_gen.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/misc/lv_style_gen.h">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/misc/lv_templ.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/misc/lv_templ.h">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/misc/lv_timer.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/misc/lv_timer.h">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/misc/lv_tlsf.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/misc/lv_tlsf.h">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/misc/lv_txt.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/misc/lv_txt.h">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/misc/lv_txt_ap.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/misc/lv_txt_ap.h">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/misc/lv_types.h">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/misc/lv_utils.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/misc/lv_utils.h">
+            <FileOption/>
+          </File>
+        </VirtualDirectory>
+        <VirtualDirectory Name="widgets">
+          <File Name="../../../../../../../components/lvgl/src/widgets/lv_arc.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/widgets/lv_arc.h">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/widgets/lv_bar.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/widgets/lv_bar.h">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/widgets/lv_btn.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/widgets/lv_btn.h">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/widgets/lv_btnmatrix.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/widgets/lv_btnmatrix.h">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/widgets/lv_canvas.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/widgets/lv_canvas.h">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/widgets/lv_checkbox.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/widgets/lv_checkbox.h">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/widgets/lv_dropdown.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/widgets/lv_dropdown.h">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/widgets/lv_img.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/widgets/lv_img.h">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/widgets/lv_label.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/widgets/lv_label.h">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/widgets/lv_line.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/widgets/lv_line.h">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/widgets/lv_objx_templ.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/widgets/lv_objx_templ.h">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/widgets/lv_roller.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/widgets/lv_roller.h">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/widgets/lv_slider.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/widgets/lv_slider.h">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/widgets/lv_switch.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/widgets/lv_switch.h">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/widgets/lv_table.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/widgets/lv_table.h">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/widgets/lv_textarea.c">
+            <FileOption/>
+          </File>
+          <File Name="../../../../../../../components/lvgl/src/widgets/lv_textarea.h">
+            <FileOption/>
+          </File>
+        </VirtualDirectory>
+      </VirtualDirectory>
+    </VirtualDirectory>
+    <VirtualDirectory Name="lvgl_drivers">
+      <VirtualDirectory Name="encoder">
+        <File Name="../../../../../../../components/lvgl_drivers/encoder/encoder.c">
+          <FileOption/>
+        </File>
+        <File Name="../../../../../../../components/lvgl_drivers/encoder/encoder.h">
+          <FileOption/>
+        </File>
+      </VirtualDirectory>
+      <VirtualDirectory Name="lcd">
+        <File Name="../../../../../../../components/lvgl_drivers/lcd/lcd.c">
+          <FileOption/>
+        </File>
+        <File Name="../../../../../../../components/lvgl_drivers/lcd/lcd.h">
+          <FileOption/>
+        </File>
+        <File Name="../../../../../../../components/lvgl_drivers/lcd/sdio_spi_driver.c">
+          <FileOption/>
+        </File>
+        <File Name="../../../../../../../components/lvgl_drivers/lcd/sdio_spi_driver.h">
+          <FileOption/>
+        </File>
+      </VirtualDirectory>
+      <VirtualDirectory Name="psram">
+        <File Name="../../../../../../../components/lvgl_drivers/psram/psram.c">
+          <FileOption/>
+        </File>
+        <File Name="../../../../../../../components/lvgl_drivers/psram/psram.h">
+          <FileOption/>
+        </File>
+      </VirtualDirectory>
+      <VirtualDirectory Name="spiflash">
+        <File Name="../../../../../../../components/lvgl_drivers/spiflash/spiflash.c">
+          <FileOption/>
+        </File>
+        <File Name="../../../../../../../components/lvgl_drivers/spiflash/spiflash.h">
+          <FileOption/>
+        </File>
+      </VirtualDirectory>
+      <VirtualDirectory Name="touchpad">
+        <File Name="../../../../../../../components/lvgl_drivers/touchpad/touchpad.c">
+          <FileOption/>
+        </File>
+        <File Name="../../../../../../../components/lvgl_drivers/touchpad/touchpad.h">
+          <FileOption/>
+        </File>
+      </VirtualDirectory>
+    </VirtualDirectory>
+    <VirtualDirectory Name="lvgl_port">
+      <File Name="../../../../../../../components/lvgl_port/lv_conf.h">
+        <FileOption/>
+      </File>
+      <File Name="../../../../../../../components/lvgl_port/lv_port_disp.c">
+        <FileOption/>
+      </File>
+      <File Name="../../../../../../../components/lvgl_port/lv_port_disp.h">
+        <FileOption/>
+      </File>
+      <File Name="../../../../../../../components/lvgl_port/lv_port_indev.c">
+        <FileOption/>
+      </File>
+      <File Name="../../../../../../../components/lvgl_port/lv_port_indev.h">
+        <FileOption/>
+      </File>
+      <File Name="../../../../../../../components/lvgl_port/lv_port_tick.c">
+        <FileOption/>
+      </File>
+      <File Name="../../../../../../../components/lvgl_port/lv_port_tick.h">
+        <FileOption/>
+      </File>
+    </VirtualDirectory>
+  </VirtualDirectory>
   <BuildConfigs>
     <BuildConfig Name="BuildSet">
       <Target>
@@ -3320,13 +4819,14 @@
           <RunUserProg>yes</RunUserProg>
           <UserProgName>../../../../../../../tools/w800/utilities/cdk_aft_build.sh;../../../../../../../tools/w800/utilities/aft_build_project.sh</UserProgName>
         </AfterMake>
+        <Tools/>
       </User>
       <Compiler>
         <Define>GCC_COMPILE=1;TLS_CONFIG_CPU_XT804=1;NIMBLE_FTR=1;NO_PERSISTENCE=1;USE_SELECT=1;HIGH_PERFORMANCE=1;USE_MBEDTLS=1</Define>
         <Undefine/>
         <Optim>Optimize more (-O2)</Optim>
         <DebugLevel>Maximum (-g3)</DebugLevel>
-        <IncludePath>$(CDKPath)/CSKY/MinGW/csky-abiv2-elf-toolchain/csky-elfabiv2/include;$(ProjectPath);$(ProjectPath)/../../../../../../../demo;$(ProjectPath)/../../../../../../../include;$(ProjectPath)/../../../../../../../include/app;$(ProjectPath)/../../../../../../../include/arch/xt804;$(ProjectPath)/../../../../../../../include/arch/xt804/csi_core;$(ProjectPath)/../../../../../../../include/arch/xt804/csi_dsp;$(ProjectPath)/../../../../../../../include/bt;$(ProjectPath)/../../../../../../../include/driver;$(ProjectPath)/../../../../../../../include/net;$(ProjectPath)/../../../../../../../include/os;$(ProjectPath)/../../../../../../../include/platform;$(ProjectPath)/../../../../../../../include/wifi;$(ProjectPath)/../../../../../../../platform/common/params;$(ProjectPath)/../../../../../../../platform/drivers/spi;$(ProjectPath)/../../../../../../../platform/inc;$(ProjectPath)/../../../../../../../platform/sys;$(ProjectPath)/../../../../../../../src/app;$(ProjectPath)/../../../../../../../src/app/bleapp;$(ProjectPath)/../../../../../../../src/app/btapp;$(ProjectPath)/../../../../../../../src/app/cJSON;$(ProjectPath)/../../../../../../../src/app/dhcpserver;$(ProjectPath)/../../../../../../../src/app/dnsserver;$(ProjectPath)/../../../../../../../src/app/fatfs;$(ProjectPath)/../../../../../../../src/app/httpclient;$(ProjectPath)/../../../../../../../src/app/iperf;$(ProjectPath)/../../../../../../../src/app/libcoap/include;$(ProjectPath)/../../../../../../../src/app/libwebsockets-2.1-stable;$(ProjectPath)/../../../../../../../src/app/mDNS/mDNSCore;$(ProjectPath)/../../../../../../../src/app/mDNS/mDNSPosix;$(ProjectPath)/../../../../../../../src/app/mbedtls/include;$(ProjectPath)/../../../../../../../src/app/mbedtls/include/mbedtls;$(ProjectPath)/../../../../../../../src/app/mbedtls/ports;$(ProjectPath)/../../../../../../../src/app/mqtt;$(ProjectPath)/../../../../../../../src/app/oneshotconfig;$(ProjectPath)/../../../../../../../src/app/ota;$(ProjectPath)/../../../../../../../src/app/ping;$(ProjectPath)/../../../../../../../src/app/polarssl/include;$(ProjectPath)/../../../../../../../src/app/web;$(ProjectPath)/../../../../../../../src/app/wm_atcmd;$(ProjectPath)/../../../../../../../src/bt/blehost/ext/tinycrypt/include;$(ProjectPath)/../../../../../../../src/bt/blehost/ext/tinycrypt/include/tinycrypt;$(ProjectPath)/../../../../../../../src/bt/blehost/nimble/host/include;$(ProjectPath)/../../../../../../../src/bt/blehost/nimble/host/include/host;$(ProjectPath)/../../../../../../../src/bt/blehost/nimble/host/mesh/include;$(ProjectPath)/../../../../../../../src/bt/blehost/nimble/host/mesh/include/mesh;$(ProjectPath)/../../../../../../../src/bt/blehost/nimble/host/porting/w800/include;$(ProjectPath)/../../../../../../../src/bt/blehost/nimble/host/services/gap/include;$(ProjectPath)/../../../../../../../src/bt/blehost/nimble/host/services/gap/include/services/gap;$(ProjectPath)/../../../../../../../src/bt/blehost/nimble/host/services/gatt/include;$(ProjectPath)/../../../../../../../src/bt/blehost/nimble/host/services/gatt/include/services/gatt;$(ProjectPath)/../../../../../../../src/bt/blehost/nimble/host/src;$(ProjectPath)/../../../../../../../src/bt/blehost/nimble/host/store/config/include;$(ProjectPath)/../../../../../../../src/bt/blehost/nimble/host/store/config/include/store/config;$(ProjectPath)/../../../../../../../src/bt/blehost/nimble/host/store/config/src;$(ProjectPath)/../../../../../../../src/bt/blehost/nimble/host/store/ram/include;$(ProjectPath)/../../../../../../../src/bt/blehost/nimble/host/store/ram/include/store/ram;$(ProjectPath)/../../../../../../../src/bt/blehost/nimble/host/util/include;$(ProjectPath)/../../../../../../../src/bt/blehost/nimble/host/util/include/host/util;$(ProjectPath)/../../../../../../../src/bt/blehost/nimble/include;$(ProjectPath)/../../../../../../../src/bt/blehost/nimble/include/nimble;$(ProjectPath)/../../../../../../../src/bt/blehost/nimble/transport/uart/include;$(ProjectPath)/../../../../../../../src/bt/blehost/nimble/transport/uart/include/transport/uart;$(ProjectPath)/../../../../../../../src/bt/blehost/porting/w800/include;$(ProjectPath)/../../../../../../../src/bt/blehost/porting/w800/include/hal;$(ProjectPath)/../../../../../../../src/bt/blehost/porting/w800/include/log;$(ProjectPath)/../../../../../../../src/bt/blehost/porting/w800/include/log_common;$(ProjectPath)/../../../../../../../src/bt/blehost/porting/w800/include/logcfg;$(ProjectPath)/../../../../../../../src/bt/blehost/porting/w800/include/mem;$(ProjectPath)/../../../../../../../src/bt/blehost/porting/w800/include/modlog;$(ProjectPath)/../../../../../../../src/bt/blehost/porting/w800/include/nimble;$(ProjectPath)/../../../../../../../src/bt/blehost/porting/w800/include/os;$(ProjectPath)/../../../../../../../src/bt/blehost/porting/w800/include/stats;$(ProjectPath)/../../../../../../../src/bt/blehost/porting/w800/include/syscfg;$(ProjectPath)/../../../../../../../src/bt/blehost/porting/w800/include/sysflash;$(ProjectPath)/../../../../../../../src/bt/blehost/porting/w800/include/sysinit;$(ProjectPath)/../../../../../../../src/network/api_wm;$(ProjectPath)/../../../../../../../src/network/lwip2.1.3/apps/httpd;$(ProjectPath)/../../../../../../../src/network/lwip2.1.3/apps/snmp;$(ProjectPath)/../../../../../../../src/network/lwip2.1.3/include;$(ProjectPath)/../../../../../../../src/os/rtos/include;$(ProjectPath)/../../../../../../../src/app/POSIX/include;$(ProjectPath)/../../../../../../../src/app/POSIX/FreeRTOS-Plus-POSIX/include;$(ProjectPath)/../../../../../../../src/app/POSIX/FreeRTOS-Plus-POSIX/include/portable</IncludePath>
+        <IncludePath>$(CDKPath)/CSKY/MinGW/csky-abiv2-elf-toolchain/csky-elfabiv2/include;$(ProjectPath);$(ProjectPath)/../../../../../../../app;$(ProjectPath)/../../../../../../../app/button;$(ProjectPath)/../../../../../../../app/xmodem;$(ProjectPath)/../../../../../../../components/lvgl;$(ProjectPath)/../../../../../../../components/lvgl/demos;$(ProjectPath)/../../../../../../../components/lvgl/demos/benchmark;$(ProjectPath)/../../../../../../../components/lvgl/demos/keypad_encoder;$(ProjectPath)/../../../../../../../components/lvgl/demos/music;$(ProjectPath)/../../../../../../../components/lvgl/demos/music/assets;$(ProjectPath)/../../../../../../../components/lvgl/demos/stress;$(ProjectPath)/../../../../../../../components/lvgl/demos/widgets;$(ProjectPath)/../../../../../../../components/lvgl/env_support/cmsis-pack;$(ProjectPath)/../../../../../../../components/lvgl/env_support/rt-thread;$(ProjectPath)/../../../../../../../components/lvgl/env_support/rt-thread/squareline/ui/lvgl;$(ProjectPath)/../../../../../../../components/lvgl/examples;$(ProjectPath)/../../../../../../../components/lvgl/examples/anim;$(ProjectPath)/../../../../../../../components/lvgl/examples/event;$(ProjectPath)/../../../../../../../components/lvgl/examples/get_started;$(ProjectPath)/../../../../../../../components/lvgl/examples/layouts;$(ProjectPath)/../../../../../../../components/lvgl/examples/layouts/flex;$(ProjectPath)/../../../../../../../components/lvgl/examples/layouts/grid;$(ProjectPath)/../../../../../../../components/lvgl/examples/libs;$(ProjectPath)/../../../../../../../components/lvgl/examples/libs/bmp;$(ProjectPath)/../../../../../../../components/lvgl/examples/libs/ffmpeg;$(ProjectPath)/../../../../../../../components/lvgl/examples/libs/freetype;$(ProjectPath)/../../../../../../../components/lvgl/examples/libs/gif;$(ProjectPath)/../../../../../../../components/lvgl/examples/libs/png;$(ProjectPath)/../../../../../../../components/lvgl/examples/libs/qrcode;$(ProjectPath)/../../../../../../../components/lvgl/examples/libs/rlottie;$(ProjectPath)/../../../../../../../components/lvgl/examples/libs/sjpg;$(ProjectPath)/../../../../../../../components/lvgl/examples/others;$(ProjectPath)/../../../../../../../components/lvgl/examples/others/fragment;$(ProjectPath)/../../../../../../../components/lvgl/examples/others/gridnav;$(ProjectPath)/../../../../../../../components/lvgl/examples/others/ime;$(ProjectPath)/../../../../../../../components/lvgl/examples/others/imgfont;$(ProjectPath)/../../../../../../../components/lvgl/examples/others/monkey;$(ProjectPath)/../../../../../../../components/lvgl/examples/others/msg;$(ProjectPath)/../../../../../../../components/lvgl/examples/others/snapshot;$(ProjectPath)/../../../../../../../components/lvgl/examples/porting;$(ProjectPath)/../../../../../../../components/lvgl/examples/scroll;$(ProjectPath)/../../../../../../../components/lvgl/examples/styles;$(ProjectPath)/../../../../../../../components/lvgl/examples/widgets;$(ProjectPath)/../../../../../../../components/lvgl/src;$(ProjectPath)/../../../../../../../components/lvgl/src/core;$(ProjectPath)/../../../../../../../components/lvgl/src/draw;$(ProjectPath)/../../../../../../../components/lvgl/src/draw/arm2d;$(ProjectPath)/../../../../../../../components/lvgl/src/draw/nxp;$(ProjectPath)/../../../../../../../components/lvgl/src/draw/nxp/pxp;$(ProjectPath)/../../../../../../../components/lvgl/src/draw/nxp/vglite;$(ProjectPath)/../../../../../../../components/lvgl/src/draw/sdl;$(ProjectPath)/../../../../../../../components/lvgl/src/draw/stm32_dma2d;$(ProjectPath)/../../../../../../../components/lvgl/src/draw/sw;$(ProjectPath)/../../../../../../../components/lvgl/src/draw/swm341_dma2d;$(ProjectPath)/../../../../../../../components/lvgl/src/extra;$(ProjectPath)/../../../../../../../components/lvgl/src/extra/layouts;$(ProjectPath)/../../../../../../../components/lvgl/src/extra/layouts/flex;$(ProjectPath)/../../../../../../../components/lvgl/src/extra/layouts/grid;$(ProjectPath)/../../../../../../../components/lvgl/src/extra/libs;$(ProjectPath)/../../../../../../../components/lvgl/src/extra/libs/bmp;$(ProjectPath)/../../../../../../../components/lvgl/src/extra/libs/ffmpeg;$(ProjectPath)/../../../../../../../components/lvgl/src/extra/libs/freetype;$(ProjectPath)/../../../../../../../components/lvgl/src/extra/libs/fsdrv;$(ProjectPath)/../../../../../../../components/lvgl/src/extra/libs/gif;$(ProjectPath)/../../../../../../../components/lvgl/src/extra/libs/png;$(ProjectPath)/../../../../../../../components/lvgl/src/extra/libs/qrcode;$(ProjectPath)/../../../../../../../components/lvgl/src/extra/libs/rlottie;$(ProjectPath)/../../../../../../../components/lvgl/src/extra/libs/sjpg;$(ProjectPath)/../../../../../../../components/lvgl/src/extra/others;$(ProjectPath)/../../../../../../../components/lvgl/src/extra/others/fragment;$(ProjectPath)/../../../../../../../components/lvgl/src/extra/others/gridnav;$(ProjectPath)/../../../../../../../components/lvgl/src/extra/others/ime;$(ProjectPath)/../../../../../../../components/lvgl/src/extra/others/imgfont;$(ProjectPath)/../../../../../../../components/lvgl/src/extra/others/monkey;$(ProjectPath)/../../../../../../../components/lvgl/src/extra/others/msg;$(ProjectPath)/../../../../../../../components/lvgl/src/extra/others/snapshot;$(ProjectPath)/../../../../../../../components/lvgl/src/extra/themes;$(ProjectPath)/../../../../../../../components/lvgl/src/extra/themes/basic;$(ProjectPath)/../../../../../../../components/lvgl/src/extra/themes/default;$(ProjectPath)/../../../../../../../components/lvgl/src/extra/themes/mono;$(ProjectPath)/../../../../../../../components/lvgl/src/extra/widgets;$(ProjectPath)/../../../../../../../components/lvgl/src/extra/widgets/animimg;$(ProjectPath)/../../../../../../../components/lvgl/src/extra/widgets/calendar;$(ProjectPath)/../../../../../../../components/lvgl/src/extra/widgets/chart;$(ProjectPath)/../../../../../../../components/lvgl/src/extra/widgets/colorwheel;$(ProjectPath)/../../../../../../../components/lvgl/src/extra/widgets/imgbtn;$(ProjectPath)/../../../../../../../components/lvgl/src/extra/widgets/keyboard;$(ProjectPath)/../../../../../../../components/lvgl/src/extra/widgets/led;$(ProjectPath)/../../../../../../../components/lvgl/src/extra/widgets/list;$(ProjectPath)/../../../../../../../components/lvgl/src/extra/widgets/menu;$(ProjectPath)/../../../../../../../components/lvgl/src/extra/widgets/meter;$(ProjectPath)/../../../../../../../components/lvgl/src/extra/widgets/msgbox;$(ProjectPath)/../../../../../../../components/lvgl/src/extra/widgets/span;$(ProjectPath)/../../../../../../../components/lvgl/src/extra/widgets/spinbox;$(ProjectPath)/../../../../../../../components/lvgl/src/extra/widgets/spinner;$(ProjectPath)/../../../../../../../components/lvgl/src/extra/widgets/tabview;$(ProjectPath)/../../../../../../../components/lvgl/src/extra/widgets/tileview;$(ProjectPath)/../../../../../../../components/lvgl/src/extra/widgets/win;$(ProjectPath)/../../../../../../../components/lvgl/src/font;$(ProjectPath)/../../../../../../../components/lvgl/src/hal;$(ProjectPath)/../../../../../../../components/lvgl/src/misc;$(ProjectPath)/../../../../../../../components/lvgl/src/widgets;$(ProjectPath)/../../../../../../../components/lvgl/tests/src;$(ProjectPath)/../../../../../../../components/lvgl/tests/unity;$(ProjectPath)/../../../../../../../components/lvgl_drivers/encoder;$(ProjectPath)/../../../../../../../components/lvgl_drivers/lcd;$(ProjectPath)/../../../../../../../components/lvgl_drivers/psram;$(ProjectPath)/../../../../../../../components/lvgl_drivers/spiflash;$(ProjectPath)/../../../../../../../components/lvgl_drivers/touchpad;$(ProjectPath)/../../../../../../../components/lvgl_port;$(ProjectPath)/../../../../../../../demo;$(ProjectPath)/../../../../../../../include;$(ProjectPath)/../../../../../../../include/app;$(ProjectPath)/../../../../../../../include/arch/xt804;$(ProjectPath)/../../../../../../../include/arch/xt804/csi_core;$(ProjectPath)/../../../../../../../include/arch/xt804/csi_dsp;$(ProjectPath)/../../../../../../../include/bt;$(ProjectPath)/../../../../../../../include/driver;$(ProjectPath)/../../../../../../../include/net;$(ProjectPath)/../../../../../../../include/os;$(ProjectPath)/../../../../../../../include/platform;$(ProjectPath)/../../../../../../../include/wifi;$(ProjectPath)/../../../../../../../platform/common/params;$(ProjectPath)/../../../../../../../platform/drivers/spi;$(ProjectPath)/../../../../../../../platform/inc;$(ProjectPath)/../../../../../../../platform/sys;$(ProjectPath)/../../../../../../../src/app;$(ProjectPath)/../../../../../../../src/app/POSIX/FreeRTOS-Plus-POSIX/include;$(ProjectPath)/../../../../../../../src/app/POSIX/FreeRTOS-Plus-POSIX/include/portable;$(ProjectPath)/../../../../../../../src/app/POSIX/include;$(ProjectPath)/../../../../../../../src/app/bleapp;$(ProjectPath)/../../../../../../../src/app/btapp;$(ProjectPath)/../../../../../../../src/app/cJSON;$(ProjectPath)/../../../../../../../src/app/dhcpserver;$(ProjectPath)/../../../../../../../src/app/dnsserver;$(ProjectPath)/../../../../../../../src/app/fatfs;$(ProjectPath)/../../../../../../../src/app/httpclient;$(ProjectPath)/../../../../../../../src/app/iperf;$(ProjectPath)/../../../../../../../src/app/libcoap/include;$(ProjectPath)/../../../../../../../src/app/libwebsockets-2.1-stable;$(ProjectPath)/../../../../../../../src/app/mDNS/mDNSCore;$(ProjectPath)/../../../../../../../src/app/mDNS/mDNSPosix;$(ProjectPath)/../../../../../../../src/app/mbedtls/include;$(ProjectPath)/../../../../../../../src/app/mbedtls/include/mbedtls;$(ProjectPath)/../../../../../../../src/app/mbedtls/ports;$(ProjectPath)/../../../../../../../src/app/mqtt;$(ProjectPath)/../../../../../../../src/app/oneshotconfig;$(ProjectPath)/../../../../../../../src/app/ota;$(ProjectPath)/../../../../../../../src/app/ping;$(ProjectPath)/../../../../../../../src/app/polarssl/include;$(ProjectPath)/../../../../../../../src/app/web;$(ProjectPath)/../../../../../../../src/app/wm_atcmd;$(ProjectPath)/../../../../../../../src/bt/blehost/ext/tinycrypt/include;$(ProjectPath)/../../../../../../../src/bt/blehost/ext/tinycrypt/include/tinycrypt;$(ProjectPath)/../../../../../../../src/bt/blehost/nimble/host/include;$(ProjectPath)/../../../../../../../src/bt/blehost/nimble/host/include/host;$(ProjectPath)/../../../../../../../src/bt/blehost/nimble/host/mesh/include;$(ProjectPath)/../../../../../../../src/bt/blehost/nimble/host/mesh/include/mesh;$(ProjectPath)/../../../../../../../src/bt/blehost/nimble/host/porting/w800/include;$(ProjectPath)/../../../../../../../src/bt/blehost/nimble/host/services/gap/include;$(ProjectPath)/../../../../../../../src/bt/blehost/nimble/host/services/gap/include/services/gap;$(ProjectPath)/../../../../../../../src/bt/blehost/nimble/host/services/gatt/include;$(ProjectPath)/../../../../../../../src/bt/blehost/nimble/host/services/gatt/include/services/gatt;$(ProjectPath)/../../../../../../../src/bt/blehost/nimble/host/src;$(ProjectPath)/../../../../../../../src/bt/blehost/nimble/host/store/config/include;$(ProjectPath)/../../../../../../../src/bt/blehost/nimble/host/store/config/include/store/config;$(ProjectPath)/../../../../../../../src/bt/blehost/nimble/host/store/config/src;$(ProjectPath)/../../../../../../../src/bt/blehost/nimble/host/store/ram/include;$(ProjectPath)/../../../../../../../src/bt/blehost/nimble/host/store/ram/include/store/ram;$(ProjectPath)/../../../../../../../src/bt/blehost/nimble/host/util/include;$(ProjectPath)/../../../../../../../src/bt/blehost/nimble/host/util/include/host/util;$(ProjectPath)/../../../../../../../src/bt/blehost/nimble/include;$(ProjectPath)/../../../../../../../src/bt/blehost/nimble/include/nimble;$(ProjectPath)/../../../../../../../src/bt/blehost/nimble/transport/uart/include;$(ProjectPath)/../../../../../../../src/bt/blehost/nimble/transport/uart/include/transport/uart;$(ProjectPath)/../../../../../../../src/bt/blehost/porting/w800/include;$(ProjectPath)/../../../../../../../src/bt/blehost/porting/w800/include/hal;$(ProjectPath)/../../../../../../../src/bt/blehost/porting/w800/include/log;$(ProjectPath)/../../../../../../../src/bt/blehost/porting/w800/include/log_common;$(ProjectPath)/../../../../../../../src/bt/blehost/porting/w800/include/logcfg;$(ProjectPath)/../../../../../../../src/bt/blehost/porting/w800/include/mem;$(ProjectPath)/../../../../../../../src/bt/blehost/porting/w800/include/modlog;$(ProjectPath)/../../../../../../../src/bt/blehost/porting/w800/include/nimble;$(ProjectPath)/../../../../../../../src/bt/blehost/porting/w800/include/os;$(ProjectPath)/../../../../../../../src/bt/blehost/porting/w800/include/stats;$(ProjectPath)/../../../../../../../src/bt/blehost/porting/w800/include/syscfg;$(ProjectPath)/../../../../../../../src/bt/blehost/porting/w800/include/sysflash;$(ProjectPath)/../../../../../../../src/bt/blehost/porting/w800/include/sysinit;$(ProjectPath)/../../../../../../../src/network/api_wm;$(ProjectPath)/../../../../../../../src/network/lwip2.1.3/apps/httpd;$(ProjectPath)/../../../../../../../src/network/lwip2.1.3/apps/snmp;$(ProjectPath)/../../../../../../../src/network/lwip2.1.3/include;$(ProjectPath)/../../../../../../../src/os/rtos/include</IncludePath>
         <OtherFlags>-fdata-sections -c</OtherFlags>
         <Verbose>no</Verbose>
         <Ansi>no</Ansi>
@@ -3343,7 +4843,7 @@
       <Asm>
         <Define/>
         <Undefine/>
-        <IncludePath>$(CDKPath)/CSKY/csi/csi_core/csi_cdk/;$(CDKPath)/CSKY/csi/csi_core/include/;$(CDKPath)/CSKY/csi/csi_driver/include/;$(ProjectPath);$(ProjectPath)/../../../../../../../include;$(ProjectPath)/../../../../../../../include/arch/xt804;$(ProjectPath)/../../../../../../../include/arch/xt804/csi_core;$(ProjectPath)/../../../../../../../include/arch/xt804/csi_dsp;$(ProjectPath)/../../../../../../../include/os;$(ProjectPath)/../../../../../../../include/platform;$(ProjectPath)/../../../../../../../src/app/bleapp;$(ProjectPath)/../../../../../../../src/app/btapp;$(ProjectPath)/../../../../../../../src/app/fatfs;$(ProjectPath)/../../../../../../../src/bt/blehost/ext/tinycrypt/include/tinycrypt;$(ProjectPath)/../../../../../../../src/bt/blehost/nimble/host/include/host;$(ProjectPath)/../../../../../../../src/bt/blehost/nimble/host/mesh/include/mesh;$(ProjectPath)/../../../../../../../src/bt/blehost/nimble/host/mesh/src;$(ProjectPath)/../../../../../../../src/bt/blehost/nimble/host/services/gap/include/services/gap;$(ProjectPath)/../../../../../../../src/bt/blehost/nimble/host/services/gatt/include/services/gatt;$(ProjectPath)/../../../../../../../src/bt/blehost/nimble/host/src;$(ProjectPath)/../../../../../../../src/bt/blehost/nimble/host/store/config/include/store/config;$(ProjectPath)/../../../../../../../src/bt/blehost/nimble/host/store/config/src;$(ProjectPath)/../../../../../../../src/bt/blehost/nimble/host/store/ram/include/store/ram;$(ProjectPath)/../../../../../../../src/bt/blehost/nimble/host/util/include/host/util;$(ProjectPath)/../../../../../../../src/bt/blehost/nimble/include/nimble;$(ProjectPath)/../../../../../../../src/bt/blehost/nimble/transport/uart/include/transport/uart;$(ProjectPath)/../../../../../../../src/bt/blehost/porting/w800/include/hal;$(ProjectPath)/../../../../../../../src/bt/blehost/porting/w800/include/log;$(ProjectPath)/../../../../../../../src/bt/blehost/porting/w800/include/log_common;$(ProjectPath)/../../../../../../../src/bt/blehost/porting/w800/include/logcfg;$(ProjectPath)/../../../../../../../src/bt/blehost/porting/w800/include/mem;$(ProjectPath)/../../../../../../../src/bt/blehost/porting/w800/include/modlog;$(ProjectPath)/../../../../../../../src/bt/blehost/porting/w800/include/nimble;$(ProjectPath)/../../../../../../../src/bt/blehost/porting/w800/include/os;$(ProjectPath)/../../../../../../../src/bt/blehost/porting/w800/include/stats;$(ProjectPath)/../../../../../../../src/bt/blehost/porting/w800/include/syscfg;$(ProjectPath)/../../../../../../../src/bt/blehost/porting/w800/include/sysflash;$(ProjectPath)/../../../../../../../src/bt/blehost/porting/w800/include/sysinit;$(ProjectPath)/../../../../../../../src/os/rtos/include</IncludePath>
+        <IncludePath>$(CDKPath)/CSKY/csi/csi_core/csi_cdk/;$(CDKPath)/CSKY/csi/csi_core/include/;$(CDKPath)/CSKY/csi/csi_driver/include/;$(ProjectPath);$(ProjectPath)/../../../../../../../app;$(ProjectPath)/../../../../../../../app/button;$(ProjectPath)/../../../../../../../app/xmodem;$(ProjectPath)/../../../../../../../components/lvgl;$(ProjectPath)/../../../../../../../components/lvgl/demos;$(ProjectPath)/../../../../../../../components/lvgl/demos/benchmark;$(ProjectPath)/../../../../../../../components/lvgl/demos/keypad_encoder;$(ProjectPath)/../../../../../../../components/lvgl/demos/music;$(ProjectPath)/../../../../../../../components/lvgl/demos/music/assets;$(ProjectPath)/../../../../../../../components/lvgl/demos/stress;$(ProjectPath)/../../../../../../../components/lvgl/demos/widgets;$(ProjectPath)/../../../../../../../components/lvgl/env_support/cmsis-pack;$(ProjectPath)/../../../../../../../components/lvgl/env_support/rt-thread;$(ProjectPath)/../../../../../../../components/lvgl/env_support/rt-thread/squareline/ui/lvgl;$(ProjectPath)/../../../../../../../components/lvgl/examples;$(ProjectPath)/../../../../../../../components/lvgl/examples/anim;$(ProjectPath)/../../../../../../../components/lvgl/examples/event;$(ProjectPath)/../../../../../../../components/lvgl/examples/get_started;$(ProjectPath)/../../../../../../../components/lvgl/examples/layouts;$(ProjectPath)/../../../../../../../components/lvgl/examples/layouts/flex;$(ProjectPath)/../../../../../../../components/lvgl/examples/layouts/grid;$(ProjectPath)/../../../../../../../components/lvgl/examples/libs;$(ProjectPath)/../../../../../../../components/lvgl/examples/libs/bmp;$(ProjectPath)/../../../../../../../components/lvgl/examples/libs/ffmpeg;$(ProjectPath)/../../../../../../../components/lvgl/examples/libs/freetype;$(ProjectPath)/../../../../../../../components/lvgl/examples/libs/gif;$(ProjectPath)/../../../../../../../components/lvgl/examples/libs/png;$(ProjectPath)/../../../../../../../components/lvgl/examples/libs/qrcode;$(ProjectPath)/../../../../../../../components/lvgl/examples/libs/rlottie;$(ProjectPath)/../../../../../../../components/lvgl/examples/libs/sjpg;$(ProjectPath)/../../../../../../../components/lvgl/examples/others;$(ProjectPath)/../../../../../../../components/lvgl/examples/others/fragment;$(ProjectPath)/../../../../../../../components/lvgl/examples/others/gridnav;$(ProjectPath)/../../../../../../../components/lvgl/examples/others/ime;$(ProjectPath)/../../../../../../../components/lvgl/examples/others/imgfont;$(ProjectPath)/../../../../../../../components/lvgl/examples/others/monkey;$(ProjectPath)/../../../../../../../components/lvgl/examples/others/msg;$(ProjectPath)/../../../../../../../components/lvgl/examples/others/snapshot;$(ProjectPath)/../../../../../../../components/lvgl/examples/porting;$(ProjectPath)/../../../../../../../components/lvgl/examples/scroll;$(ProjectPath)/../../../../../../../components/lvgl/examples/styles;$(ProjectPath)/../../../../../../../components/lvgl/examples/widgets;$(ProjectPath)/../../../../../../../components/lvgl/src;$(ProjectPath)/../../../../../../../components/lvgl/src/core;$(ProjectPath)/../../../../../../../components/lvgl/src/draw;$(ProjectPath)/../../../../../../../components/lvgl/src/draw/arm2d;$(ProjectPath)/../../../../../../../components/lvgl/src/draw/nxp;$(ProjectPath)/../../../../../../../components/lvgl/src/draw/nxp/pxp;$(ProjectPath)/../../../../../../../components/lvgl/src/draw/nxp/vglite;$(ProjectPath)/../../../../../../../components/lvgl/src/draw/sdl;$(ProjectPath)/../../../../../../../components/lvgl/src/draw/stm32_dma2d;$(ProjectPath)/../../../../../../../components/lvgl/src/draw/sw;$(ProjectPath)/../../../../../../../components/lvgl/src/draw/swm341_dma2d;$(ProjectPath)/../../../../../../../components/lvgl/src/extra;$(ProjectPath)/../../../../../../../components/lvgl/src/extra/layouts;$(ProjectPath)/../../../../../../../components/lvgl/src/extra/layouts/flex;$(ProjectPath)/../../../../../../../components/lvgl/src/extra/layouts/grid;$(ProjectPath)/../../../../../../../components/lvgl/src/extra/libs;$(ProjectPath)/../../../../../../../components/lvgl/src/extra/libs/bmp;$(ProjectPath)/../../../../../../../components/lvgl/src/extra/libs/ffmpeg;$(ProjectPath)/../../../../../../../components/lvgl/src/extra/libs/freetype;$(ProjectPath)/../../../../../../../components/lvgl/src/extra/libs/fsdrv;$(ProjectPath)/../../../../../../../components/lvgl/src/extra/libs/gif;$(ProjectPath)/../../../../../../../components/lvgl/src/extra/libs/png;$(ProjectPath)/../../../../../../../components/lvgl/src/extra/libs/qrcode;$(ProjectPath)/../../../../../../../components/lvgl/src/extra/libs/rlottie;$(ProjectPath)/../../../../../../../components/lvgl/src/extra/libs/sjpg;$(ProjectPath)/../../../../../../../components/lvgl/src/extra/others;$(ProjectPath)/../../../../../../../components/lvgl/src/extra/others/fragment;$(ProjectPath)/../../../../../../../components/lvgl/src/extra/others/gridnav;$(ProjectPath)/../../../../../../../components/lvgl/src/extra/others/ime;$(ProjectPath)/../../../../../../../components/lvgl/src/extra/others/imgfont;$(ProjectPath)/../../../../../../../components/lvgl/src/extra/others/monkey;$(ProjectPath)/../../../../../../../components/lvgl/src/extra/others/msg;$(ProjectPath)/../../../../../../../components/lvgl/src/extra/others/snapshot;$(ProjectPath)/../../../../../../../components/lvgl/src/extra/themes;$(ProjectPath)/../../../../../../../components/lvgl/src/extra/themes/basic;$(ProjectPath)/../../../../../../../components/lvgl/src/extra/themes/default;$(ProjectPath)/../../../../../../../components/lvgl/src/extra/themes/mono;$(ProjectPath)/../../../../../../../components/lvgl/src/extra/widgets;$(ProjectPath)/../../../../../../../components/lvgl/src/extra/widgets/animimg;$(ProjectPath)/../../../../../../../components/lvgl/src/extra/widgets/calendar;$(ProjectPath)/../../../../../../../components/lvgl/src/extra/widgets/chart;$(ProjectPath)/../../../../../../../components/lvgl/src/extra/widgets/colorwheel;$(ProjectPath)/../../../../../../../components/lvgl/src/extra/widgets/imgbtn;$(ProjectPath)/../../../../../../../components/lvgl/src/extra/widgets/keyboard;$(ProjectPath)/../../../../../../../components/lvgl/src/extra/widgets/led;$(ProjectPath)/../../../../../../../components/lvgl/src/extra/widgets/list;$(ProjectPath)/../../../../../../../components/lvgl/src/extra/widgets/menu;$(ProjectPath)/../../../../../../../components/lvgl/src/extra/widgets/meter;$(ProjectPath)/../../../../../../../components/lvgl/src/extra/widgets/msgbox;$(ProjectPath)/../../../../../../../components/lvgl/src/extra/widgets/span;$(ProjectPath)/../../../../../../../components/lvgl/src/extra/widgets/spinbox;$(ProjectPath)/../../../../../../../components/lvgl/src/extra/widgets/spinner;$(ProjectPath)/../../../../../../../components/lvgl/src/extra/widgets/tabview;$(ProjectPath)/../../../../../../../components/lvgl/src/extra/widgets/tileview;$(ProjectPath)/../../../../../../../components/lvgl/src/extra/widgets/win;$(ProjectPath)/../../../../../../../components/lvgl/src/font;$(ProjectPath)/../../../../../../../components/lvgl/src/hal;$(ProjectPath)/../../../../../../../components/lvgl/src/misc;$(ProjectPath)/../../../../../../../components/lvgl/src/widgets;$(ProjectPath)/../../../../../../../components/lvgl/tests/src;$(ProjectPath)/../../../../../../../components/lvgl/tests/unity;$(ProjectPath)/../../../../../../../components/lvgl_drivers/encoder;$(ProjectPath)/../../../../../../../components/lvgl_drivers/lcd;$(ProjectPath)/../../../../../../../components/lvgl_drivers/psram;$(ProjectPath)/../../../../../../../components/lvgl_drivers/spiflash;$(ProjectPath)/../../../../../../../components/lvgl_drivers/touchpad;$(ProjectPath)/../../../../../../../components/lvgl_port;$(ProjectPath)/../../../../../../../include;$(ProjectPath)/../../../../../../../include/arch/xt804;$(ProjectPath)/../../../../../../../include/arch/xt804/csi_core;$(ProjectPath)/../../../../../../../include/arch/xt804/csi_dsp;$(ProjectPath)/../../../../../../../include/os;$(ProjectPath)/../../../../../../../include/platform;$(ProjectPath)/../../../../../../../src/app/bleapp;$(ProjectPath)/../../../../../../../src/app/btapp;$(ProjectPath)/../../../../../../../src/app/fatfs;$(ProjectPath)/../../../../../../../src/bt/blehost/ext/tinycrypt/include/tinycrypt;$(ProjectPath)/../../../../../../../src/bt/blehost/nimble/host/include/host;$(ProjectPath)/../../../../../../../src/bt/blehost/nimble/host/mesh/include/mesh;$(ProjectPath)/../../../../../../../src/bt/blehost/nimble/host/mesh/src;$(ProjectPath)/../../../../../../../src/bt/blehost/nimble/host/services/gap/include/services/gap;$(ProjectPath)/../../../../../../../src/bt/blehost/nimble/host/services/gatt/include/services/gatt;$(ProjectPath)/../../../../../../../src/bt/blehost/nimble/host/src;$(ProjectPath)/../../../../../../../src/bt/blehost/nimble/host/store/config/include/store/config;$(ProjectPath)/../../../../../../../src/bt/blehost/nimble/host/store/config/src;$(ProjectPath)/../../../../../../../src/bt/blehost/nimble/host/store/ram/include/store/ram;$(ProjectPath)/../../../../../../../src/bt/blehost/nimble/host/util/include/host/util;$(ProjectPath)/../../../../../../../src/bt/blehost/nimble/include/nimble;$(ProjectPath)/../../../../../../../src/bt/blehost/nimble/transport/uart/include/transport/uart;$(ProjectPath)/../../../../../../../src/bt/blehost/porting/w800/include/hal;$(ProjectPath)/../../../../../../../src/bt/blehost/porting/w800/include/log;$(ProjectPath)/../../../../../../../src/bt/blehost/porting/w800/include/log_common;$(ProjectPath)/../../../../../../../src/bt/blehost/porting/w800/include/logcfg;$(ProjectPath)/../../../../../../../src/bt/blehost/porting/w800/include/mem;$(ProjectPath)/../../../../../../../src/bt/blehost/porting/w800/include/modlog;$(ProjectPath)/../../../../../../../src/bt/blehost/porting/w800/include/nimble;$(ProjectPath)/../../../../../../../src/bt/blehost/porting/w800/include/os;$(ProjectPath)/../../../../../../../src/bt/blehost/porting/w800/include/stats;$(ProjectPath)/../../../../../../../src/bt/blehost/porting/w800/include/syscfg;$(ProjectPath)/../../../../../../../src/bt/blehost/porting/w800/include/sysflash;$(ProjectPath)/../../../../../../../src/bt/blehost/porting/w800/include/sysinit;$(ProjectPath)/../../../../../../../src/os/rtos/include</IncludePath>
         <OtherFlags/>
         <DebugLevel>gdwarf2</DebugLevel>
       </Asm>
@@ -3356,6 +4856,7 @@
         <OtherFlags>-Wl,-zmax-page-size=1024 -mhard-float</OtherFlags>
         <AutoLDFile>no</AutoLDFile>
         <LinkType/>
+        <IncludeAllLibs>no</IncludeAllLibs>
       </Linker>
       <Debug>
         <LoadApplicationAtStartup>yes</LoadApplicationAtStartup>
@@ -3377,6 +4878,7 @@
           <CPUNumber>0</CPUNumber>
           <Clock>12000</Clock>
           <Delay>10</Delay>
+          <NResetDelay>100</NResetDelay>
           <WaitReset>50</WaitReset>
           <DDC>yes</DDC>
           <TRST>no</TRST>
@@ -3390,6 +4892,10 @@
           <GDBName/>
           <GDBServerType>Local</GDBServerType>
           <OtherFlags/>
+          <ICEEnablePCSampling>yes</ICEEnablePCSampling>
+          <ICESamplingFreq>1000</ICESamplingFreq>
+          <RemoteICEEnablePCSampling>yes</RemoteICEEnablePCSampling>
+          <RemoteICESamplingPort>1026</RemoteICESamplingPort>
         </ConfigICE>
         <ConfigSIM>
           <SIMTarget/>
@@ -3423,14 +4929,4 @@
       </Flash>
     </BuildConfig>
   </BuildConfigs>
-  <DebugSessions>
-    <watchExpressions/>
-    <memoryExpressions/>
-    <statistics/>
-    <peripheralTabs/>
-    <WatchDisplayFormat/>
-    <LocalDisplayFormat/>
-    <debugLayout/>
-    <memoryTabColSizeExpressions/>
-  </DebugSessions>
 </Project>
