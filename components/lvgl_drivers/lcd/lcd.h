@@ -50,29 +50,30 @@
 *******************************************/
 #define CHIP_TYPE (0)
 
-#if   (CHIP_TYPE == 0)  // W801
+#if   (CHIP_TYPE == 0)  // GPIOA ---> W801
 #define LCD_LED        	WM_IO_PA_08 //--->>TFT --LED
 #define LCD_SCL        	WM_IO_PA_09 //--->>TFT --SCL
 #define LCD_MOSI        WM_IO_PA_10 //--->>TFT --DO
-#define LCD_MISO        WM_IO_PA_11	//--->>TFT --DI
+#define LCD_TE          WM_IO_PA_11	//--->>TFT --TE
 #define LCD_DC     	    WM_IO_PA_12	//--->>TFT --RS/DC 
 #define LCD_RST        	WM_IO_PA_13 //--->>TFT --RST
 #define LCD_CS        	WM_IO_PA_14 //--->>TFT --CS
-#elif (CHIP_TYPE == 1)  // W800
+#elif (CHIP_TYPE == 1)  // GPIOB ---> W800/W801/W801S2
 #define LCD_LED         WM_IO_PB_05 //--->>TFT --LED
 #define LCD_SCL         WM_IO_PB_06 //--->>TFT --SCL
 #define LCD_MOSI        WM_IO_PB_07 //--->>TFT --DO
-#define LCD_MISO        WM_IO_PB_08	//--->>TFT --DI
+#define LCD_TE          WM_IO_PB_08	//--->>TFT --TE
 #define LCD_DC       	WM_IO_PB_09	//--->>TFT --RS/DC
 #define LCD_RST        	WM_IO_PB_10 //--->>TFT --RST
 #define LCD_CS        	WM_IO_PB_11 //--->>TFT --CS
-#else                   // TEST
-#define LCD_LED        	WM_IO_PA_08 //--->>TFT --LED
-#define LCD_SCL        	WM_IO_PA_09 //--->>TFT --SCL
-#define LCD_MOSI        WM_IO_PA_10 //--->>TFT --SDA
-#define LCD_DC         	WM_IO_PA_11	//--->>TFT --RS/DC
-#define LCD_RST         WM_IO_PA_12	//--->>TFT --RST
-#define LCD_CS        	WM_IO_PA_13 //--->>TFT --CS
+#else                   // Customer 自定义（除SCL和MOSI外，其余可以用普通GPIO）
+#define LCD_LED         WM_IO_PB_05 //--->>TFT --LED
+#define LCD_SCL         WM_IO_PB_06 //--->>TFT --SCL
+#define LCD_MOSI        WM_IO_PB_07 //--->>TFT --DO
+#define LCD_TE          WM_IO_PB_08	//--->>TFT --TE
+#define LCD_DC       	WM_IO_PB_10	//--->>TFT --RS/DC
+#define LCD_RST        	WM_IO_PB_09 //--->>TFT --RST
+#define LCD_CS        	WM_IO_PB_11 //--->>TFT --CS
 #endif
 
 // COLOR

@@ -24,9 +24,24 @@ static bool sdio_spi_dma_ready = true;
 
 void init_sdio_spi_mode()
 {
-    tls_io_cfg_set(LCD_SCL, WM_IO_OPTION1);  /*CK*/
-    tls_io_cfg_set(LCD_MOSI, WM_IO_OPTION1); /*CMD*/
+    if(LCD_SCL == WM_IO_PA_09)
+    {
+        tls_io_cfg_set(LCD_SCL, WM_IO_OPTION1);  /*CK*/
+    }
+    else
+    {
+        tls_io_cfg_set(LCD_SCL, WM_IO_OPTION2);  /*CK*/
+    }
 
+    if(LCD_MOSI == WM_IO_PA_10)
+    {
+        tls_io_cfg_set(LCD_MOSI, WM_IO_OPTION1);  /*CMD*/
+    }
+    else
+    {
+        tls_io_cfg_set(LCD_MOSI, WM_IO_OPTION2);  /*CMD*/
+    }
+  
     tls_open_peripheral_clock(TLS_PERIPHERAL_TYPE_SDIO_MASTER);
     tls_bitband_write(HR_CLK_RST_CTL, 27, 0);
     tls_bitband_write(HR_CLK_RST_CTL, 27, 1);
