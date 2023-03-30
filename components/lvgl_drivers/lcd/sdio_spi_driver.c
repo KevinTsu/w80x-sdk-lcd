@@ -30,7 +30,7 @@ void init_sdio_spi_mode()
     }
     else
     {
-        tls_io_cfg_set(LCD_SCL, WM_IO_OPTION2);  /*CK*/
+        tls_io_cfg_set(LCD_SCL, WM_IO_OPTION2);   /*CK*/
     }
 
     if(LCD_MOSI == WM_IO_PA_10)

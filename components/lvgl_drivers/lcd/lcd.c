@@ -201,7 +201,6 @@ void st7789_init(void)
 
     WriteComm(0x29);  	// SLPOUT
 }
-
 #elif (LCD_TYPE == 1)
 // ST7796S初始化
 const uint8_t st7796s_init_seq[] = {
@@ -245,7 +244,6 @@ const uint8_t st7796s_init_seq[] = {
 #endif
         0
 };
-
 #elif (LCD_TYPE == 2)
 // ILI9341初始化
 const uint8_t ili9341_init_seq[] = {
@@ -287,9 +285,7 @@ const uint8_t ili9341_init_seq[] = {
         0x01, 0x02, 0x29,
         0
 };
-
 #elif (LCD_TYPE == 3)
-
 // ILI9488初始化
 const uint8_t ili9488_init_seq[] = {
     /*  len , delay, cmd, data ... */
@@ -311,7 +307,6 @@ const uint8_t ili9488_init_seq[] = {
         0x01, 0x02, 0x29,
         0
 };
-
 // NV3041初始化
 #elif (LCD_TYPE == 4)
 const uint8_t nv3041n_init_seq[] = {
@@ -443,8 +438,6 @@ const uint8_t nv3041n_init_seq[] = {
         // 0x02, 0x74, 0x2C,
         0
 };
-
-
 // (1) pixel 5-6-5 --8bit and serial interface code 
 void nv3041_init(void)
 { 
@@ -655,7 +648,130 @@ void nv3041_init(void)
     WriteComm(0x29); 
     tls_os_time_delay(20);
 } 
-//////////////////////////////////////////////////////////////////////////////////////////
+#elif (LCD_TYPE == 5)
+// ST7796初始化
+void st7796_init(void)
+{
+    WriteComm(0x11); // Sleep Out
+    tls_os_time_delay(120);
+
+    WriteComm(0xF0);     
+    WriteData(0xC3);   
+
+    WriteComm(0xF0);     
+    WriteData(0x96);   
+
+    WriteComm(0x36);     
+    WriteData(0x48);   
+
+    WriteComm(0x3A);     
+    WriteData(0x55);   
+
+    WriteComm(0xB4);     
+    WriteData(0x01);     //Display Inversion Control
+
+    WriteComm(0xB1);     
+    WriteData(0x80);   //FRS[D7-D4], DIVA[D1-D0] 81 for 15Hz
+    WriteData(0x10);   //RTNA[4:0]
+
+    WriteComm(0xB5);     
+    WriteData(0x1F);   //VFP FF for 15Hz
+    WriteData(0x39);   //VBP FF for 15Hz
+    WriteData(0x00);   
+    WriteData(0x20);   //HBP
+
+    WriteComm(0xB6);     
+    WriteData(0x8A);   
+    WriteData(0x07);   
+    WriteData(0x27);   //320 Gates
+
+    WriteComm(0xB7);     
+    WriteData(0xC6);   
+
+    WriteComm(0xB9);     
+    WriteData(0x02);   
+    WriteData(0xE0);   
+
+    WriteComm(0xC0);     
+    WriteData(0x80);   
+    WriteData(0x05);   
+
+    WriteComm(0xC1);     
+    WriteData(0x15);   //15
+
+    WriteComm(0xC2);     
+    WriteData(0xA7);   
+
+    WriteComm(0xC5);     
+    WriteData(0x10);   
+
+    WriteComm(0xE8);     
+    WriteData(0x40);   
+    WriteData(0x8A);   
+    WriteData(0x00);   
+    WriteData(0x00);   
+    WriteData(0x29);   
+    WriteData(0x19);   
+    WriteData(0xAA);   
+    WriteData(0x33);   
+
+    WriteComm(0xE0);     
+    WriteData(0xF0);   
+    WriteData(0x03);   
+    WriteData(0x09);   
+    WriteData(0x02);   
+    WriteData(0x01);   
+    WriteData(0x01);   
+    WriteData(0x33);   
+    WriteData(0x44);   
+    WriteData(0x49);   
+    WriteData(0x3A);   
+    WriteData(0x16);   
+    WriteData(0x18);   
+    WriteData(0x2F);   
+    WriteData(0x34);   
+
+    WriteComm(0xE1);     
+    WriteData(0xF0);   
+    WriteData(0x0F);   
+    WriteData(0x15);   
+    WriteData(0x0D);   
+    WriteData(0x0D);   
+    WriteData(0x28);   
+    WriteData(0x32);   
+    WriteData(0x33);   
+    WriteData(0x49);   
+    WriteData(0x03);   
+    WriteData(0x0D);   
+    WriteData(0x0E);   
+    WriteData(0x28);   
+    WriteData(0x2F);   
+
+    WriteComm(0xF0);     
+    WriteData(0x3C);   
+
+    WriteComm(0xF0);     
+    WriteData(0x69);   
+
+    WriteComm(0x35);     
+    WriteData(0x00);   
+
+    WriteComm(0x29);     
+
+    WriteComm(0x21);     
+
+    WriteComm(0x2A);     
+    WriteData(0x00);   
+    WriteData(0x00);   
+    WriteData(0x01);   
+    WriteData(0x3F);   
+
+    WriteComm(0x2B);     
+    WriteData(0x00);   
+    WriteData(0x00);   
+    WriteData(0x01);   
+    WriteData(0x3F);
+}
 #endif
 
 /************************** io模拟spi ****************************/
@@ -887,6 +1003,11 @@ void bsp_lcd_init()
         spi_lcd_init_cmd(nv3041n_init_seq);
     #endif
     printf("---> nv3041n\n");
+#elif (LCD_TYPE == 5)
+    // gpio 模拟 spi
+    st7796_init();
+    init_sdio_spi_mode();
+    printf("---> st7796_init\n");
 #else
     printf("---> lcd driver module not beed installed!\n");
     return;

@@ -12,22 +12,31 @@
 *   2   ili9341     240*320     encoder √     touchpad √
 *   3   ili9488                
 *   4   nv3401n     480*272
+*   5   st7796      320*320
 *****************************************************************************/ 
 #define LCD_TYPE  (1)
 #define LCD_SIZE  (1)
 // 屏幕分辨率
-#if   (LCD_SIZE == 1)
+#if   (LCD_SIZE == 0)
+#define LCD_WIDTH        240
+#define LCD_HIGH         320
+#elif (LCD_SIZE == 1)
 #define LCD_WIDTH        320
 #define LCD_HIGH         480
 #elif (LCD_SIZE == 2)
 #define LCD_WIDTH        240
 #define LCD_HIGH         320
 #elif (LCD_SIZE == 3)
-#define LCD_WIDTH        272
-#define LCD_HIGH         480
-#else
 #define LCD_WIDTH        320
 #define LCD_HIGH         480
+#elif (LCD_SIZE == 4)
+#define LCD_WIDTH        480
+#define LCD_HIGH         320
+#elif (LCD_SIZE == 5)
+#define LCD_WIDTH        320
+#define LCD_HIGH         320
+#else
+#error lcd resolution not defined !!!
 #endif
 
 #if (BSP_LCD_Direction == 0)
