@@ -4,6 +4,10 @@
 #include <string.h>
 #include "wm_flash.h"
 
+static void WriteComm(unsigned int i);
+static void WriteData(unsigned int i);
+static void SendDataSPI(unsigned char dat);
+
 #if   (LCD_TYPE == 0)
 // ST7789初始化
 const uint8_t st7789_init_seq[] = {
