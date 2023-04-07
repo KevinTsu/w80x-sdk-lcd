@@ -53,8 +53,8 @@
 *   sdio_ck	    PB_06	PA_09	CLK
 *   sdio_cmd	PB_07	PA_10	MOSI
 *   sdio_dat0	PB_08	PA_11	MISO
-*   sdio_dat1	PB_09	PA_12	RST
-*   sdio_dat2	PB_10	PA_13	DC/RS
+*   sdio_dat1	PB_09	PA_12	RS/DC 
+*   sdio_dat2	PB_10	PA_13	RST
 *   sdio_dat3	PB_11	PA_14	CS
 *******************************************/
 #define CHIP_TYPE (0)

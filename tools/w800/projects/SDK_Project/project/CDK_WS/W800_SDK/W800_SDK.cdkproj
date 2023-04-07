@@ -4694,12 +4694,14 @@
         </File>
       </VirtualDirectory>
       <VirtualDirectory Name="touchpad">
-        <File Name="../../../../../../../components/lvgl_drivers/touchpad/touchpad.c">
-          <FileOption/>
-        </File>
-        <File Name="../../../../../../../components/lvgl_drivers/touchpad/touchpad.h">
-          <FileOption/>
-        </File>
+        <File Name="../../../../../../../components/lvgl_drivers/touchpad/ft5206.c"/>
+        <File Name="../../../../../../../components/lvgl_drivers/touchpad/ft5206.h"/>
+        <File Name="../../../../../../../components/lvgl_drivers/touchpad/iic.c"/>
+        <File Name="../../../../../../../components/lvgl_drivers/touchpad/iic.h"/>
+        <File Name="../../../../../../../components/lvgl_drivers/touchpad/touchpad.c"/>
+        <File Name="../../../../../../../components/lvgl_drivers/touchpad/touchpad.h"/>
+        <File Name="../../../../../../../components/lvgl_drivers/touchpad/xpt2046.c"/>
+        <File Name="../../../../../../../components/lvgl_drivers/touchpad/xpt2046.h"/>
       </VirtualDirectory>
     </VirtualDirectory>
     <VirtualDirectory Name="lvgl_port">
