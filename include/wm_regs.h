@@ -957,7 +957,7 @@ static __inline unsigned int tls_bitband_read(volatile unsigned int addr, unsign
 
 	temp = (M32(addr) >> bit) & 0x1;
 
-	return *((volatile unsigned int *)temp);
+	return *((volatile unsigned int *)&temp);
 }
 
 
