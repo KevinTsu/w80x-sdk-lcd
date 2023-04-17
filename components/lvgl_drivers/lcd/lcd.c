@@ -206,6 +206,124 @@ void st7789_init(void)
     WriteComm(0x29);  	// SLPOUT
 }
 #elif (LCD_TYPE == 1)
+// BOE3.92IPS(GV039Z2Q-N80)-ST7796U-2.2Gamma-20211203
+void st7796S_init(void)
+{
+    tls_os_time_delay(120);                //ms
+
+    WriteComm(0xF0);     
+    WriteData(0xC3);   
+
+    WriteComm(0xF0);     
+    WriteData(0x96);   
+
+    WriteComm(0x36);     
+    WriteData(0x48);   
+
+    WriteComm(0x3A);     
+    WriteData(0x55);   
+
+    WriteComm(0xB4);     
+    WriteData(0x00);   
+
+    WriteComm(0xB6);     
+    WriteData(0x8A);   
+    WriteData(0x07);   
+    WriteData(0x27);   //320 Gates
+
+    WriteComm(0xB7);     
+    WriteData(0xC6);   
+
+    WriteComm(0xB9);     
+    WriteData(0x02);   
+    WriteData(0xE0);   
+
+    WriteComm(0xC0);     
+    WriteData(0x80);   
+    WriteData(0x06);   
+
+    WriteComm(0xC1);     
+    WriteData(0x15);   
+
+    WriteComm(0xC2);     
+    WriteData(0xA7);   
+
+    WriteComm(0xC5);     
+    WriteData(0x04);   
+
+    WriteComm(0xE8);     
+    WriteData(0x40);   
+    WriteData(0x8A);   
+    WriteData(0x00);   
+    WriteData(0x00);   
+    WriteData(0x29);   
+    WriteData(0x19);   
+    WriteData(0xAA);   
+    WriteData(0x33);   
+
+    WriteComm(0xE0);     
+    WriteData(0xF0);
+    WriteData(0x06);
+    WriteData(0x0F);
+    WriteData(0x05);
+    WriteData(0x04);
+    WriteData(0x20);
+    WriteData(0x37);
+    WriteData(0x33);
+    WriteData(0x4C);
+    WriteData(0x37);
+    WriteData(0x13);
+    WriteData(0x14);
+    WriteData(0x2B);
+    WriteData(0x31);  
+
+    WriteComm(0xE1);     
+    WriteData(0xF0);
+    WriteData(0x11);
+    WriteData(0x1B);
+    WriteData(0x11);
+    WriteData(0x0F);
+    WriteData(0x0A);
+    WriteData(0x37);
+    WriteData(0x43);
+    WriteData(0x4C);
+    WriteData(0x37);
+    WriteData(0x13);
+    WriteData(0x13);
+    WriteData(0x2C);
+    WriteData(0x32);  
+
+    WriteComm(0xF0);     
+    WriteData(0x3C);   
+
+    WriteComm(0xF0);     
+    WriteData(0x69);   
+
+    WriteComm(0x35);     
+    WriteData(0x00);   
+
+    WriteComm(0x11);     
+
+    tls_os_time_delay(120);                //ms
+
+    WriteComm(0x29);     
+
+    WriteComm(0x21);     
+
+    WriteComm(0x2A);     
+    WriteData(0x00);   
+    WriteData(0x00);   
+    WriteData(0x01);   
+    WriteData(0x3F);   
+
+    WriteComm(0x2B);     
+    WriteData(0x00);   
+    WriteData(0x00);   
+    WriteData(0x01);   
+    WriteData(0x3F);   
+
+    // WriteComm(0x2C);     
+}
 // ST7796S初始化
 const uint8_t st7796s_init_seq[] = {
     /*  len , delay, cmd, data ... */
@@ -987,8 +1105,13 @@ void bsp_lcd_init()
     #endif
     printf("---> st7789\n");
 #elif (LCD_TYPE == 1)
-    init_sdio_spi_mode();
-    spi_lcd_init_cmd(st7796s_init_seq);
+    #if (0)  // gpio 模拟 spi
+        st7796S_init();
+        init_sdio_spi_mode();
+    #else
+        init_sdio_spi_mode();
+        spi_lcd_init_cmd(st7796s_init_seq);
+    #endif
     printf("---> st7796s\n");
 #elif (LCD_TYPE == 2)
     init_sdio_spi_mode();
