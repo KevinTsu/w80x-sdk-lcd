@@ -5,6 +5,8 @@
 #include "wm_i2c.h"
 #include "wm_gpio_afsel.h"
 
+#if(LCD_TYPE == 5)
+
 #define USE_HARD_IIC 1
 
 void ft5206_gpio_init(void)
@@ -219,7 +221,7 @@ bool ft5206_read_coord(uint16_t *x, uint16_t *y)
 // }
  
 
-
+#endif
 
 
 

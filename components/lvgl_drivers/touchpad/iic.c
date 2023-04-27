@@ -2,7 +2,7 @@
 #include "wm_include.h"
 #include "iic.h"
 #include "touchpad.h"
-
+#if 0
 
 void I2C_SDA_H()			
 {
@@ -229,3 +229,5 @@ OUT:
 	I2C_Stop();
 	return ret;
 }
+
+#endif

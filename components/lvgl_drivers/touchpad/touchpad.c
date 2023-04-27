@@ -1,9 +1,10 @@
 #include "touchpad.h"
 #include "xpt2046.h"
 #include "ft5206.h"
+#include "gt911.h"
 
 #define TOUCH_TASK_PRORITY 6
-#define TOUCH_TASK_STACK_SIZE 1024
+#define TOUCH_TASK_STACK_SIZE 4096
 
 static OS_STK TouchPadTaskStk[TOUCH_TASK_STACK_SIZE];
 
@@ -28,27 +29,6 @@ void bsp_touchpad_get_xy(int16_t *x, int16_t *y)
 
 void bsp_touchpad_init(void)
 {
-    memset(&g_Coord, 0, sizeof(coord_TypeDef));
-
-#if (LCD_TYPE == 1)
-    xpt2046_gpio_init();
-    // 此处应从Flash中读取校准过的数据
-    g_Coord.xOffset = 200;  //x 轴偏移200
-    g_Coord.yOffset = 280;  //y 轴偏移280
-    g_Coord.xRate = 7.71;   //x 轴比例系数7.71
-    g_Coord.yRate = 10.94;  //y 轴比例系数10.94
-#elif (LCD_TYPE == 2)
-    xpt2046_gpio_init();
-    // 此处应从Flash中读取校准过的数据
-    g_Coord.xOffset = 400;  // x轴偏移200
-    g_Coord.yOffset = 280;  // y轴偏移280
-    g_Coord.xRate = 11;     // x轴比例系数7.71
-    g_Coord.yRate = 15.21;  // y轴比例系数10.94
-#elif (LCD_TYPE == 5)
-    // 电容触摸不需要校准
-    ft5206_init();
-#endif
-
     touchpad_task_create();
 }
 //============================================================================
@@ -59,7 +39,7 @@ bool TP_Update_Coord(void)
     uint16_t x = 0;
     uint16_t y = 0;
 
-#if (LCD_TYPE == 1) || (LCD_TYPE == 2)
+#if (TOUCHPAD_TYPE == 0) || (TOUCHPAD_TYPE == 1)
     sta = xpt2046_read_coord(&x, &y);
     if(true == sta){
         g_Coord.xCoord = (int16_t)((x - g_Coord.xOffset)/g_Coord.xRate);
@@ -67,8 +47,16 @@ bool TP_Update_Coord(void)
         g_Coord.xIndev = x;
         g_Coord.yIndex = y;
     }
-#elif (LCD_TYPE == 5)
+#elif (TOUCHPAD_TYPE == 2)
     sta = ft5206_read_coord(&x, &y);
+    if(true == sta){
+        g_Coord.xCoord = x;
+        g_Coord.yCoord = y;
+        g_Coord.xIndev = x;
+        g_Coord.yIndex = y;
+    }
+#elif (TOUCHPAD_TYPE == 3)
+    sta = gt911_read_coord(&x, &y);
     if(true == sta){
         g_Coord.xCoord = x;
         g_Coord.yCoord = y;
@@ -91,8 +79,44 @@ uint32_t TP_test(void)
 
 static void touchpad_task_start(void *data)
 {
+    memset(&g_Coord, 0, sizeof(coord_TypeDef));
+
+#if   (TOUCHPAD_TYPE == 0)
+    xpt2046_gpio_init();
+    // 此处应从Flash中读取校准过的数据
+    g_Coord.xOffset = 200;  //x 轴偏移200
+    g_Coord.yOffset = 280;  //y 轴偏移280
+    g_Coord.xRate = 7.71;   //x 轴比例系数7.71
+    g_Coord.yRate = 10.94;  //y 轴比例系数10.94
+#elif (TOUCHPAD_TYPE == 1)
+    xpt2046_gpio_init();
+    // 此处应从Flash中读取校准过的数据
+    g_Coord.xOffset = 400;  // x轴偏移200
+    g_Coord.yOffset = 280;  // y轴偏移280
+    g_Coord.xRate = 11;     // x轴比例系数7.71
+    g_Coord.yRate = 15.21;  // y轴比例系数10.94
+#elif (TOUCHPAD_TYPE == 2)
+    // 电容触摸不需要校准
+    ft5206_init();
+#elif (TOUCHPAD_TYPE == 3)
+    // 电容触摸不需要校准
+    gt911_init();
+#endif
+
     while(1)
     {
+#if(LCD_TYPE == 6)
+            bool sta = 0;
+
+            sta = gt911_scan(0);
+            if(sta){
+                g_Coord.isPressed = 1;
+                TP_Update_Coord();
+            }
+            else{
+                g_Coord.isPressed = 0;
+            }
+#else
         if(tls_gpio_read(TIRQ) == 0)
         {
             // printf("---> 0\n");
@@ -105,6 +129,7 @@ static void touchpad_task_start(void *data)
             g_Coord.isPressed = 0;
         }
         // printf("---> x:%d y:%d\n", g_Coord.xCoord, g_Coord.yCoord);
+#endif
         tls_os_time_delay(HZ/100);
     }
 }

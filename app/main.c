@@ -134,7 +134,7 @@ void UserMain(void)
     bsp_lcd_init();
     get_image_list_show();
 #endif
-
+    tls_os_disp_task_stat_info();
 #if DEMO_CONSOLE
 	CreateDemoTask();
 #endif

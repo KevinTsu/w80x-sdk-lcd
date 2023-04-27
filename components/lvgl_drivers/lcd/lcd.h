@@ -7,16 +7,17 @@
 
 /***************************************************************************** 
 *   LCD_TYPE
-*   0   st7789                 
+*   0   st7789      240*320          
 *   1   st7796s     320*480     encoder √     touchpad √
 *   2   ili9341     240*320     encoder √     touchpad √
-*   3   ili9488                
+*   3   ili9488               
 *   4   nv3401n     480*272
-*   5   st7796      320*320
+*   5   st7796      320*320                   touchpad √
+*   6   st7796s     320*320                   touchpad √
 *****************************************************************************/ 
 #define LCD_TYPE  (1)
-#define LCD_SIZE  (1)
 // 屏幕分辨率
+#define LCD_SIZE  (1)
 #if   (LCD_SIZE == 0)
 #define LCD_WIDTH        240
 #define LCD_HIGH         320
@@ -75,6 +76,14 @@
 #define LCD_DC       	WM_IO_PB_09	//--->>TFT --RS/DC
 #define LCD_RST        	WM_IO_PB_10 //--->>TFT --RST
 #define LCD_CS        	WM_IO_PB_11 //--->>TFT --CS
+#elif (CHIP_TYPE == 2)  // GPIOA ---> W802
+#define LCD_LED        	WM_IO_PA_02 //--->>TFT --LED
+#define LCD_SCL        	WM_IO_PA_09 //--->>TFT --SCL
+#define LCD_MOSI        WM_IO_PA_10 //--->>TFT --DO
+#define LCD_TE          WM_IO_PB_29	//--->>TFT --TE
+#define LCD_DC     	    WM_IO_PA_12	//--->>TFT --RS/DC 
+#define LCD_RST        	WM_IO_PA_07 //--->>TFT --RST
+#define LCD_CS        	WM_IO_PA_14 //--->>TFT --CS
 #else                   // Customer 自定义（除SCL和MOSI外，其余可以用普通GPIO）
 #define LCD_LED         WM_IO_PB_05 //--->>TFT --LED
 #define LCD_SCL         WM_IO_PB_06 //--->>TFT --SCL

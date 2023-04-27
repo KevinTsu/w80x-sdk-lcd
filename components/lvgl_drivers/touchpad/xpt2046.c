@@ -1,6 +1,8 @@
 #include "xpt2046.h"
 #include "touchpad.h"
 
+#if(LCD_TYPE == 1 || LCD_TYPE == 2)
+
 extern void delay_us();
 
 #define CMD_RDX 0X90
@@ -124,7 +126,7 @@ bool xpt2046_read_coord(uint16_t *x, uint16_t *y)
     return true;
 }
 
-
+#endif
 
 
 
