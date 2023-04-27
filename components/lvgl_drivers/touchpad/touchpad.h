@@ -2,7 +2,7 @@
 #define __TOUCHPAD_H__
 #include "wm_include.h"
 #include "lcd.h"
-#include "user_config.h"
+#include "../../user_config.h"
 
 
 

@@ -12,7 +12,7 @@
 #include "lv_port_indev.h"
 #include "touchpad.h"
 #include "encoder.h"
-#include "user_config.h"
+#include "../user_config.h"
 
 /*********************
  *      DEFINES

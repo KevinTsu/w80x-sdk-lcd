@@ -1,7 +1,7 @@
 #ifndef __LCD_H__
 #define __LCD_H__
 #include "wm_include.h"
-#include "user_config.h"
+#include "../../user_config.h"
 
 
 #if   (LCD_SIZE == 0)
