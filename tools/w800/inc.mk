@@ -46,6 +46,7 @@ INCLUDES += -I $(TOP_DIR)/src/app/factorycmd
 INCLUDES += -I $(TOP_DIR)/src/app/bleapp
 INCLUDES += -I $(TOP_DIR)/demo
 #lvgl
+INCLUDES += -I $(TOP_DIR)/components
 INCLUDES += -I $(TOP_DIR)/components/lvgl
 INCLUDES += -I $(TOP_DIR)/components/lvgl_port
 INCLUDES += -I $(TOP_DIR)/components/lvgl_drivers/encoder

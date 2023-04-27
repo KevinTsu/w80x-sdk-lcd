@@ -1,16 +1,8 @@
 #ifndef __ENCODER_H__
 #define __ENCODER_H__
 #include "wm_include.h"
+#include "user_config.h"
 
-#if (1)
-#define ENCODER_S   WM_IO_PA_00
-#define ENCODER_A   WM_IO_PA_01
-#define ENCODER_B   WM_IO_PA_02
-#else
-#define ENCODER_A   WM_IO_PB_00
-#define ENCODER_B   WM_IO_PB_01
-#define ENCODER_S   WM_IO_PB_02
-#endif
 
 
 void bsp_encoder_init();

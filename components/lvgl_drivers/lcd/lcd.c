@@ -982,7 +982,7 @@ void lcd_gpio_init()
 #endif
 }
 
-#if (CHIP_TYPE == 0)
+#if (CHIP_TYPE == 0 && CHIP_TYPE == 2)
 void lcd_back_on()
 {
     tls_bitband_write(HR_GPIOA_DATA, LCD_LED, 1);

@@ -44,7 +44,8 @@ LVGL：8.3.5
 │   │   ├── psram           psram驱动
 │   │   ├── spiflash        spiflash驱动
 │   │   └── touchpad        触摸屏驱动
-│   └── lvgl_port           lvgl平台适配相关
+│   ├── lvgl_port           lvgl平台适配相关
+│   └── user_config.h       用户驱动IO配置文件
 ├── demo                    原生SDK基本DEMO功能
 ├── doc                     原生SDK Release Note/API文档
 ├── include                 API 头文件

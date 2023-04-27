@@ -24,7 +24,8 @@
 
 
 u8 gt911_init(void);
-
+u8 gt911_scan(u8 mode);
+bool gt911_read_coord(uint16_t *x, uint16_t *y);
 
 
 #endif

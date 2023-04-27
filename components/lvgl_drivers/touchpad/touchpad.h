@@ -2,43 +2,9 @@
 #define __TOUCHPAD_H__
 #include "wm_include.h"
 #include "lcd.h"
+#include "user_config.h"
 
-// i2c touchpad
-#if     (LCD_TYPE == 5)
-#define I2C_SDA	 WM_IO_PA_04 
-#define TIRQ     WM_IO_PA_03
-#define TRST     WM_IO_PA_02
-#define I2C_SCL	 WM_IO_PA_01
-#elif   (LCD_TYPE == 6)
-#define I2C_SDA	 WM_IO_PA_04 
-#define TIRQ     WM_IO_PB_08
-#define TRST     WM_IO_PB_09
-#define I2C_SCL	 WM_IO_PA_01
-#else
-// spi touchpad
-#define TCLK     WM_IO_PA_07
-#define TCS      WM_IO_PA_06
-#define TDIN     WM_IO_PA_05
-#define TDOU     WM_IO_PA_04
-#define TIRQ     WM_IO_PA_03
-#endif
 
-/***************************************************************************** 
-*   TOUCHPAD_TYPE
-*   0   xpt2046   320*480               
-*   1   xpt2046   240*320
-*   2   ft5206    320*320
-*   3   GT911     320*320
-*****************************************************************************/ 
-#if   (LCD_TYPE == 1)
-#define TOUCHPAD_TYPE  0
-#elif (LCD_TYPE == 2)
-#define TOUCHPAD_TYPE  1
-#elif (LCD_TYPE == 5)
-#define TOUCHPAD_TYPE  2
-#elif (LCD_TYPE == 6)
-#define TOUCHPAD_TYPE  3
-#endif
 
 typedef struct _coord_t_{
     float       xRate;     // x轴比例系数

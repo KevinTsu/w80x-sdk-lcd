@@ -1,23 +1,9 @@
 #ifndef __LCD_H__
 #define __LCD_H__
 #include "wm_include.h"
+#include "user_config.h"
 
-// 屏幕方向 0 : 竖屏 1 : 横屏
-#define BSP_LCD_Direction (1)
 
-/***************************************************************************** 
-*   LCD_TYPE
-*   0   st7789      240*320          
-*   1   st7796s     320*480     encoder √     touchpad √
-*   2   ili9341     240*320     encoder √     touchpad √
-*   3   ili9488               
-*   4   nv3401n     480*272
-*   5   st7796      320*320                   touchpad √
-*   6   st7796s     320*320                   touchpad √
-*****************************************************************************/ 
-#define LCD_TYPE  (1)
-// 屏幕分辨率
-#define LCD_SIZE  (1)
 #if   (LCD_SIZE == 0)
 #define LCD_WIDTH        240
 #define LCD_HIGH         320
@@ -25,14 +11,14 @@
 #define LCD_WIDTH        320
 #define LCD_HIGH         480
 #elif (LCD_SIZE == 2)
-#define LCD_WIDTH        240
-#define LCD_HIGH         320
-#elif (LCD_SIZE == 3)
 #define LCD_WIDTH        320
-#define LCD_HIGH         480
-#elif (LCD_SIZE == 4)
+#define LCD_HIGH         240
+#elif (LCD_SIZE == 3)
 #define LCD_WIDTH        480
 #define LCD_HIGH         320
+#elif (LCD_SIZE == 4)
+#define LCD_WIDTH        480
+#define LCD_HIGH         272
 #elif (LCD_SIZE == 5)
 #define LCD_WIDTH        320
 #define LCD_HIGH         320
@@ -46,52 +32,6 @@
 #else
 #define BSP_LCD_X_PIXELS LCD_HIGH
 #define BSP_LCD_Y_PIXELS LCD_WIDTH
-#endif
-
-/******************************************
-*   SDIO	    W800	W801	TFT
-*               PB_05	PA_08	LED
-*   sdio_ck	    PB_06	PA_09	CLK
-*   sdio_cmd	PB_07	PA_10	MOSI
-*   sdio_dat0	PB_08	PA_11	MISO
-*   sdio_dat1	PB_09	PA_12	RS/DC 
-*   sdio_dat2	PB_10	PA_13	RST
-*   sdio_dat3	PB_11	PA_14	CS
-*******************************************/
-#define CHIP_TYPE (0)
-
-#if   (CHIP_TYPE == 0)  // GPIOA ---> W801
-#define LCD_LED        	WM_IO_PA_08 //--->>TFT --LED
-#define LCD_SCL        	WM_IO_PA_09 //--->>TFT --SCL
-#define LCD_MOSI        WM_IO_PA_10 //--->>TFT --DO
-#define LCD_TE          WM_IO_PA_11	//--->>TFT --TE
-#define LCD_DC     	    WM_IO_PA_12	//--->>TFT --RS/DC 
-#define LCD_RST        	WM_IO_PA_13 //--->>TFT --RST
-#define LCD_CS        	WM_IO_PA_14 //--->>TFT --CS
-#elif (CHIP_TYPE == 1)  // GPIOB ---> W800/W801/W801S2
-#define LCD_LED         WM_IO_PB_05 //--->>TFT --LED
-#define LCD_SCL         WM_IO_PB_06 //--->>TFT --SCL
-#define LCD_MOSI        WM_IO_PB_07 //--->>TFT --DO
-#define LCD_TE          WM_IO_PB_08	//--->>TFT --TE
-#define LCD_DC       	WM_IO_PB_09	//--->>TFT --RS/DC
-#define LCD_RST        	WM_IO_PB_10 //--->>TFT --RST
-#define LCD_CS        	WM_IO_PB_11 //--->>TFT --CS
-#elif (CHIP_TYPE == 2)  // GPIOA ---> W802
-#define LCD_LED        	WM_IO_PA_02 //--->>TFT --LED
-#define LCD_SCL        	WM_IO_PA_09 //--->>TFT --SCL
-#define LCD_MOSI        WM_IO_PA_10 //--->>TFT --DO
-#define LCD_TE          WM_IO_PB_29	//--->>TFT --TE
-#define LCD_DC     	    WM_IO_PA_12	//--->>TFT --RS/DC 
-#define LCD_RST        	WM_IO_PA_07 //--->>TFT --RST
-#define LCD_CS        	WM_IO_PA_14 //--->>TFT --CS
-#else                   // Customer 自定义（除SCL和MOSI外，其余可以用普通GPIO）
-#define LCD_LED         WM_IO_PB_05 //--->>TFT --LED
-#define LCD_SCL         WM_IO_PB_06 //--->>TFT --SCL
-#define LCD_MOSI        WM_IO_PB_07 //--->>TFT --DO
-#define LCD_TE          WM_IO_PB_08	//--->>TFT --TE
-#define LCD_DC       	WM_IO_PB_10	//--->>TFT --RS/DC
-#define LCD_RST        	WM_IO_PB_09 //--->>TFT --RST
-#define LCD_CS        	WM_IO_PB_11 //--->>TFT --CS
 #endif
 
 // COLOR

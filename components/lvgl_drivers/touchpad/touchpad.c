@@ -3,6 +3,8 @@
 #include "ft5206.h"
 #include "gt911.h"
 
+#if USE_TOUCHPAD
+
 #define TOUCH_TASK_PRORITY 6
 #define TOUCH_TASK_STACK_SIZE 4096
 
@@ -105,7 +107,7 @@ static void touchpad_task_start(void *data)
 
     while(1)
     {
-#if(LCD_TYPE == 6)
+#if(TOUCHPAD_TYPE == 3)
             bool sta = 0;
 
             sta = gt911_scan(0);
@@ -144,5 +146,6 @@ static void touchpad_task_create(void)
                        TOUCH_TASK_STACK_SIZE, /* task's stack size, unit:byte */
                        TOUCH_TASK_PRORITY,
                        0);
-
 }
+
+#endif

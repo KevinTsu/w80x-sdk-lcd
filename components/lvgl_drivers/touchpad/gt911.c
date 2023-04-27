@@ -5,7 +5,7 @@
 #include "wm_i2c.h"
 #include "wm_gpio_afsel.h"
 
-#if(LCD_TYPE == 6)
+#if(USE_TOUCHPAD == 1 && TOUCHPAD_TYPE == 3)
 
 #if 0
 // 单点触摸
@@ -47,7 +47,7 @@ u8 gt911_write_reg(u16 reg, u8 *buf, u8 len)
 {
     // printf("---> %s\r\n", __func__);
 	u8 ret=0;
-	vTaskSuspendAll();
+	// vTaskSuspendAll();
     tls_i2c_write_byte(GT_CMD_WR, 1);
     tls_i2c_wait_ack(); 	
  	tls_i2c_write_byte((u8)(reg>>8), 0);        //发送高8位地址		
@@ -61,7 +61,7 @@ u8 gt911_write_reg(u16 reg, u8 *buf, u8 len)
 		if(ret)break;  
 	}
  	tls_i2c_stop();  
-    xTaskResumeAll();
+    // xTaskResumeAll();
     tls_os_time_delay(1);                       // 不加延时会导致i2c通讯失败
 	return ret; 
 }
@@ -69,7 +69,7 @@ u8 gt911_write_reg(u16 reg, u8 *buf, u8 len)
 
 void gt911_read_reg(u16 reg, u8 *buf, u8 len)
 {
-    vTaskSuspendAll();
+    // vTaskSuspendAll();
     // printf("---> %s\r\n", __func__);
     tls_i2c_write_byte(GT_CMD_WR, 1); 
 	tls_i2c_wait_ack(); 	 
@@ -88,7 +88,7 @@ void gt911_read_reg(u16 reg, u8 *buf, u8 len)
 		len --;
 	}
    	*buf = tls_i2c_read_byte(0,1);	  
-    xTaskResumeAll(); 
+    // xTaskResumeAll(); 
     tls_os_time_delay(1);                       // 不加延时会导致i2c通讯失败
 } 
 
@@ -106,7 +106,7 @@ void gt911_gpio_init(void)
 
     wm_i2c_scl_config(I2C_SCL);
     wm_i2c_sda_config(I2C_SDA);
-	tls_i2c_init(200000);
+	tls_i2c_init(400000);
 }
 
 //驱动写入配置
@@ -138,7 +138,7 @@ u8 gt911_scan(u8 mode)
 	u8 i = 0;
 	u8 res = 0;
 	u8 temp;
-	u8 tempsta;
+	// u8 tempsta;
  	static u8 t = 0;                                                // 控制查询间隔,从而降低CPU占用率   
 
 	t++;
@@ -154,7 +154,7 @@ u8 gt911_scan(u8 mode)
 		if((mode & 0xF) && ((mode & 0xF) < 6))
 		{
 			temp = 0xFF << (mode & 0xF);		                    // 将点的个数转换为1的位数,匹配tp_dev.sta定义 
-			tempsta = tp_sta;			                            // 保存当前的tp_dev.sta值
+			// tempsta = tp_sta;			                            // 保存当前的tp_dev.sta值
 			tp_sta = (~temp)|TP_PRES_DOWN|TP_CATH_PRES; 
 			tp_x[4] = tp_x[0];	                                    // 保存触点0的数据
 			tp_y[4] = tp_y[0];

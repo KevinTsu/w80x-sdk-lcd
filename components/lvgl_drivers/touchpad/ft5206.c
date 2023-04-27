@@ -5,7 +5,7 @@
 #include "wm_i2c.h"
 #include "wm_gpio_afsel.h"
 
-#if(LCD_TYPE == 5)
+#if(USE_TOUCHPAD == 1 && TOUCHPAD_TYPE == 2)
 
 #define USE_HARD_IIC 1
 
@@ -69,7 +69,7 @@ void ft5206_read_reg(u16 reg, u8 *buf, u8 len)
 {
 #if USE_HARD_IIC
     // printf("---> %s\r\n", __func__);
-	u8 i; 	
+	// u8 i; 	
 
     tls_i2c_write_byte(FT_CMD_WR, 1); 
 	tls_i2c_wait_ack(); 	 										  		   

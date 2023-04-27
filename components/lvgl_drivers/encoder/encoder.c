@@ -1,11 +1,10 @@
 #include "encoder.h"
 
+#if USE_ENCODE
+
 static int32_t encoder_diff;
 static bool encoder_btn_state;
 static u8 last_val = 255;
-
-
-
 
 
 bool get_encoder_btn_state()
@@ -87,3 +86,5 @@ void bsp_encoder_init()
 	tls_gpio_isr_register(ENCODER_S, btn_isr_callback, NULL);
 	tls_gpio_irq_enable(ENCODER_S, WM_GPIO_IRQ_TRIG_DOUBLE_EDGE);
 }
+
+#endif
