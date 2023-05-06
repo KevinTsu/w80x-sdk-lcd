@@ -48,7 +48,7 @@
 *   sdio_ck	    PB_06	PA_09	CLK
 *   sdio_cmd	PB_07	PA_10	MOSI
 *******************************************/
-#define CHIP_TYPE (2)
+#define CHIP_TYPE (0)
 #if   (CHIP_TYPE == 0)  // GPIOA ---> W801
 #define LCD_LED        	WM_IO_PA_08 //--->>TFT --LED
 #define LCD_SCL        	WM_IO_PA_09 //--->>TFT --SCL
