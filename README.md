@@ -16,8 +16,7 @@ LVGL：8.3.5
 ├── app                     用户应用代码
 │   ├── button              按键驱动库
 │   ├── solutions           LVGL Solution UI
-│   │   ├── ebike
-│   │   └── switch_panel
+│   │   └── switch_panel    
 │   └── xmodem              Xmodem串口传输驱动
 ├── bin                     编译生成文件
 │   ├── build
