@@ -5,6 +5,7 @@
 #include "lv_port_disp.h"
 #include "lv_port_indev.h"
 #include "../lvgl/demos/lv_demos.h"
+#include "solutions/switch_panel/ui.h"
 
 
 static OS_STK TaskStk[LVGL_TASK_STACK_SIZE];

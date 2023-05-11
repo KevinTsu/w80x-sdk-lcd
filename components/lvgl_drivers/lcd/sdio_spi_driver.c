@@ -4,22 +4,20 @@
 #include "wm_dma.h"
 #include "wm_pmu.h"
 #include <string.h>
-#include "sdio_spi_driver.h"
 #include "lcd.h"
-// #define USE_PSRAM
-
-#ifdef USE_PSRAM
-#include "psram.h"
-#endif
+#include "lcd_task.h"
 
 static u8   sdio_spi_dma_channel  = 0xFF;
 static u32  sdio_spi_dma_buf_size = 0;
 static u32 *sdio_spi_dma_buf_addr = NULL;
+
+#if (USE_LCD_TASK == 0)
 static u32 *sdio_spi_dma_temp_buf = NULL;
+#endif
 
 static tls_os_sem_t *sdio_spi_dma_ready_flag = NULL;
 
-static bool sdio_spi_dma_ready = true;
+volatile bool sdio_spi_dma_ready = true;
 
 
 void init_sdio_spi_mode()
@@ -175,14 +173,11 @@ static void sdio_dma_callback(void)
     {
         tls_dma_free(sdio_spi_dma_channel);
         tls_os_sem_release(sdio_spi_dma_ready_flag);
-#ifdef USE_PSRAM
-        dram_heap_free(sdio_spi_dma_temp_buf);
-#else
+#if USE_LCD_TASK == 0
         tls_mem_free(sdio_spi_dma_temp_buf);
 #endif
-            // 等待信号量 直到上一次DMA数据发送完成
+        // 等待信号量 直到上一次DMA数据发送完成
         sdio_spi_dma_ready = true;
-        // printf("--->tls_os_sem_release [%s:%d]\r\n",__func__,__LINE__);
     }
 }
 
@@ -193,37 +188,35 @@ void wait_sdio_spi_dma_ready()
     while(!sdio_spi_dma_ready){
         delay_us(1);
     }
-    // delay_us(100);
-    tls_os_time_delay(1);
+    delay_us(100);
+    // tls_os_time_delay(1);
 }
 
 void write_sdio_spi_dma_async(u32* data, u32 len) 
 {
+    // printf("---> len: %d\n", len);
     // 等待信号量 直到上一次DMA数据发送完成
-    // printf("--->tls_os_sem_acquire [%s:%d]\r\n",__func__,__LINE__);
+    // printf("---> 1\n");
+    // printf("--->:%d %s\r\n", __LINE__, __func__);
     tls_os_sem_acquire(sdio_spi_dma_ready_flag, 0);
+    // printf("--->:%d %s\r\n", __LINE__, __func__);
+    // printf("---> 2\n");
     sdio_spi_dma_ready = false;
-    // printf("--->%s:%d\r\n",__func__,__LINE__);
-
-    // printf("--->w buf_size:%d\n", len);
+#if USE_LCD_TASK
+    sdio_spi_dma_buf_addr = data;
+#else
     if(len<4){
         printf("send err\n");
         return;
     }
 
-    // if(len%4)
-    // {
-    //     len -= (len%4); // dma发送长度必须为4的倍数。
-    // }
     if(len%4)
     {
         len += (4 - (len%4)); // dma发送长度必须为4的倍数。
     }
-#ifdef USE_PSRAM
-    sdio_spi_dma_temp_buf = dram_heap_malloc(len);
-#else
+
     sdio_spi_dma_temp_buf = tls_mem_alloc(len);
-#endif
+
     if(sdio_spi_dma_temp_buf == NULL){
         printf("---> malloc sdio_spi_dma_temp_buf err\n");
         return;
@@ -231,6 +224,7 @@ void write_sdio_spi_dma_async(u32* data, u32 len)
     memcpy(sdio_spi_dma_temp_buf, data, len);
 
     sdio_spi_dma_buf_addr = sdio_spi_dma_temp_buf;
+#endif
     sdio_spi_dma_buf_size = len;
 
     while(1){
@@ -260,4 +254,3 @@ void write_sdio_spi_dma_async(u32* data, u32 len)
     SDIO_HOST->MMC_BYTECNTL = bufsize;
     SDIO_HOST->MMC_IO = 0x01;
 }
-

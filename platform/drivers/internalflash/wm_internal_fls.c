@@ -714,6 +714,36 @@ int tls_fls_read_unique_id(unsigned  char *uuid)
 	return 0;
 }
 
+void tls_fls_qspi_enable(void)
+{
+	uint8_t rid;
+	uint32_t status = 0;
+	
+	rid = readRID();
+	switch(rid)
+	{
+		case SPIFLASH_MID_UC:
+		case SPIFLASH_MID_WINBOND:
+			M32(HR_FLASH_CMD_ADDR) = 0x0C035;
+			M32(HR_FLASH_CMD_START) = CMD_START_Msk;
+			status =  read_first_value() & 0xFF;
+			if((status & (1 << 1)) == 0)
+			{
+				/*Write Enable*/
+				M32(HR_FLASH_CMD_ADDR) = 0x6;
+				M32(HR_FLASH_CMD_START) = CMD_START_Msk;
+
+				M32(RSA_BASE_ADDRESS)   = status | (1 << 1);
+				M32(HR_FLASH_CMD_ADDR)  = 0x0A031;
+				M32(HR_FLASH_CMD_START) = CMD_START_Msk;
+			}
+			break;
+		default:
+			break;
+	}
+	M32(HR_FLASH_CR) = 0x0D;
+}
+
 int tls_fls_otp_read(u32 addr, u8 *buf, u32 len)
 {
     int err;

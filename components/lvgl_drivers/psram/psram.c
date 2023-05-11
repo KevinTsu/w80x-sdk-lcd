@@ -1,5 +1,10 @@
 
 #include <stdio.h>
+#include "wm_psram.h"
+#include "psram.h"
+#include "wm_gpio_afsel.h"
+
+#if USE_PSRAM
 
 /* Heap should align to DRAM_HEAP_ALIGNMENT */
 #define DRAM_HEAP_BASE              (0x30000000)
@@ -38,6 +43,15 @@ static ih_blk_head_t *s_freelist_tail;
 /* For statistic. */
 static size_t s_heap_free_size      = DRAM_HEAP_SIZE;
 static size_t s_heap_free_size_min  = DRAM_HEAP_SIZE;
+
+
+
+void user_psram_init()
+{
+    printf("---> %s\r\n", __func__);
+    wm_psram_config(0);
+    psram_init(PSRAM_QPI);
+}
 
 /* Init heap, with one free block */
 static void dram_heap_init(void)
@@ -122,7 +136,7 @@ void *dram_heap_malloc(size_t alloc_size)
     /* first call to malloc, init is needed */
 	if (s_freelist_tail == NULL)
     {
-    	printf("heap init\r\n");
+    	// printf("heap init\r\n");
     	dram_heap_init();
     }
 
@@ -241,3 +255,4 @@ int dram_heap_check_addr(void* addr)
     }
 }
 
+#endif

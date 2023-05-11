@@ -1,30 +1,60 @@
 #include "lv_port_disp.h"
-// #define USE_PSRAM
+#include "user_config.h"
 
-#ifdef USE_PSRAM
+
+
+#if USE_PSRAM
 #include "psram.h"
+/* 设置是否开启双缓冲 */
+#define LVGL_PORT_USE_DOUBLE_BUFF 1
+/* lvgl缓冲区大小，单位为像素数 */
+#define LVGL_PORT_BUFF_SIZE (BSP_LCD_X_PIXELS*BSP_LCD_Y_PIXELS/1) // 1/10屏幕分辨率
+
 static lv_color_t *lvgl_draw_buff1 = NULL;
-#if LVGL_PORT_USE_DOUBLE_BUFF
 static lv_color_t *lvgl_draw_buff2 = NULL;
-#endif
+
 #else
+
+#if USE_LCD_TASK
+/* 设置是否开启双缓冲 */
+#define LVGL_PORT_USE_DOUBLE_BUFF 1
+/* lvgl缓冲区大小，单位为像素数 */
+#define LVGL_PORT_BUFF_SIZE (BSP_LCD_X_PIXELS*BSP_LCD_Y_PIXELS/20) // 1/20屏幕分辨率
+
+#else
+
+/* 设置是否开启双缓冲 */
+#define LVGL_PORT_USE_DOUBLE_BUFF 0
+/* lvgl缓冲区大小，单位为像素数 */
+#define LVGL_PORT_BUFF_SIZE (BSP_LCD_X_PIXELS*BSP_LCD_Y_PIXELS/10) // 1/10屏幕分辨率
+
+#endif
+
 static lv_color_t lvgl_draw_buff1[LVGL_PORT_BUFF_SIZE];
 #if LVGL_PORT_USE_DOUBLE_BUFF
 static lv_color_t lvgl_draw_buff2[LVGL_PORT_BUFF_SIZE];
 #endif
+
 #endif
 
+// static u32 run_time = 0;
 
 static void disp_flush(lv_disp_drv_t *disp_drv, const lv_area_t *area, lv_color_t *color_p)
 {
+    // printf("---> use1 %d ms\n", tls_os_get_time() - run_time);
+    // run_time = tls_os_get_time();
     /* 等待上次传输完成 */
     bsp_lcd_draw_rect_wait();
-
+    // printf("---> use2 %d ms\n", tls_os_get_time() - run_time);
+    // run_time = tls_os_get_time();
     /* 启动新的传输 */
     bsp_lcd_draw_rect(area->x1,area->y1,area->x2 - area->x1 + 1,area->y2 - area->y1 + 1,(uint8_t *)color_p);
-
+    // printf("---> use3 %d ms\n", tls_os_get_time() - run_time);
+    // run_time = tls_os_get_time();
     /* 通知lvgl传输已完成 */
     lv_disp_flush_ready(disp_drv);
+    // printf("---> use4 %d ms\n", tls_os_get_time() - run_time);
+    // run_time = tls_os_get_time();
 }
 
 void lv_port_disp_init()
@@ -32,20 +62,17 @@ void lv_port_disp_init()
     /* 向lvgl注册缓冲区 */
     static lv_disp_draw_buf_t draw_buf_dsc; //需要全程生命周期，设置为静态变量
 
-
-#ifdef USE_PSRAM
+#if USE_PSRAM
     lvgl_draw_buff1 = dram_heap_malloc(LVGL_PORT_BUFF_SIZE*2);
     if(lvgl_draw_buff1 == NULL){
         printf("---> malloc lvgl_draw_buff1 err\n");
         return;
     }
-#if LVGL_PORT_USE_DOUBLE_BUFF
     lvgl_draw_buff2 = dram_heap_malloc(LVGL_PORT_BUFF_SIZE*2);
     if(lvgl_draw_buff2 == NULL){
         printf("---> malloc lvgl_draw_buff2 err\n");
         return;
     }
-#endif
 #endif
 
 

@@ -202,6 +202,9 @@ void task_start_free()
 #endif
 int main(void)
 {
+    // 使能4线QSPI
+    tls_fls_qspi_enable();
+    
     u32 value = 0;
 
 	/*standby reason setting in here,because pmu irq will clear it.*/

@@ -5,8 +5,15 @@
 #define USE_LCD       1   // 必须使能
 #define USE_ENCODE    1
 #define USE_TOUCHPAD  1
-// #define USE_PSRAM     1
+#define USE_PSRAM     0
+#define USE_LCD_TASK  0
 // #define USE_SPIFLASH  1
+
+#if USE_PSRAM
+    #if (USE_LCD_TASK == 0)
+    #error lcd task must be enabled to enable psram !!!
+    #endif
+#endif
 
 #if USE_LCD
 
@@ -136,6 +143,21 @@
 #define TDOU     WM_IO_PA_04
 #define TIRQ     WM_IO_PA_03
 #endif
+
+#endif
+
+#if USE_PSRAM
+/***************************************************************************** 
+* numsel: config psram ck cs dat0 dat1 dat2 dat3 pins multiplex relation,valid para 0,1
+* 0:                 1: only for 56pin
+* psram_ck   PB00    psram_ck   PA15
+* psram_cs   PB01    psram_cs   PB27
+* psram_dat0 PB02    psram_dat0 PB02
+* psram_dat1 PB03    psram_dat1 PB03
+* psram_dat2 PB04    psram_dat2 PB04
+* psram_dat3 PB05    psram_dat3 PB05
+*****************************************************************************/ 
+#define PSRAM_NUMSET 0
 
 #endif
 

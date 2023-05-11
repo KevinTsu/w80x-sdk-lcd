@@ -1,7 +1,7 @@
 #ifndef __ENCODER_H__
 #define __ENCODER_H__
 #include "wm_include.h"
-#include "../../user_config.h"
+#include "user_config.h"
 
 
 

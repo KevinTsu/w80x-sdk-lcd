@@ -2,7 +2,7 @@
 #define __LVGL_TASK_H__
 
 #define LVGL_TASK_STACK_SIZE 4096
-#define LVGL_TASK_PRORITY 5
+#define LVGL_TASK_PRORITY 55
 
 void lvgl_task_create(void);
 

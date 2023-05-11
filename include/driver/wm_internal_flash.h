@@ -43,6 +43,7 @@ enum TYPE_FLASH_ID{
 	SPIFLASH_MID_XTX        = 0x0B,
 	SPIFLASH_MID_TSINGTENG    = 0xEB, /*UNIGROUP TSINGTENG*/	
 	SPIFLASH_MID_TSINGTENG_1MB_4MB    = 0xCD, /*UNIGROUP TSINGTENG*/
+	SPIFLASH_MID_UC = 0xB3, /* NANJING UCUN */
 };
 
 typedef union {
@@ -214,7 +215,7 @@ void tls_fls_sem_unlock(void);
  * @note           The uuid's length must be greater than or equals to 18 bytes.
  */
 int tls_fls_read_unique_id(unsigned  char *uuid);
-
+void tls_fls_qspi_enable(void);
 /**
  * @brief          This function is used to initial flash module structer.
  *
