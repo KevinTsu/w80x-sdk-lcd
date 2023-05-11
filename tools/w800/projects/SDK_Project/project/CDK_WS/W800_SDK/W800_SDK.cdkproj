@@ -3264,30 +3264,76 @@
       </File>
     </VirtualDirectory>
     <VirtualDirectory Name="solutions">
-      <File Name="../../../../../../../app/solutions/Makefile"/>
+      <File Name="../../../../../../../app/solutions/Makefile">
+        <FileOption/>
+      </File>
       <VirtualDirectory Name="switch_panel">
-        <File Name="../../../../../../../app/solutions/switch_panel/Makefile"/>
-        <File Name="../../../../../../../app/solutions/switch_panel/ui.c"/>
-        <File Name="../../../../../../../app/solutions/switch_panel/ui.h"/>
-        <File Name="../../../../../../../app/solutions/switch_panel/ui_events.h"/>
-        <File Name="../../../../../../../app/solutions/switch_panel/ui_helpers.c"/>
-        <File Name="../../../../../../../app/solutions/switch_panel/ui_helpers.h"/>
-        <File Name="../../../../../../../app/solutions/switch_panel/ui_img_320x240_bg_png.c"/>
-        <File Name="../../../../../../../app/solutions/switch_panel/ui_img_icn_bluetooth_png.c"/>
-        <File Name="../../../../../../../app/solutions/switch_panel/ui_img_icn_clock_png.c"/>
-        <File Name="../../../../../../../app/solutions/switch_panel/ui_img_icn_snow_png.c"/>
-        <File Name="../../../../../../../app/solutions/switch_panel/ui_img_icn_wifi_28x22_png.c"/>
-        <File Name="../../../../../../../app/solutions/switch_panel/ui_img_icn_wifi_png.c"/>
-        <File Name="../../../../../../../app/solutions/switch_panel/ui_img_icn_wind_speed_1_png.c"/>
-        <File Name="../../../../../../../app/solutions/switch_panel/ui_img_icn_wind_speed_2_png.c"/>
-        <File Name="../../../../../../../app/solutions/switch_panel/ui_img_icn_wind_speed_3_png.c"/>
-        <File Name="../../../../../../../app/solutions/switch_panel/ui_img_icn_wind_speed_4_png.c"/>
-        <File Name="../../../../../../../app/solutions/switch_panel/ui_img_icn_wind_speed_5_png.c"/>
-        <File Name="../../../../../../../app/solutions/switch_panel/ui_img_icn_wind_speed_png.c"/>
-        <File Name="../../../../../../../app/solutions/switch_panel/ui_img_weather_cloud_fog_png.c"/>
-        <File Name="../../../../../../../app/solutions/switch_panel/ui_img_weather_cloud_png.c"/>
-        <File Name="../../../../../../../app/solutions/switch_panel/ui_img_weather_sun_cloud_png.c"/>
-        <File Name="../../../../../../../app/solutions/switch_panel/ui_img_weather_sun_png.c"/>
+        <File Name="../../../../../../../app/solutions/switch_panel/Makefile">
+          <FileOption/>
+        </File>
+        <File Name="../../../../../../../app/solutions/switch_panel/ui.c">
+          <FileOption/>
+        </File>
+        <File Name="../../../../../../../app/solutions/switch_panel/ui.h">
+          <FileOption/>
+        </File>
+        <File Name="../../../../../../../app/solutions/switch_panel/ui_events.h">
+          <FileOption/>
+        </File>
+        <File Name="../../../../../../../app/solutions/switch_panel/ui_helpers.c">
+          <FileOption/>
+        </File>
+        <File Name="../../../../../../../app/solutions/switch_panel/ui_helpers.h">
+          <FileOption/>
+        </File>
+        <File Name="../../../../../../../app/solutions/switch_panel/ui_img_320x240_bg_png.c">
+          <FileOption/>
+        </File>
+        <File Name="../../../../../../../app/solutions/switch_panel/ui_img_icn_bluetooth_png.c">
+          <FileOption/>
+        </File>
+        <File Name="../../../../../../../app/solutions/switch_panel/ui_img_icn_clock_png.c">
+          <FileOption/>
+        </File>
+        <File Name="../../../../../../../app/solutions/switch_panel/ui_img_icn_snow_png.c">
+          <FileOption/>
+        </File>
+        <File Name="../../../../../../../app/solutions/switch_panel/ui_img_icn_wifi_28x22_png.c">
+          <FileOption/>
+        </File>
+        <File Name="../../../../../../../app/solutions/switch_panel/ui_img_icn_wifi_png.c">
+          <FileOption/>
+        </File>
+        <File Name="../../../../../../../app/solutions/switch_panel/ui_img_icn_wind_speed_1_png.c">
+          <FileOption/>
+        </File>
+        <File Name="../../../../../../../app/solutions/switch_panel/ui_img_icn_wind_speed_2_png.c">
+          <FileOption/>
+        </File>
+        <File Name="../../../../../../../app/solutions/switch_panel/ui_img_icn_wind_speed_3_png.c">
+          <FileOption/>
+        </File>
+        <File Name="../../../../../../../app/solutions/switch_panel/ui_img_icn_wind_speed_4_png.c">
+          <FileOption/>
+        </File>
+        <File Name="../../../../../../../app/solutions/switch_panel/ui_img_icn_wind_speed_5_png.c">
+          <FileOption/>
+        </File>
+        <File Name="../../../../../../../app/solutions/switch_panel/ui_img_icn_wind_speed_png.c">
+          <FileOption/>
+        </File>
+        <File Name="../../../../../../../app/solutions/switch_panel/ui_img_weather_cloud_fog_png.c">
+          <FileOption/>
+        </File>
+        <File Name="../../../../../../../app/solutions/switch_panel/ui_img_weather_cloud_png.c">
+          <FileOption/>
+        </File>
+        <File Name="../../../../../../../app/solutions/switch_panel/ui_img_weather_sun_cloud_png.c">
+          <FileOption/>
+        </File>
+        <File Name="../../../../../../../app/solutions/switch_panel/ui_img_weather_sun_png.c">
+          <FileOption/>
+        </File>
       </VirtualDirectory>
     </VirtualDirectory>
   </VirtualDirectory>
@@ -4751,6 +4797,10 @@
         <File Name="../../../../../../../components/lvgl_drivers/touchpad/xpt2046.h">
           <FileOption/>
         </File>
+        <File Name="../../../../../../../components/lvgl_drivers/touchpad/gt911.c">
+          <FileOption/>
+        </File>
+        <File Name="../../../../../../../components/lvgl_drivers/touchpad/gt911.h"/>
       </VirtualDirectory>
     </VirtualDirectory>
     <VirtualDirectory Name="lvgl_port">
