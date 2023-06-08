@@ -121,6 +121,8 @@
 #define TOUCHPAD_TYPE  2
 #elif LCD_TYPE == 6
 #define TOUCHPAD_TYPE  3
+#elif LCD_TYPE == 4
+#define TOUCHPAD_TYPE  4
 #endif 
 
 
@@ -135,6 +137,12 @@
 #define TIRQ     WM_IO_PB_08
 #define TRST     WM_IO_PB_09
 #define I2C_SCL	 WM_IO_PA_01
+#elif   (TOUCHPAD_TYPE == 4)
+#define TCLK     WM_IO_PB_08
+#define TCS      WM_IO_PB_09
+#define TDIN     WM_IO_PB_12
+#define TDOU     WM_IO_PB_13
+#define TIRQ     WM_IO_PB_14
 #else
 // spi touchpad
 #define TCLK     WM_IO_PA_07

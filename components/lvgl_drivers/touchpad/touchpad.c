@@ -41,7 +41,7 @@ bool TP_Update_Coord(void)
     uint16_t x = 0;
     uint16_t y = 0;
 
-#if (TOUCHPAD_TYPE == 0) || (TOUCHPAD_TYPE == 1)
+#if (TOUCHPAD_TYPE == 0) || (TOUCHPAD_TYPE == 1) || (TOUCHPAD_TYPE == 4)
     sta = xpt2046_read_coord(&x, &y);
     if(true == sta){
         g_Coord.xCoord = (int16_t)((x - g_Coord.xOffset)/g_Coord.xRate);
@@ -103,6 +103,13 @@ static void touchpad_task_start(void *data)
 #elif (TOUCHPAD_TYPE == 3)
     // 电容触摸不需要校准
     gt911_init();
+#elif (TOUCHPAD_TYPE == 4)
+    xpt2046_gpio_init();
+    // 此处应从Flash中读取校准过的数据
+    g_Coord.xOffset = 400;  // x轴偏移200
+    g_Coord.yOffset = 280;  // y轴偏移280
+    g_Coord.xRate = 11;     // x轴比例系数7.71
+    g_Coord.yRate = 15.21;  // y轴比例系数10.94
 #endif
 
     while(1)

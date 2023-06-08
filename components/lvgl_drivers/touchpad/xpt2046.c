@@ -1,7 +1,7 @@
 #include "xpt2046.h"
 #include "touchpad.h"
 
-#if(USE_TOUCHPAD == 1 && (TOUCHPAD_TYPE == 0 || TOUCHPAD_TYPE == 1))
+#if(USE_TOUCHPAD == 1 && (TOUCHPAD_TYPE == 0 || TOUCHPAD_TYPE == 1 || TOUCHPAD_TYPE == 4))
 
 extern void delay_us();
 
