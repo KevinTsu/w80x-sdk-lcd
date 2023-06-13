@@ -251,17 +251,31 @@ static int tls_spifls_drv_probe(u32 id)
     }
 
     exspi_fls.id = id;
+#ifdef  W25QXX
+    id = (id&0x0000FF00)>>8;
+    u8 id_index = (u8)id;
+    id_index = (id_index>>4)*10 + (id_index&0x0F);
+    TLS_DBGPRT_INFO("id_index: %d\n", id_index);
+    if (id_index)
+    {
+    	exspi_fls.total_size = (1 << id_index)/8*1024;
+    }else{
+    	exspi_fls.total_size = FLASH_TOTAL_SIZE;  /*1MByte*/
+    }
+#else
     if ((id>>16)&0xFF)
     {
     	exspi_fls.total_size = 1 << (id>>16);
     }else{
     	exspi_fls.total_size = FLASH_TOTAL_SIZE;  /*1MByte*/
     }
-    
+#endif
+    TLS_DBGPRT_INFO("flash size: %08X \n", exspi_fls.total_size);
+
     exspi_fls.page_size = PAGE_SIZE;
     exspi_fls.program_size = PROGRAM_SIZE;
     exspi_fls.sector_size = SECTOR_SIZE;
-    
+
     
     exspifls_drv = &exspi_fls;
     return TLS_FLS_STATUS_OK;
@@ -291,7 +305,8 @@ int tls_spifls_drv_install(void)
 {
     int err;
     extern int tls_spifls_probe(void);
-    extern int tls_spifls_drv_register(struct tls_fls_drv *fls_drv);
+    extern int tls_spifls_drv_register(struct tls_fls_drv *fls_drv);
+
 
     err = tls_spifls_drv_register((struct tls_fls_drv *) &exspi_fls);
     if (err == TLS_FLS_STATUS_EEXIST)

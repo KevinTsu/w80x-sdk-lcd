@@ -36,8 +36,13 @@
 #define TLS_FLS_FLAG_FAST_READ      (1<<1)
 #define TLS_FLS_FLAG_AAAI      (1<<2)
 
-#define FLS_CMD_READ_DEV_ID     (0x9F)  // read device id //(0x9f)
+#define W25QXX
 
+#ifdef  W25QXX
+#define FLS_CMD_READ_DEV_ID     (0x90)  // W25QXX read device id //(0x90)
+#else
+#define FLS_CMD_READ_DEV_ID     (0x9f)  // GD25QXX read device id //(0x9f)
+#endif
 /**
  * @struct fls_list     list
  */

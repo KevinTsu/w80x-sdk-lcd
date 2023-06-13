@@ -184,10 +184,14 @@ void wm_gpio_config()
 #endif
 
 #if (TLS_CONFIG_LS_SPI)	
-	wm_spi_cs_config(WM_IO_PB_04);
-	wm_spi_ck_config(WM_IO_PB_02);
-	wm_spi_di_config(WM_IO_PB_03);
-	wm_spi_do_config(WM_IO_PB_05);
+	wm_spi_cs_config(WM_IO_PB_23);
+	wm_spi_ck_config(WM_IO_PB_24);
+	wm_spi_di_config(WM_IO_PB_25);
+	wm_spi_do_config(WM_IO_PB_26);
+	// wm_spi_cs_config(WM_IO_PB_04);
+	// wm_spi_ck_config(WM_IO_PB_02);
+	// wm_spi_di_config(WM_IO_PB_03);
+	// wm_spi_do_config(WM_IO_PB_05);
 #endif
 }
 #if MAIN_TASK_DELETE_AFTER_START_FTR
