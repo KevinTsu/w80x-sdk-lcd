@@ -8,7 +8,7 @@
 #include "solutions/switch_panel/ui.h"
 
 
-static OS_STK TaskStk[LVGL_TASK_STACK_SIZE];
+static OS_STK TaskStk[LVGL_TASK_STACK_SIZE/4];
 
 
 

@@ -16,7 +16,7 @@
 #define LCD_BUFF_SIZE   (BSP_LCD_X_PIXELS*BSP_LCD_Y_PIXELS/4)
 
 static tls_os_queue_t *user_task_queue = NULL;
-static OS_STK LcdTaskStk[LCD_TASK_STACK_SIZE];
+static OS_STK LcdTaskStk[LCD_TASK_STACK_SIZE/4];
 
 volatile static bool lcd_dma_ready = true;
 

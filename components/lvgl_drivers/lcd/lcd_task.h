@@ -2,7 +2,7 @@
 #define __LCD_TASK_H__
 #include "user_config.h"
 
-#define LCD_TASK_STACK_SIZE 4096
+#define LCD_TASK_STACK_SIZE 1024*4 // 4k
 #define LCD_TASK_PRORITY 55
 
 
