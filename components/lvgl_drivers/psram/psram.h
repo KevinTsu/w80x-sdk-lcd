@@ -1,7 +1,7 @@
 #ifndef __PSRAM_H__
 #define __PSRAM_H__
 #include "wm_include.h"
-#include "user_config.h"
+#include "../../user_config.h"
 
 
 

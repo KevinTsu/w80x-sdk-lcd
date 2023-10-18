@@ -1,7 +1,7 @@
 #ifndef __LCD_H__
 #define __LCD_H__
 #include "wm_include.h"
-#include "user_config.h"
+#include "../../user_config.h"
 
 
 #if   (LCD_SIZE == 0)
@@ -22,6 +22,9 @@
 #elif (LCD_SIZE == 5)
 #define LCD_WIDTH        320
 #define LCD_HIGH         320
+#elif (LCD_SIZE == 6)
+#define LCD_WIDTH        240
+#define LCD_HIGH         240
 #else
 #error lcd resolution not defined !!!
 #endif
