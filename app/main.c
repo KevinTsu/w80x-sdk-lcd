@@ -121,7 +121,9 @@ void UserMain(void)
     }
     printf("\n");
 #elif(RUN_DEMO_NUM == 4) // psram test
+    // need components/user_config.h ---> #define USE_PSRAM     1
     printf("---> RUN DEMO [%d] SPI PSRAM \n", RUN_DEMO_NUM);
+    user_psram_init();
     char *test = dram_heap_malloc(128);
     strcpy(test,"hello world!!!\r\n");
     printf("%s",test);
