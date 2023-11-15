@@ -25,6 +25,9 @@
 #elif (LCD_SIZE == 6)
 #define LCD_WIDTH        240
 #define LCD_HIGH         240
+#elif (LCD_SIZE == 7)
+#define LCD_WIDTH        240
+#define LCD_HIGH         300
 #else
 #error lcd resolution not defined !!!
 #endif

@@ -10,6 +10,37 @@ static void WriteData(unsigned int i);
 static void SendDataSPI(unsigned char dat);
 
 #if   (LCD_TYPE == 0)
+#if 1
+// ST7789初始化
+const uint8_t st7789_init_seq[] = {
+    /*  len , delay, cmd, data ... */
+        0x01, 0x0A, 0x11,                         // Exit sleep mode
+        0x02, 0x00, 0x36, 0x00,                   // Set MADCTL: row then column, refresh is bottom to top ????
+        0x02, 0x02, 0x3A, 0x55,                   // Set colour mode to 16 bit
+
+        0x06, 0x02, 0xB2, 0x0B, 0x0B, 0x00, 0x33, 0x33,
+        0x02, 0x02, 0xB7, 0x11,
+        0x02, 0x02, 0xBB, 0x2F,  
+        0x02, 0x02, 0xC0, 0x2C,  
+        0x02, 0x02, 0xC2, 0x01,  
+        0x02, 0x02, 0xC3, 0x0D, 
+        0x02, 0x02, 0xC4, 0x20,                    // VDV, 0x20:0v
+        0x02, 0x02, 0xC6, 0x13,                    // 0x13:60Hz   
+        0x03, 0x02, 0xD0, 0xA4, 0xA1,
+        0x02, 0x02, 0xD6, 0xA1,                    // sleep in后，gate输出为GND
+
+        0x0F, 0x02, 0xE0, 0xF0, 0x04, 0x07, 0x09, 0x07, 0x13, 0x25, 0x33, 0x3C, 0x34, 0x10, 0x10, 0x29, 0x32,
+        0x0F, 0x02, 0xE1, 0xF0, 0x05, 0x08, 0x0A, 0x09, 0x05, 0x25, 0x32, 0x3B, 0x3B, 0x17, 0x18, 0x2E, 0x37,
+
+        0x04, 0x02, 0xE4, 0x25, 0x00, 0x00,        //d0 使用240根gate  (N+1)*8 d1 设定gate起点位置 d2 当gate没有用完时，bit4(TMG)设为0
+        0x01, 0x02, 0x21,                          // Inversion on, then 10 ms delay (supposedly a hack?)
+        0x01, 0x02, 0x29,                          // Main screen turn on, then wait 500 ms
+
+        0x05, 0x00, 0x2A, 0x00, 0x00, 0x00, 0xEF,  // CASET: column addresses from 0 to 240 (f0)
+        0x05, 0x00, 0x2B, 0x00, 0x14, 0x01, 0x2B,  // RASET: row addresses from 0 to 240 (f0)
+        0                                          // Terminate list
+};
+#else
 // ST7789初始化
 const uint8_t st7789_init_seq[] = {
     /*  len , delay, cmd, data ... */
@@ -24,6 +55,7 @@ const uint8_t st7789_init_seq[] = {
         0x01, 0x02, 0x29,                         // Main screen turn on, then wait 500 ms
         0                                         // Terminate list
 };
+#endif
 /* ST7789V2-BOE2.83IPS RL028P2123-14A1 */
 void st7789_init(void)
 {
@@ -1212,7 +1244,7 @@ void bsp_lcd_init()
     lcd_gpio_init();
     lcd_reset_pin();
 #if   (LCD_TYPE == 0)
-    #if (1)  // gpio 模拟 spi
+    #if (0)  // gpio 模拟 spi
         st7789_init();
         init_sdio_spi_mode();
     #else
@@ -1267,6 +1299,7 @@ void bsp_lcd_init()
 
 void lcd_set_windows(u16 x_start, u16 y_start, u16 x_end, u16 y_end)
 {	
+    // printf("---> x:%d y:%d x: %d y: %d\n", x_start, y_start, x_end, y_end);
 	lcd_write_cmd(0x2A);	
 	lcd_write_data(x_start>>8);
 	lcd_write_data(0x00FF&x_start);		

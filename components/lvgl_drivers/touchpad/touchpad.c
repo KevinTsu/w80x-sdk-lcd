@@ -2,6 +2,7 @@
 #include "xpt2046.h"
 #include "ft5206.h"
 #include "gt911.h"
+#include "cst816t.h"
 
 #if USE_TOUCHPAD
 
@@ -65,6 +66,21 @@ bool TP_Update_Coord(void)
         g_Coord.xIndev = x;
         g_Coord.yIndex = y;
     }
+#elif (TOUCHPAD_TYPE == 5)
+    u8 touch_points_num = 0;
+    sta = cst816t_read_pos(&touch_points_num, &x, &y);
+    if(true == sta){
+        g_Coord.xCoord = x;
+        g_Coord.yCoord = y + g_Coord.yOffset;
+        g_Coord.xIndev = x;
+        g_Coord.yIndex = y;
+        g_Coord.isPressed = 1;
+    }
+    else{
+        g_Coord.isPressed = 0;
+    }
+
+    
 #endif
     return sta;
 }
@@ -110,21 +126,27 @@ static void touchpad_task_start(void *data)
     g_Coord.yOffset = 280;  // y轴偏移280
     g_Coord.xRate = 11;     // x轴比例系数7.71
     g_Coord.yRate = 15.21;  // y轴比例系数10.94
+#elif (TOUCHPAD_TYPE == 5)
+    // 屏幕和触摸偏移20像素
+    g_Coord.yOffset = 20;
+    cst816t_init();
 #endif
 
     while(1)
     {
 #if(TOUCHPAD_TYPE == 3)
-            bool sta = 0;
+        bool sta = 0;
 
-            sta = gt911_scan(0);
-            if(sta){
-                g_Coord.isPressed = 1;
-                TP_Update_Coord();
-            }
-            else{
-                g_Coord.isPressed = 0;
-            }
+        sta = gt911_scan(0);
+        if(sta){
+            g_Coord.isPressed = 1;
+            TP_Update_Coord();
+        }
+        else{
+            g_Coord.isPressed = 0;
+        }
+#elif(TOUCHPAD_TYPE == 5)
+        TP_Update_Coord();
 #else
         if(tls_gpio_read(TIRQ) == 0)
         {

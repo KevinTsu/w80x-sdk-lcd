@@ -4,6 +4,7 @@
 #include "touchpad.h"
 #include "wm_i2c.h"
 #include "wm_gpio_afsel.h"
+#include "../../user_config.h"
 
 #if(USE_TOUCHPAD == 1 && TOUCHPAD_TYPE == 3)
 

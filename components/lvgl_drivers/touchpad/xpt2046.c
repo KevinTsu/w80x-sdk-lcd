@@ -1,5 +1,6 @@
 #include "xpt2046.h"
 #include "touchpad.h"
+#include "../../user_config.h"
 
 #if(USE_TOUCHPAD == 1 && (TOUCHPAD_TYPE == 0 || TOUCHPAD_TYPE == 1 || TOUCHPAD_TYPE == 4))
 
