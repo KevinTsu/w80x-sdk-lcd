@@ -7,9 +7,9 @@
 #if USE_TOUCHPAD
 
 #define TOUCH_TASK_PRORITY 56
-#define TOUCH_TASK_STACK_SIZE 4096
+#define TOUCH_TASK_STACK_SIZE 1024/2
 
-static OS_STK TouchPadTaskStk[TOUCH_TASK_STACK_SIZE];
+static OS_STK TouchPadTaskStk[TOUCH_TASK_STACK_SIZE/4];
 
 extern void delay_us();
 coord_TypeDef g_Coord;
