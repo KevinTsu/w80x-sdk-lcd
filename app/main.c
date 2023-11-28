@@ -70,13 +70,14 @@ void UserMain(void)
 	// printf(" ---> WIFI MAC:%02X%02X%02X%02X%02X%02X\n",wifi_mac[0],wifi_mac[1],wifi_mac[2],wifi_mac[3],wifi_mac[4],wifi_mac[5]);
 	printf("\n+---------------------Oooo------------+\n");
 	printf("\n user task \n");
-
+    
+    /* 初始化LCD总线 */
+    bsp_lcd_init();
 #if  (RUN_DEMO_NUM == 0) // 使能lvgl任务
     printf("---> RUN DEMO [%d] LVGL \n", RUN_DEMO_NUM);
     lvgl_task_create();
 #elif(RUN_DEMO_NUM == 1) // 颜色填充测试
     printf("---> RUN DEMO [%d] FULL COLORS \n", RUN_DEMO_NUM);
-    bsp_lcd_init();
     u8 index = 0;
     u16 buff[]={RED,GREEN,BLUE,BRED,YELLOW,RED,GRAY};
     while(1)

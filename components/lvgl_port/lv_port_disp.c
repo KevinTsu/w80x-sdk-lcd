@@ -59,8 +59,6 @@ void lv_port_disp_init()
     /* 设置屏幕分辨率 */
     disp_drv.hor_res = BSP_LCD_X_PIXELS;
     disp_drv.ver_res = BSP_LCD_Y_PIXELS;
-    /* 初始化LCD总线 */
-    bsp_lcd_init();
     /* 设置显示矩形函数，用于将矩形缓冲区刷新到屏幕上 */
     disp_drv.flush_cb = disp_flush;
     /* 设置缓冲区 */
