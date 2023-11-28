@@ -3,7 +3,7 @@
 #include "sdio_spi_driver.h"
 #include <string.h>
 #include "wm_flash.h"
-#include "lcd_task.h"
+
 
 static void WriteComm(unsigned int i);
 static void WriteData(unsigned int i);
@@ -1292,9 +1292,7 @@ void bsp_lcd_init()
 #endif
     lcd_back_on();
 
-#if (USE_LCD_TASK == 1 && LCD_ASYNC_SEND == 1)
     lcd_task_create();
-#endif
 }
 
 void lcd_set_windows(u16 x_start, u16 y_start, u16 x_end, u16 y_end)
@@ -1496,9 +1494,7 @@ void bsp_lcd_draw_rect_wait(void)
 
 void bsp_lcd_draw_rect(unsigned short x, unsigned short y, unsigned short width, unsigned short height, unsigned char *data)
 {
-#if (USE_LCD_TASK == 0)
     lcd_set_windows(x, y, x + width - 1, y + height - 1);
-#endif
 
 #if 0
     printf("x: %d y:%d, width %d height %d\n", x, y, width, height);
@@ -1513,11 +1509,7 @@ void bsp_lcd_draw_rect(unsigned short x, unsigned short y, unsigned short width,
 #if(COLOR_FORMAT == 0) // RGB565
 
     #if LCD_ASYNC_SEND
-        #if USE_LCD_TASK
-	    lcd_dma_queue_write(x, y, x + width - 1, y + height - 1, (u32 *)data, width * height * 2);
-        #else
         write_sdio_spi_dma_async((u32 *)data, width * height * 2);
-        #endif
     #else
         write_sdio_spi_dma((u32 *)data, width * height * 2);
     #endif

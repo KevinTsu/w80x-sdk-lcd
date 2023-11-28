@@ -1,40 +1,17 @@
 #include "lv_port_disp.h"
-#include "user_config.h"
+#include "../user_config.h"
 
-
-
+/* 设置LVGL缓冲区 双缓冲区 */
 #if USE_PSRAM
 #include "psram.h"
-/* 设置是否开启双缓冲 */
-#define LVGL_PORT_USE_DOUBLE_BUFF 1
-/* lvgl缓冲区大小，单位为像素数 */
-#define LVGL_PORT_BUFF_SIZE (BSP_LCD_X_PIXELS*BSP_LCD_Y_PIXELS/1) // 1/10屏幕分辨率
-
+#define LVGL_PORT_BUFF_SIZE (BSP_LCD_X_PIXELS*BSP_LCD_Y_PIXELS/1) // 屏幕分辨率
 static lv_color_t *lvgl_draw_buff1 = NULL;
 static lv_color_t *lvgl_draw_buff2 = NULL;
-
 #else
-
-#if USE_LCD_TASK
-/* 设置是否开启双缓冲 */
-#define LVGL_PORT_USE_DOUBLE_BUFF 1
 /* lvgl缓冲区大小，单位为像素数 */
-#define LVGL_PORT_BUFF_SIZE (BSP_LCD_X_PIXELS*BSP_LCD_Y_PIXELS/20) // 1/20屏幕分辨率
-
-#else
-
-/* 设置是否开启双缓冲 */
-#define LVGL_PORT_USE_DOUBLE_BUFF 0
-/* lvgl缓冲区大小，单位为像素数 */
-#define LVGL_PORT_BUFF_SIZE (BSP_LCD_X_PIXELS*BSP_LCD_Y_PIXELS/10) // 1/10屏幕分辨率
-
-#endif
-
+#define LVGL_PORT_BUFF_SIZE (BSP_LCD_X_PIXELS*BSP_LCD_Y_PIXELS/8) // 1/8屏幕分辨率
 static lv_color_t lvgl_draw_buff1[LVGL_PORT_BUFF_SIZE];
-#if LVGL_PORT_USE_DOUBLE_BUFF
 static lv_color_t lvgl_draw_buff2[LVGL_PORT_BUFF_SIZE];
-#endif
-
 #endif
 
 // static u32 run_time = 0;
@@ -74,14 +51,8 @@ void lv_port_disp_init()
         return;
     }
 #endif
-
-
-#if LVGL_PORT_USE_DOUBLE_BUFF
+    /* LVGL内存初始化*/
     lv_disp_draw_buf_init(&draw_buf_dsc, lvgl_draw_buff1, lvgl_draw_buff2, LVGL_PORT_BUFF_SIZE);
-#else
-    lv_disp_draw_buf_init(&draw_buf_dsc, lvgl_draw_buff1, NULL, LVGL_PORT_BUFF_SIZE);
-#endif
-    
     /* 创建并初始化用于在lvgl中注册显示设备的结构 */
     static lv_disp_drv_t disp_drv;
     lv_disp_drv_init(&disp_drv); //使用默认值初始化该结构

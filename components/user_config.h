@@ -9,12 +9,6 @@
 #define USE_LCD_TASK  0
 // #define USE_SPIFLASH  1
 
-#if USE_PSRAM
-    #if (USE_LCD_TASK == 0)
-    #error lcd task must be enabled to enable psram !!!
-    #endif
-#endif
-
 #if USE_LCD
 
 /***************************************************************************** 
