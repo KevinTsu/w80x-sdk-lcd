@@ -74,7 +74,7 @@
 
 #define configCPU_CLOCK_HZ			( ( unsigned long ) 40000000 )	/* =12.0MHz xtal multiplied by 5 using the PLL. *///???????????????
 
-#define configTICK_RATE_HZ			( ( portTickType ) 500u )	
+#define configTICK_RATE_HZ			( ( portTickType ) 1000u )	
 #define configMAX_PRIORITIES		(63)
 #define configMINIMAL_STACK_SIZE	( ( unsigned short ) 256 )	
 #define configTOTAL_HEAP_SIZE		( ( size_t ) 12 * 1024 )	

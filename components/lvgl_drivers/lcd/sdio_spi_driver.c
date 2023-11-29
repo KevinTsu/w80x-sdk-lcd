@@ -161,10 +161,10 @@ void wait_sdio_spi_dma_ready()
 {
     extern int delay_us();
     while(!sdio_spi_dma_ready){
-        delay_us(1);
+        tls_os_time_delay(1);
+        // delay_us(1);
     }
-    delay_us(100);
-    // tls_os_time_delay(1);
+    // delay_us(100);
 }
 
 void write_sdio_spi_dma_async(u32* data, u32 len) 
