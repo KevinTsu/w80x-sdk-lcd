@@ -1574,12 +1574,13 @@ void lcd_full_picture(u16 image_width, u16 image_height, u8 *image_buf)
     }
 
     for(u8 i = 0; i < block; i++){
-        memcpy(buf, &img[i*block_size], block_size);
 #if LCD_ASYNC_SEND
         wait_sdio_spi_dma_ready();
+        memcpy(buf, &img[i*block_size], block_size);
         lcd_set_windows(0, height/block*i, width-1, height/block*(i+1)-1);
         write_sdio_spi_dma_async((u32 *)buf, block_size);
 #else
+        memcpy(buf, &img[i*block_size], block_size);
         lcd_set_windows(0, height/block*i, width-1, height/block*(i+1)-1);
         write_sdio_spi_dma((u32 *)buf, block_size);
 #endif
