@@ -27,7 +27,7 @@ MEMORY
 	V-SRAM : ORIGIN = 0x20000000 , LENGTH = 0x100   /* off-chip SRAM 8MB */
 }
 
-__min_heap_size = 0x18000;
+__min_heap_size = 0x16000;
 PROVIDE (__ram_end  = 0x2003A000);
 PROVIDE (__heap_end = __ram_end);
 

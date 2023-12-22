@@ -29,16 +29,17 @@ typedef struct
 
 ImageHeader image_header;
 
-static int get_image_header()
+static unsigned int get_image_header()
 {
     int ret = 0;
     int len = 0;
     len = sizeof(ImageHeader);
-    ret = tls_spifls_read(0, (u8 *)&image_header, len);
+    //ret = tls_spifls_read(0, (u8 *)&image_header, len);
+    ret = tls_fls_read(0x200000, (u8 *)&image_header, len);
 	if(ret != 0)
 	{
-		printf("---> get_image_header fail !\n");
-		return ret;
+		printf("---> get_image_header tls_fls_read fail !\n");
+		return 0;
 	}
     // 防止打印%s越界
     image_header.version[9] = '\0';
@@ -59,13 +60,22 @@ static int get_image_header()
     printf("---> magic_num:   %08X\n", image_header.magic_num);
     printf("---> version:     %s\n",   image_header.version);
     printf("---> image_count: %d\n\n",   image_header.image_count);
-    return image_header.image_count;
+
+    if(0x12345678 == image_header.magic_num)
+    {
+        return image_header.image_count;        
+    }
+    else
+    {
+        return 0;
+    }
+
 }
 
 int get_image_list_show(void)
 {
     int ret = 0;
-    u16 image_count = 0;
+    u32 image_count = 0;
     u16 image_buf_len = 0;
     u16 offset = 0;
 
@@ -77,7 +87,16 @@ int get_image_list_show(void)
     // ImageSize  image_size = {0};
     u8 image_size[4] = {0};
  
+    tls_fls_init();
+
     image_count = get_image_header();
+
+    if(image_count == 0)
+    {
+        printf("---> get_image_header fail 22 !\n");
+        return -1;        
+    }
+
     image_buf_len = image_count * sizeof(ImageInfo);
     offset = sizeof(ImageHeader);
 
@@ -87,7 +106,8 @@ int get_image_list_show(void)
         printf("[%s] mem err\n", __func__);
         return -1;
     }
-    ret = tls_spifls_read(offset, image_info, image_buf_len);
+    //ret = tls_spifls_read(offset, image_info, image_buf_len);
+    ret = tls_fls_read(0x200000+offset, image_info, image_buf_len);
 	if(ret != 0)
 	{
 		printf("---> get_image_list fail %d !\n", ret);
@@ -112,7 +132,8 @@ int get_image_list_show(void)
         {
             index = 0;
         }
-        ret = tls_spifls_read(image_list[index].strAddr, (u8 *)&image_size, sizeof(image_size));
+        //ret = tls_spifls_read(image_list[index].strAddr, (u8 *)&image_size, sizeof(image_size));
+        ret = tls_fls_read(0x200000+image_list[index].strAddr, (u8 *)&image_size, sizeof(image_size));
         if(ret != 0)
         {
             printf("---> image_size fail %d !\n", ret);
@@ -123,10 +144,11 @@ int get_image_list_show(void)
         u16 width =  (p[0] << 8) + p[1];
         u16 height =  (p[2] << 8) + p[3];
         printf("---> width: %d height %d\n", width, height);
-        lcd_clear(BLACK);
+        //lcd_clear(BLACK);
         lcd_full_picture_from_spiflash(width, height, image_list[index].strAddr + 4);
         index++;
-        tls_os_time_delay(HZ*3);
+        //tls_os_time_delay(HZ*3);
+        tls_os_time_delay(100);
     }
     tls_mem_free(image_list);
     return 0;

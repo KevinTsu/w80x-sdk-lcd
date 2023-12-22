@@ -134,12 +134,8 @@ void UserMain(void)
     button_init(&btn1, WM_IO_PA_00, 0);
     button_attach(&btn1, LONG_PRESS_START, BTN1_LONG_PRESS_START_Handler);
     button_start(&btn1);
-    bsp_lcd_init();
     get_image_list_show();
 #endif
-
-    tls_os_time_delay(HZ*3);
-    tls_os_disp_task_stat_info();
 
 #if DEMO_CONSOLE
 	CreateDemoTask();

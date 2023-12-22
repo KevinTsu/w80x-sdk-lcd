@@ -1,7 +1,7 @@
 #include "wm_include.h"
 #include "wm_flash.h"
 #include "wm_crypto_hard.h"
-
+#include "wm_internal_flash.h"
 
 #if 1
 struct
@@ -30,6 +30,9 @@ struct
 }flashData;
 
 
+
+
+
 void xmodem_download(void)
 {
 	// int i;
@@ -43,14 +46,49 @@ void xmodem_download(void)
 	unsigned short crcWord;			
 	psCrcContext_t ctx;
 
-	printf("Entry xmodem transmission ...\n");
-    printf("Switching baud rate to 2000000 ...\n");
+    int i;
+    int off,retv;
 
+	printf("---> Entry xmodem transmission ...\n");
+
+
+    //0x81FA000UL
+    off = 0x8200000/INSIDE_FLS_SECTOR_SIZE;
+    //for(i=0; i<200; i++)
+    printf("---> tls_fls_erase start!\n");
+    for(i=0; i<414; i++)
+    {
+        retv=tls_fls_erase(off+i);
+        if(retv !=TLS_FLS_STATUS_OK)
+        {
+            printf("---> tls_fls_erase false in sector=%d,%d\n",i+off,retv);
+            break;
+        }
+    }
+    printf("---> tls_fls_erase finish!\n");
+
+
+    tls_fls_init();	
+    //printf("111\n");
 	tls_crypto_init();
+    // printf("222\n");    
 
+
+
+
+    printf("---> Switching baud rate to 2000000\n");
+    printf("---> Wait for data reception ...\n");
     //tls_uart_set_baud_rate(TLS_UART_0, 115200);
 	tls_uart_set_baud_rate(TLS_UART_0, 2000000);
 	tls_uart_rx_callback_register(TLS_UART_0, NULL, NULL);
+    //printf("333\n");
+
+
+
+
+    //tls_gpio_cfg(WM_IO_PB_05, WM_GPIO_DIR_OUTPUT, WM_GPIO_ATTR_PULLHIGH);
+    //tls_gpio_write(WM_IO_PB_05,0);	
+
 
 	xmodeData.size = 0;
 	xmodeData.curPackNO = 1;
@@ -73,6 +111,8 @@ void xmodem_download(void)
                 step=2;
                 flashData.size = 0;
                 flashData.curAddr = 0;	
+
+                //tls_gpio_write(WM_IO_PB_05,0);	
             }
         }
         switch(step)
@@ -95,7 +135,7 @@ void xmodem_download(void)
                 }while(recsize);
 
                 tls_uart_write(TLS_UART_0, "C", 1);
-                tls_os_time_delay(300);
+                tls_os_time_delay(100);
                 step = 1;
             break;
             case 2:
@@ -123,6 +163,8 @@ void xmodem_download(void)
                     //printf("4444");
                     step = 0;
                     xmodeData.size=0;
+
+                    //tls_gpio_write(WM_IO_PB_05,1);	
                     tls_os_time_delay(200);
                     // printf("finish,OK\n");
                     break;	
@@ -172,7 +214,11 @@ void xmodem_download(void)
                                     xmodeData.curPackNO=0;
                                 }
 
-                                tls_spifls_write(flashData.curAddr,  (u8 *)&xmodeData.buff[3], 128);
+                                //u32 time = tls_os_get_time();
+                                //tls_spifls_write(flashData.curAddr,  (u8 *)&xmodeData.buff[3], 128);
+                                //tls_fls_write(0x200000 + flashData.curAddr,  (u8 *)&xmodeData.buff[3], 128);
+                                tls_fls_write_without_erase(0x200000 + flashData.curAddr,  (u8 *)&xmodeData.buff[3], 128);
+                                //printf("---> wr %d ms\n", tls_os_get_time() - time);
 
                                 flashData.size += 128;
                                 flashData.curAddr += 128; 
@@ -205,7 +251,15 @@ void xmodem_download(void)
                                 {
                                     xmodeData.curPackNO=0;
                                 }
-                                tls_spifls_write(flashData.curAddr, (u8 *)&xmodeData.buff[3], 1024);
+
+                                //tls_gpio_write(WM_IO_PB_05,0);
+                                //u32 time = tls_os_get_time();
+                                //tls_spifls_write(flashData.curAddr, (u8 *)&xmodeData.buff[3], 1024);
+                                //tls_fls_write(0x200000 + flashData.curAddr, (u8 *)&xmodeData.buff[3], 1024);
+                                tls_fls_write_without_erase(0x200000 + flashData.curAddr, (u8 *)&xmodeData.buff[3], 1024);
+                                //printf("---> wr2 %d ms\n", tls_os_get_time() - time);
+                                //tls_gpio_write(WM_IO_PB_05,1);
+
                                 flashData.size += 1024;
                                 flashData.curAddr += 1024;                               
                             }
@@ -223,5 +277,7 @@ void xmodem_download(void)
         }
 			// tls_os_time_delay(1);
 	}
+
+    //tls_gpio_write(WM_IO_PB_05,1);
 }
 #endif
