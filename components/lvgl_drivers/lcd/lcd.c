@@ -1618,7 +1618,8 @@ void lcd_full_picture_from_spiflash(u16 image_width, u16 image_height, u32 offse
     }
 
     for(u8 i = 0; i < block; i++){
-        tls_spifls_read(i*block_size + offset, buf, block_size);
+        tls_fls_read(0x200000+i*block_size + offset, buf, block_size);
+        // tls_spifls_read(i*block_size + offset, buf, block_size);
         // memcpy(buf, &img[i*block_size], block_size);
 
 #if LCD_ASYNC_SEND
