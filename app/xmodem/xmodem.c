@@ -2,6 +2,8 @@
 #include "wm_flash.h"
 #include "wm_crypto_hard.h"
 #include "wm_internal_flash.h"
+#include "wm_uart.h"
+
 
 #if 1
 struct
@@ -49,9 +51,9 @@ void xmodem_download(void)
     int i;
     int off,retv;
 
-	printf("---> Entry xmodem transmission ...\n");
+	printf("---> Entry xmodem transmission ...\n\n");
 
-
+#if 1
     //0x81FA000UL
     off = 0x8200000/INSIDE_FLS_SECTOR_SIZE;
     //for(i=0; i<200; i++)
@@ -65,25 +67,26 @@ void xmodem_download(void)
             break;
         }
     }
-    printf("---> tls_fls_erase finish!\n");
-
+    printf("---> tls_fls_erase finish!\n\n");
+#endif
 
     tls_fls_init();	
     //printf("111\n");
 	tls_crypto_init();
     // printf("222\n");    
 
-
-
+    if (WM_SUCCESS != tls_uart_port_init(TLS_UART_0, NULL, 0))
+    {
+        printf("---> uart0 init fail!\n");
+        return;
+    }
 
     printf("---> Switching baud rate to 2000000\n");
     printf("---> Wait for data reception ...\n");
-    //tls_uart_set_baud_rate(TLS_UART_0, 115200);
+    // tls_uart_set_baud_rate(TLS_UART_0, 115200);
 	tls_uart_set_baud_rate(TLS_UART_0, 2000000);
 	tls_uart_rx_callback_register(TLS_UART_0, NULL, NULL);
     //printf("333\n");
-
-
 
 
     //tls_gpio_cfg(WM_IO_PB_05, WM_GPIO_DIR_OUTPUT, WM_GPIO_ATTR_PULLHIGH);

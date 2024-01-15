@@ -130,10 +130,6 @@ void UserMain(void)
     printf("%s",test);
     dram_heap_free(test);
 #elif(RUN_DEMO_NUM == 5) // xmodem下载图片显示demo
-
-#if TLS_CONFIG_HOSTIF != 1
-    #error "SDK/include/wm_config.h ---> TLS_CONFIG_HOSTIF should be CFG_ON. after that 'make lib && make'"
-#endif
     printf("---> RUN DEMO [%d] XMODEM TRANSMISSION IMAGE DISPLAY \n", RUN_DEMO_NUM);
     button_init(&btn1, WM_IO_PA_00, 0);
     button_attach(&btn1, LONG_PRESS_START, BTN1_LONG_PRESS_START_Handler);
