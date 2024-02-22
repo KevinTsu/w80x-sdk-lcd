@@ -1,8 +1,9 @@
-TOP_DIR = ../..
+TOP_DIR = ../../
 sinclude $(TOP_DIR)/tools/w800/conf.mk
 
 ifndef PDIR
-GEN_LIBS = libxmodem$(LIB_EXT)
+GEN_LIBS = app_lib_xmodem$(LIB_EXT)
+
 endif
 
 #DEFINES +=

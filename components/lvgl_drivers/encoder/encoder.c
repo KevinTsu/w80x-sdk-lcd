@@ -3,7 +3,7 @@
 #if USE_ENCODE
 
 static int32_t encoder_diff;
-static bool encoder_btn_state;
+static bool encoder_btn_state = 1;
 static u8 last_val = 255;
 
 

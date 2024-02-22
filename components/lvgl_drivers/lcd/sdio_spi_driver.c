@@ -279,8 +279,6 @@ static void lcd_task_start(void *data)
 
 void lcd_task_create(void)
 {
-    // 创建消息队列
-    tls_os_queue_create(&user_task_queue, LCD_TASK_QUEUE_SIZE);
     tls_os_task_create(NULL, 
                       "lcd",
                        lcd_task_start,

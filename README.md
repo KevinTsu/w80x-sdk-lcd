@@ -68,3 +68,6 @@ https://lvgl.io/
 ```
 
 
+##### 1.将SquareLine Studio生产的UI文件放置到app/solutions文件夹下，全部替换。
+##### 2.我这里编写了一个python脚本，在SDK根目录build.py,通过`python build.py`命令自动生成makefile文件(python version > 3)。
+##### 3.通过`make clean && make`命令编译生成固件。
