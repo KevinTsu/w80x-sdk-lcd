@@ -1310,7 +1310,7 @@ void lcd_gpio_init()
 #endif
 }
 
-#if (CHIP_TYPE == 0 && CHIP_TYPE == 2)
+#if (CHIP_TYPE == 0 || CHIP_TYPE == 2)
 void lcd_back_on()
 {
     tls_bitband_write(HR_GPIOA_DATA, LCD_LED, 1);
@@ -1360,45 +1360,30 @@ void lcd_set_dc_cs(bool dc, bool cs)
 }
 #endif
 
-void lcd_wait_idle()
-{
-
-}
 
 void lcd_write_cmd(const uint8_t cmd) 
 {
-    lcd_wait_idle();
     lcd_set_dc_cs(0, 0);
-
     sdio_spi_put(cmd);
-
-    lcd_wait_idle();
     lcd_set_dc_cs(1, 1);
 }
 
 void lcd_write_data(const uint8_t data) 
 {
-    lcd_wait_idle();
     lcd_set_dc_cs(1, 0);
-    
     sdio_spi_put(data);
-
-    lcd_wait_idle();
     lcd_set_dc_cs(1, 1);
 }
 
 void lcd_write_cmd_data(const uint8_t *cmd, size_t count) 
 {
-    lcd_wait_idle();
     lcd_set_dc_cs(0, 0);
     sdio_spi_put(*cmd++);
     if (count >= 2) {
-        lcd_wait_idle();
         lcd_set_dc_cs(1, 0);
         for (size_t i = 0; i < count - 1; ++i)
             sdio_spi_put( *cmd++);
     }
-    lcd_wait_idle();
     lcd_set_dc_cs(1, 1);
 }
 
@@ -1476,8 +1461,6 @@ void bsp_lcd_init()
     return;
 #endif
     lcd_back_on();
-
-    lcd_task_create();
 }
 
 void lcd_set_windows(u16 x_start, u16 y_start, u16 x_end, u16 y_end)
@@ -1533,8 +1516,7 @@ void lcd_clear(u16 Color)
     for(u8 i = 0; i < block; i++){
 #if LCD_ASYNC_SEND
         wait_sdio_spi_dma_ready();
-        lcd_set_windows(0, height/block*i, width-1, height/block*(i+1)-1);
-        write_sdio_spi_dma_async((u32 *)buf, block_size);
+        lcd_dma_queue_write(0, height/block*i, width-1, height/block*(i+1)-1, (u32 *)buf, block_size);
 #else
         lcd_set_windows(0, height/block*i, width-1, height/block*(i+1)-1);
         write_sdio_spi_dma((u32 *)buf, block_size);
@@ -1577,8 +1559,7 @@ void lcd_full_picture(u16 image_width, u16 image_height, u8 *image_buf)
 #if LCD_ASYNC_SEND
         wait_sdio_spi_dma_ready();
         memcpy(buf, &img[i*block_size], block_size);
-        lcd_set_windows(0, height/block*i, width-1, height/block*(i+1)-1);
-        write_sdio_spi_dma_async((u32 *)buf, block_size);
+        lcd_dma_queue_write(0, height/block*i, width-1, height/block*(i+1)-1, (u32 *)buf, block_size);
 #else
         memcpy(buf, &img[i*block_size], block_size);
         lcd_set_windows(0, height/block*i, width-1, height/block*(i+1)-1);
@@ -1624,8 +1605,7 @@ void lcd_full_picture_from_spiflash(u16 image_width, u16 image_height, u32 offse
 
 #if LCD_ASYNC_SEND
         wait_sdio_spi_dma_ready();
-        lcd_set_windows(0, height/block*i, width-1, height/block*(i+1)-1);
-        write_sdio_spi_dma_async((u32 *)buf, block_size);
+        lcd_dma_queue_write(0, height/block*i, width-1, height/block*(i+1)-1, (u32 *)buf, block_size);
 #else
         lcd_set_windows(0, height/block*i, width-1, height/block*(i+1)-1);
         write_sdio_spi_dma((u32 *)buf, block_size);
@@ -1660,8 +1640,7 @@ void lcd_show_picture(u8 *data)
         memcpy(buf, &img[i*block_size], block_size);
 #if LCD_ASYNC_SEND
         wait_sdio_spi_dma_ready();
-        lcd_set_windows(0, height/block*i, width-1, height/block*(i+1)-1);
-        write_sdio_spi_dma_async((u32 *)buf, block_size);
+        lcd_dma_queue_write(0, height/block*i, width-1, height/block*(i+1)-1, (u32 *)buf, block_size);
 #else
         lcd_set_windows(0, height/block*i, width-1, height/block*(i+1)-1);
         write_sdio_spi_dma((u32 *)buf, block_size);
@@ -1681,8 +1660,6 @@ void bsp_lcd_draw_rect_wait(void)
 
 void bsp_lcd_draw_rect(unsigned short x, unsigned short y, unsigned short width, unsigned short height, unsigned char *data)
 {
-    lcd_set_windows(x, y, x + width - 1, y + height - 1);
-
 #if 0
     printf("x: %d y:%d, width %d height %d\n", x, y, width, height);
     u32 len = width * height * 2;
@@ -1696,8 +1673,9 @@ void bsp_lcd_draw_rect(unsigned short x, unsigned short y, unsigned short width,
 #if(COLOR_FORMAT == 0) // RGB565
 
     #if LCD_ASYNC_SEND
-        write_sdio_spi_dma_async((u32 *)data, width * height * 2);
+        lcd_dma_queue_write(x, y, x + width - 1, y + height - 1, (u32 *)data, width * height * 2);
     #else
+        lcd_set_windows(x, y, x + width - 1, y + height - 1);
         write_sdio_spi_dma((u32 *)data, width * height * 2);
     #endif
 
@@ -1719,8 +1697,9 @@ void bsp_lcd_draw_rect(unsigned short x, unsigned short y, unsigned short width,
     }
 
     #if LCD_ASYNC_SEND
-	write_sdio_spi_dma_async((u32 *)buf, width * height * 3);
+    lcd_dma_queue_write(x, y, x + width - 1, y + height - 1, (u32 *)buf, width * height * 3);
     #else
+    lcd_set_windows(x, y, x + width - 1, y + height - 1);
     write_sdio_spi_dma((u32 *)buf, width * height * 3);
     #endif
     tls_mem_free(buf);

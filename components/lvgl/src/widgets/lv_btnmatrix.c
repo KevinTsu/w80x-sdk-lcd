@@ -16,6 +16,7 @@
 #include "../core/lv_refr.h"
 #include "../misc/lv_txt.h"
 #include "../misc/lv_txt_ap.h"
+#include "../misc/lv_mem.h"
 
 /*********************
  *      DEFINES

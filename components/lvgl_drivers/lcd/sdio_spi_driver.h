@@ -4,8 +4,6 @@
 
 
 
-
-
 void init_sdio_spi_mode();
 
 void sdio_spi_put(u8 d);
