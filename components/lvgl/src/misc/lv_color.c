@@ -8,7 +8,7 @@
  *********************/
 #include "lv_color.h"
 #include "lv_log.h"
-#include "user_config.h"
+
 /*********************
  *      DEFINES
  *********************/
@@ -33,12 +33,8 @@
  *   GLOBAL FUNCTIONS
  **********************/
 
-LV_ATTRIBUTE_FAST_MEM void lv_color_fill(lv_color_t * buf, lv_color_t color, uint32_t px_num)
+void LV_ATTRIBUTE_FAST_MEM lv_color_fill(lv_color_t * buf, lv_color_t color, uint32_t px_num)
 {
-#if USE_PSRAM
-    extern void wait_sdio_spi_dma_ready();
-    wait_sdio_spi_dma_ready();
-#endif
 #if LV_COLOR_DEPTH == 16
     uintptr_t buf_int = (uintptr_t)buf;
     if(buf_int & 0x3) {
