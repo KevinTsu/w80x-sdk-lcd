@@ -2,6 +2,7 @@
 #include "wm_flash.h"
 #include "lcd.h"
 #include "spiflash.h"
+#include "wm_internal_flash.h"
 
 extern bool xmodem_flag;
 
@@ -16,7 +17,7 @@ typedef struct
 {
     u32  strAddr;          //  4 byte
     u32  size;             //  4 byte
-    char image_name[16]    // 16 byte
+    char image_name[16];    // 16 byte
 }ImageInfo;                // image_count
 
 

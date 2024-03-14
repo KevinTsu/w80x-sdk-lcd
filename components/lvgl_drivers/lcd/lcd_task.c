@@ -3,6 +3,7 @@
 #include "sdio_spi_driver.h"
 #include "lcd.h"
 #include "wm_psram.h"
+#include "lcd_task.h"
 
 #define ONCE_DMA_MAX_LEN                  65532
 
@@ -93,7 +94,7 @@ static void lcd_task_start(void *data)
                     break;
                 }
                 // printf("---> 1start msg\r\n");
-                wait_sdio_dma_ready();
+                sdio_dma_sem_acquire();
                 // printf("---> 2start msg\r\n");
                 wait_sdio_prev_data_completion();
                 // printf("---> 3start msg\r\n");

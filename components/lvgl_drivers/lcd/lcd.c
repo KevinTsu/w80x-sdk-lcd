@@ -3,6 +3,8 @@
 #include "sdio_spi_driver.h"
 #include <string.h>
 #include "wm_flash.h"
+#include "lcd_task.h"
+#include "wm_internal_flash.h"
 
 
 static void WriteComm(unsigned int i);
@@ -1515,7 +1517,7 @@ void lcd_clear(u16 Color)
 
     for(u8 i = 0; i < block; i++){
 #if LCD_ASYNC_SEND
-        wait_sdio_spi_dma_ready();
+        wait_for_prev_frame_completion();
         lcd_dma_queue_write(0, height/block*i, width-1, height/block*(i+1)-1, (u32 *)buf, block_size);
 #else
         lcd_set_windows(0, height/block*i, width-1, height/block*(i+1)-1);
@@ -1523,7 +1525,7 @@ void lcd_clear(u16 Color)
 #endif
         // tls_os_time_delay(HZ/1);
     }
-    wait_sdio_spi_dma_ready();
+    wait_for_prev_frame_completion();
     tls_mem_free(buf);
 }
 
@@ -1557,7 +1559,7 @@ void lcd_full_picture(u16 image_width, u16 image_height, u8 *image_buf)
 
     for(u8 i = 0; i < block; i++){
 #if LCD_ASYNC_SEND
-        wait_sdio_spi_dma_ready();
+        wait_for_prev_frame_completion();
         memcpy(buf, &img[i*block_size], block_size);
         lcd_dma_queue_write(0, height/block*i, width-1, height/block*(i+1)-1, (u32 *)buf, block_size);
 #else
@@ -1567,7 +1569,7 @@ void lcd_full_picture(u16 image_width, u16 image_height, u8 *image_buf)
 #endif
         // tls_os_time_delay(HZ/1);
     }
-    wait_sdio_spi_dma_ready();
+    wait_for_prev_frame_completion();
     tls_mem_free(buf);
     printf("---> use %d ms\n", tls_os_get_time() - time);
 }
@@ -1604,7 +1606,7 @@ void lcd_full_picture_from_spiflash(u16 image_width, u16 image_height, u32 offse
         // memcpy(buf, &img[i*block_size], block_size);
 
 #if LCD_ASYNC_SEND
-        wait_sdio_spi_dma_ready();
+        wait_for_prev_frame_completion();
         lcd_dma_queue_write(0, height/block*i, width-1, height/block*(i+1)-1, (u32 *)buf, block_size);
 #else
         lcd_set_windows(0, height/block*i, width-1, height/block*(i+1)-1);
@@ -1612,7 +1614,7 @@ void lcd_full_picture_from_spiflash(u16 image_width, u16 image_height, u32 offse
 #endif
         // tls_os_time_delay(HZ/1);
     }
-    wait_sdio_spi_dma_ready();
+    wait_for_prev_frame_completion();
     tls_mem_free(buf);
     printf("---> use %d ms\n", tls_os_get_time() - time);
     
@@ -1639,7 +1641,7 @@ void lcd_show_picture(u8 *data)
     for(u8 i = 0; i < block; i++){
         memcpy(buf, &img[i*block_size], block_size);
 #if LCD_ASYNC_SEND
-        wait_sdio_spi_dma_ready();
+        wait_for_prev_frame_completion();
         lcd_dma_queue_write(0, height/block*i, width-1, height/block*(i+1)-1, (u32 *)buf, block_size);
 #else
         lcd_set_windows(0, height/block*i, width-1, height/block*(i+1)-1);
@@ -1647,7 +1649,7 @@ void lcd_show_picture(u8 *data)
 #endif
         // tls_os_time_delay(HZ/1);
     }
-    wait_sdio_spi_dma_ready();
+    wait_for_prev_frame_completion();
     tls_mem_free(buf);
     printf("---> use %d ms\n", tls_os_get_time() - time);
     
@@ -1655,7 +1657,7 @@ void lcd_show_picture(u8 *data)
 
 void bsp_lcd_draw_rect_wait(void)
 {
-    wait_sdio_spi_dma_ready();
+    wait_for_prev_frame_completion();
 }
 
 void bsp_lcd_draw_rect(unsigned short x, unsigned short y, unsigned short width, unsigned short height, unsigned char *data)

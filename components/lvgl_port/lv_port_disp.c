@@ -3,7 +3,7 @@
 
 /* 设置LVGL缓冲区 双缓冲区 */
 #if USE_PSRAM
-#include "psram.h"
+#include "../psram/psram.h"
 #define LVGL_PORT_BUFF_SIZE (BSP_LCD_X_PIXELS*BSP_LCD_Y_PIXELS/1) // 屏幕分辨率
 static lv_color_t *lvgl_draw_buff1 = NULL;
 static lv_color_t *lvgl_draw_buff2 = NULL;

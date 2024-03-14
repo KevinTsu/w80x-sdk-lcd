@@ -6,6 +6,7 @@
 #include "wm_pmu.h"
 #include <string.h>
 #include "lcd.h"
+#include "lcd_task.h"
 #include "../../user_config.h"
 
 
@@ -77,12 +78,7 @@ void sdio_spi_put(u8 d)
     while (!(SDIO_HOST->MMC_INT_SRC & 0x02));
 }
 
-void wait_sdio_spi_dma_ready()
-{
-    wait_for_prev_frame_completion();
-}
-
-void wait_sdio_dma_ready()
+void sdio_dma_sem_acquire()
 {
     // 请求信号量
     tls_os_sem_acquire(sdio_spi_dma_ready, 0);
