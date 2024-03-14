@@ -254,6 +254,32 @@ static void convert_cb(const lv_area_t * dest_area, const void * src_buf, lv_coo
 
         lv_coord_t dest_h = lv_area_get_height(dest_area);
         lv_coord_t dest_w = lv_area_get_width(dest_area);
+/* 开辟buf加速flash图片读取 */
+#if 1
+        unsigned char *buffer = lv_mem_buf_get(dest_w*3);
+        unsigned char *tmp_buf = NULL;
+        for(y = 0; y < dest_h; y++) {
+            tmp_buf = buffer;
+            lv_memcpy(tmp_buf, src_tmp8, dest_w*3);
+            for(x = 0; x < dest_w; x++) {
+                abuf[x] = tmp_buf[LV_IMG_PX_SIZE_ALPHA_BYTE - 1];
+#if LV_COLOR_DEPTH == 8 || LV_COLOR_DEPTH == 1
+                cbuf[x].full = *tmp_buf;
+#elif LV_COLOR_DEPTH == 16
+                cbuf[x].full = *tmp_buf + ((*(tmp_buf + 1)) << 8);
+#elif LV_COLOR_DEPTH == 32
+                cbuf[x] = *((lv_color_t *) src_tmp8);
+                cbuf[x].ch.alpha = 0xff;
+#endif
+                src_tmp8 += LV_IMG_PX_SIZE_ALPHA_BYTE;
+                tmp_buf += LV_IMG_PX_SIZE_ALPHA_BYTE;
+            }
+            cbuf += dest_w;
+            abuf += dest_w;
+            src_tmp8 += src_new_line_step_byte;
+        }
+        lv_mem_buf_release(buffer);
+#else
         for(y = 0; y < dest_h; y++) {
             for(x = 0; x < dest_w; x++) {
                 abuf[x] = src_tmp8[LV_IMG_PX_SIZE_ALPHA_BYTE - 1];
@@ -272,6 +298,7 @@ static void convert_cb(const lv_area_t * dest_area, const void * src_buf, lv_coo
             abuf += dest_w;
             src_tmp8 += src_new_line_step_byte;
         }
+#endif
     }
     else if(cf == LV_IMG_CF_RGB565A8) {
         src_tmp8 += (src_stride * dest_area->y1 * sizeof(lv_color_t)) + dest_area->x1 * sizeof(lv_color_t);

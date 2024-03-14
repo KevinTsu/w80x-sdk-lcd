@@ -15,7 +15,7 @@
 /*********************
  *      DEFINES
  *********************/
-
+#define USE_BUFFER_CACHE 1
 /**********************
  *      TYPEDEFS
  **********************/
@@ -300,6 +300,14 @@ static void argb_and_rgb_aa(const uint8_t * src, lv_coord_t src_w, lv_coord_t sr
     }
 
     lv_coord_t x;
+/* 开辟buf从flash中缓存关联的相邻2行数据，工缓存3行*/
+#if USE_BUFFER_CACHE
+    unsigned int line_size = src_stride * px_size;
+    unsigned char *buffer = lv_mem_buf_get(line_size * 3);
+    /* 用于标记是否更新缓存内容 */
+    unsigned int flag = 0xFFFF; 
+    unsigned int offset = 0;
+#endif
     for(x = 0; x < x_end; x++) {
         xs_ups = xs_ups_start + ((xs_step * x) >> 8);
         ys_ups = ys_ups_start + ((ys_step * x) >> 8);
@@ -337,8 +345,24 @@ static void argb_and_rgb_aa(const uint8_t * src, lv_coord_t src_w, lv_coord_t sr
             ys_fract = (ys_fract - 0x80) * 2;
         }
 
+#if USE_BUFFER_CACHE
+        if(flag != ys_int){
+            flag = ys_int;
+            offset = (ys_int * line_size);
+            if(ys_int> 1){
+                lv_memcpy(&buffer[0], src+offset-line_size, line_size*3);
+            }
+            else
+            {
+                lv_memcpy(&buffer[line_size], src+offset, line_size*2);
+            }
+            // printf("---> %d %d %d %d\n",ys_int, xs_int, px_size, offset);
+        }
+        uint8_t * src_tmp = &buffer[line_size] + xs_int * px_size;
+#else
         const uint8_t * src_tmp = src;
         src_tmp += (ys_int * src_stride * px_size) + xs_int * px_size;
+#endif
 
         if(xs_int + x_next >= 0 &&
            xs_int + x_next <= src_w - 1 &&
@@ -462,6 +486,9 @@ static void argb_and_rgb_aa(const uint8_t * src, lv_coord_t src_w, lv_coord_t sr
             }
         }
     }
+#if USE_BUFFER_CACHE
+    lv_mem_buf_release(buffer);
+#endif
 }
 
 static void transform_point_upscaled(point_transform_dsc_t * t, int32_t xin, int32_t yin, int32_t * xout,
