@@ -490,7 +490,7 @@ void nv3041_init(void)
     WriteComm(0x3A); //  
     WriteData(0x01); // 01---565，00---666 
     WriteComm(0x40); 
-    WriteData(0x00); // 01:IPS/00:TN 
+    WriteData(0x01); // 01:IPS/00:TN 
     WriteComm(0x41); 
     WriteData(0x01); // 01--8bit/03--16bit 
     WriteComm(0x44); // VBP 
