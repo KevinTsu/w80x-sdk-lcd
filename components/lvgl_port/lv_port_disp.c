@@ -63,6 +63,8 @@ void lv_port_disp_init()
     disp_drv.flush_cb = disp_flush;
     /* 设置缓冲区 */
     disp_drv.draw_buf = &draw_buf_dsc;
+    /* 每次更新一整屏 */
+    disp_drv.full_refresh = 0;
     /* 注册显示设备 */
     lv_disp_drv_register(&disp_drv);
 }

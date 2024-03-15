@@ -6,7 +6,7 @@
 #define USE_ENCODE    1
 #define USE_TOUCHPAD  1
 #define USE_PSRAM     0
-// #define USE_SPIFLASH  1
+
 
 #if USE_LCD
 
