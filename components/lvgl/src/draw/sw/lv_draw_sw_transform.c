@@ -349,7 +349,7 @@ static void argb_and_rgb_aa(const uint8_t * src, lv_coord_t src_w, lv_coord_t sr
         if(flag != ys_int){
             flag = ys_int;
             offset = (ys_int * line_size);
-            if(ys_int> 1){
+            if(ys_int> 0){
                 lv_memcpy(&buffer[0], src+offset-line_size, line_size*3);
             }
             else
