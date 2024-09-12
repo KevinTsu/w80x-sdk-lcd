@@ -2,10 +2,14 @@
 #define __USER_CONFIG_H__
 #include "wm_include.h"
 
-#define USE_LCD       1   // 必须使能
-#define USE_ENCODE    1
-#define USE_TOUCHPAD  1
-#define USE_PSRAM     0
+#define USE_LCD         1   // 必须使能
+#define USE_ENCODE      1
+#define USE_TOUCHPAD    1
+#define USE_PSRAM       0
+// 内部FLASH 文件系统
+#define USE_FLASH_FATFS 0   
+#define INSIDE_FLS_FATFS_SIZE       0x0200000UL // 2M
+#define INSIDE_FLS_FATFS_BASE_ADDR  0x8200000UL
 
 
 #if USE_LCD

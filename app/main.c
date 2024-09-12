@@ -20,6 +20,7 @@
 #include "wm_flash.h"
 #include "lvgl.h"
 #include "lvgl_task.h"
+#include "../components/user_config.h"
 
 /**
 *   DEMO 0  LCD lvgl、触摸、编码器、软键盘、lvgl组件测试
@@ -136,6 +137,11 @@ void UserMain(void)
     button_start(&btn1);
     get_image_list_show();
 
+#endif
+
+#if USE_FLASH_FATFS
+    extern int user_fatfs_test(void);
+    user_fatfs_test();
 #endif
 
 #if DEMO_CONSOLE

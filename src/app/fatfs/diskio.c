@@ -9,12 +9,14 @@
 
 #include "ff.h"			/* Obtains integer types */
 #include "diskio.h"		/* Declarations of disk functions */
+#include "wm_internal_flash.h"
+#include "../../../components/user_config.h"
 
 /* Definitions of physical drive number for each drive */
 #define DEV_RAM		1	/* Example: Map Ramdisk to physical drive 0 */
 #define DEV_MMC		0	/* Example: Map MMC/SD card to physical drive 1 */
 #define DEV_USB		2	/* Example: Map USB MSD to physical drive 2 */
-
+#define DEV_FLASH	4	/* Example: Map flash to physical drive 4 */
 
 /*-----------------------------------------------------------------------*/
 /* adaptor layer start                                                      */
@@ -47,6 +49,16 @@ static int USB_disk_status(void)
 	return 0;
 }
 
+static int FLASH_disk_status(void)
+{
+	return 0;
+}
+
+static int FLASH_disk_initialize(void)
+{
+    return  0;
+}
+
 static int RAM_disk_initialize(void)
 {
 	return 0;
@@ -77,6 +89,11 @@ static int USB_disk_initialize(void)
 static int RAM_disk_read(	BYTE *buff, LBA_t sector, UINT count)
 {
 	return 0;
+}
+
+static int FLASH_disk_read(	BYTE *buff, LBA_t sector, UINT count)
+{
+	return tls_fls_read(INSIDE_FLS_FATFS_BASE_ADDR + (sector * 512), buff, count * 512);
 }
 
 static int MMC_disk_read(	BYTE *buff, LBA_t sector, UINT count)
@@ -123,6 +140,11 @@ static int MMC_disk_read(	BYTE *buff, LBA_t sector, UINT count)
 static int USB_disk_read(	BYTE *buff, LBA_t sector, UINT count)
 {
 	return 0;
+}
+
+static int FLASH_disk_write(	BYTE *buff, LBA_t sector, UINT count)
+{
+    return tls_fls_write(INSIDE_FLS_FATFS_BASE_ADDR + (sector * 512), buff, count * 512);
 }
 
 static int RAM_disk_write(	BYTE *buff, LBA_t sector, UINT count)
@@ -191,6 +213,12 @@ DSTATUS disk_status (
 	DSTATUS stat = STA_NOINIT;
 
 	switch (pdrv) {
+    case DEV_FLASH:
+        FLASH_disk_status();
+
+        // translate the reslut code here
+
+        stat &= ~STA_NOINIT;
 	case DEV_RAM :
 		RAM_disk_status();
 
@@ -230,6 +258,13 @@ DSTATUS disk_initialize (
 	int result;
 
 	switch (pdrv) {
+    case DEV_FLASH:
+        result = FLASH_disk_initialize();
+
+        (result == 0)?(stat &= ~STA_NOINIT):(stat = STA_NOINIT);
+
+        return stat;
+
 	case DEV_RAM :
 		result = RAM_disk_initialize();
 
@@ -272,6 +307,16 @@ DRESULT disk_read (
 	int result;
 
 	switch (pdrv) {
+    case DEV_FLASH:
+		// translate the arguments here
+
+		result = FLASH_disk_read(buff, sector, count);
+
+		// translate the reslut code here
+        (result == 0)?(res = RES_OK):(res = RES_ERROR);
+
+		return res;
+
 	case DEV_RAM :
 		// translate the arguments here
 
@@ -323,6 +368,18 @@ DRESULT disk_write (
 	int result;
 
 	switch (pdrv) {
+    case DEV_FLASH:
+		// translate the arguments here
+
+		result = FLASH_disk_write((BYTE *)buff, sector, count);
+
+		// translate the reslut code here
+
+        (result == 0)?(res = RES_OK):(res = RES_ERROR);
+
+
+		return res;
+
 	case DEV_RAM :
 		// translate the arguments here
 
@@ -371,6 +428,30 @@ DRESULT disk_ioctl (
 	DRESULT res = 0;
 
 	switch (pdrv) {
+    case DEV_FLASH:
+    {
+        // Process of the command for the RAM drive
+        switch (cmd) {
+            case GET_BLOCK_SIZE:
+                *(DWORD *)buff = 512*8;
+                return RES_OK;
+            case GET_SECTOR_SIZE:
+                *(DWORD *)buff = 512;
+                return RES_OK;
+            case GET_SECTOR_COUNT:
+                *(DWORD *)buff = INSIDE_FLS_FATFS_SIZE/512;
+                return RES_OK;
+            // case MMC_GET_CSD:getFlashDensity
+            //     // *(UINT *)buff = SD_CardInfo.CSD;
+            //     return RES_OK;
+            // case MMC_GET_CID:
+            //     // *(UINT *)buff = SD_CardInfo.CID;
+            //     return RES_OK;
+            // case MMC_GET_TYPE:
+            //     *(UINT *)buff = SD_CardInfo.CardType;
+            //     return RES_OK;
+        }
+    }
 	case DEV_RAM :
 
 		// Process of the command for the RAM drive
