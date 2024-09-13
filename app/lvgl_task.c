@@ -137,8 +137,8 @@ static void lvgl_task_start(void *data)
     // lv_demo_benchmark_run_scene(1);      // run scene no 31
 
     // lv_demo_widgets();                
-    // lv_demo_keypad_encoder();     
-    fatfs_jpg_decode_display();
+    lv_demo_keypad_encoder();     
+    // fatfs_jpg_decode_display();
     // lv_demo_music();           
     // lv_demo_stress();            
     // lv_example_flex_5();
