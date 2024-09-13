@@ -71,7 +71,12 @@ void UserMain(void)
 	// printf(" ---> WIFI MAC:%02X%02X%02X%02X%02X%02X\n",wifi_mac[0],wifi_mac[1],wifi_mac[2],wifi_mac[3],wifi_mac[4],wifi_mac[5]);
 	printf("\n+---------------------Oooo------------+\n");
 	printf("\n user task \n");
-    
+
+#if USE_FLASH_FATFS
+    extern int user_fatfs_test(void);
+    user_fatfs_test();
+#endif
+
     /* 初始化LCD总线 */
     bsp_lcd_init();
 #if  (RUN_DEMO_NUM == 0) // 使能lvgl任务
@@ -137,11 +142,6 @@ void UserMain(void)
     button_start(&btn1);
     get_image_list_show();
 
-#endif
-
-#if USE_FLASH_FATFS
-    extern int user_fatfs_test(void);
-    user_fatfs_test();
 #endif
 
 #if DEMO_CONSOLE
