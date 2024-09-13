@@ -433,7 +433,7 @@ DRESULT disk_ioctl (
         // Process of the command for the RAM drive
         switch (cmd) {
             case GET_BLOCK_SIZE:
-                *(DWORD *)buff = 512*8;
+                *(DWORD *)buff = 1024*64;
                 return RES_OK;
             case GET_SECTOR_SIZE:
                 *(DWORD *)buff = 512;
