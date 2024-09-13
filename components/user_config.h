@@ -7,7 +7,7 @@
 #define USE_TOUCHPAD    1
 #define USE_PSRAM       0
 // 内部FLASH 文件系统
-#define USE_FLASH_FATFS 0  
+#define USE_FLASH_FATFS 1
 #if 1
 // 默认FLASH布局
 #define INSIDE_FLS_FATFS_SIZE       0x0019000UL // 100k

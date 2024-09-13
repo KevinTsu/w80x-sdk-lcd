@@ -62,7 +62,7 @@ static int fatfs_func(void)
 	UINT fnum; //文件成功读写数量
 	BYTE ReadBuffer[256] = {0};
 	BYTE work[FF_MAX_SS];
-	BYTE WriteBuffer[] = "Successfully ported FatFs file system!\r\n"; //写缓存区
+	BYTE WriteBuffer[] = "Successfully ported FatFs file system!"; //写缓存区
 	
 
  	// wm_sdio_host_config(0);
@@ -107,6 +107,7 @@ static int fatfs_func(void)
 	
 	//***********************写测试****************************
 	//打开文件，如果文件不存在则创建它
+    printf("\n");
 	TEST_DEBUG("A file write test is about to begin...\r\n");
 	//打开文件，若不存在就创建
 	res_sd = f_open(&fnew, "4:FatFsTestFiles.txt", FA_CREATE_ALWAYS | FA_WRITE);
@@ -119,7 +120,7 @@ static int fatfs_func(void)
 		if(res_sd == FR_OK)
 		{
 			TEST_DEBUG("The data is written successfully %d byte!\r\n", fnum);
-			TEST_DEBUG("Data: %s", WriteBuffer);
+			TEST_DEBUG("Data: \"%s\"\n", WriteBuffer);
 		}
 		else
 		{
@@ -132,6 +133,7 @@ static int fatfs_func(void)
 	
 	//***********************读测试****************************
 	//打开文件，如果文件不存在则创建它
+    printf("\n");
 	TEST_DEBUG("A file reading test is about to begin...\r\n");
 	// 打开文件，若不存在就创建
 	res_sd = f_open(&fnew, "4:FatFsTestFiles.txt", FA_OPEN_EXISTING | FA_READ);
@@ -145,7 +147,7 @@ static int fatfs_func(void)
 		if(res_sd == FR_OK)
 		{
 			TEST_DEBUG("Data read successfully!\r\n");
-			TEST_DEBUG("Data: \n%s\r\n", ReadBuffer);
+			TEST_DEBUG("Data: \"%s\"\n", ReadBuffer);
 		}
 		else
 		{
@@ -163,6 +165,7 @@ static int fatfs_func(void)
     {
         //***********************写入jpg图片****************************
         //打开文件，如果文件不存在则创建它
+        printf("\n");
         TEST_DEBUG("The image writing test is about to begin...\r\n");
         //打开文件，若不存在就创建
         res_sd = f_open(&fnew, "4:sky.jpg", FA_CREATE_ALWAYS | FA_WRITE);
@@ -175,7 +178,6 @@ static int fatfs_func(void)
             if(res_sd == FR_OK)
             {
                 TEST_DEBUG("The data is written successfully %d byte!\r\n", fnum);
-                TEST_DEBUG("Data: \n%s", WriteBuffer);
             }
             else
             {
@@ -187,6 +189,7 @@ static int fatfs_func(void)
         }
     }
     else{
+        printf("\n");
         TEST_DEBUG("File \"sky.jpg\" already exists, skip writing!\r\n");
     }
 
