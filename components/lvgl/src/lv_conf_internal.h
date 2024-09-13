@@ -7,7 +7,7 @@
 #ifndef LV_CONF_INTERNAL_H
 #define LV_CONF_INTERNAL_H
 /* clang-format off */
-
+// #include "../../lvgl_port/lv_conf.h"
 #include <stdint.h>
 
 /* Handle special Kconfig options */
@@ -2145,6 +2145,7 @@
 /* JPG + split JPG decoder library.
  * Split JPG is a custom format optimized for embedded systems. */
 #ifndef LV_USE_SJPG
+888
     #ifdef CONFIG_LV_USE_SJPG
         #define LV_USE_SJPG CONFIG_LV_USE_SJPG
     #else
