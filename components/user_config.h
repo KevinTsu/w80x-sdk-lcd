@@ -17,6 +17,10 @@
 #define INSIDE_FLS_FATFS_SIZE       0x0200000UL // 2M
 #define INSIDE_FLS_FATFS_BASE_ADDR  0x8200000UL
 #endif
+// JPEG解码库
+#define USE_JPEG        0
+
+
 
 #if USE_LCD
 

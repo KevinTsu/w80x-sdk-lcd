@@ -57,7 +57,8 @@ endif
 
 LINKLIB = 	\
     $(TOP_DIR)/lib/$(CONFIG_ARCH_TYPE)/libwlan$(LIB_EXT) \
-	$(TOP_DIR)/lib/$(CONFIG_ARCH_TYPE)/libdsp$(LIB_EXT)	
+	$(TOP_DIR)/lib/$(CONFIG_ARCH_TYPE)/libdsp$(LIB_EXT)	\
+	$(TOP_DIR)/lib/$(CONFIG_ARCH_TYPE)/libjpeg$(LIB_EXT)	
 
 ifeq ($(USE_NIMBLE), 1)
 LINKLIB +=$(TOP_DIR)/lib/$(CONFIG_ARCH_TYPE)/libbtcontroller$(LIB_EXT)
