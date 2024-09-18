@@ -7,7 +7,9 @@ COMPONENTS_liblvgldrivers = encoder/lib_encoder$(LIB_EXT) \
 							lcd/lib_lcd$(LIB_EXT) \
 							psram/lib_psram$(LIB_EXT) \
 							spiflash/lib_spiflash$(LIB_EXT) \
-							touchpad/lib_touchpad$(LIB_EXT) 
+							touchpad/lib_touchpad$(LIB_EXT) \
+							fatfs/lib_fatfs$(LIB_EXT) \
+							libjpeg/lib_jpeg$(LIB_EXT)
 endif
 
 #DEFINES +=

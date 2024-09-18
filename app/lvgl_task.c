@@ -4,7 +4,9 @@
 #include "lvgl.h"
 #include "lv_port_disp.h"
 #include "lv_port_indev.h"
-#include "../lvgl/demos/lv_demos.h"
+#include "user_config.h"
+#include "fatfs.h"
+#include "lv_demo/lv_demo.h"
 #include "solutions/switch_panel/ui.h"
 
 
@@ -94,26 +96,6 @@ void lv_example_get_started_1(void)
 //     LV_LOG("On benchmark finished");
 // }
 
-// static void fatfs_jpg_decode_display()
-// {
-
-//     lv_fs_file_t file;
-//     lv_fs_res_t res = lv_fs_open(&file, "4:/dog.jpg", LV_FS_MODE_RD);
-//     printf("---> res: %d\n", res);
-//     uint32_t read_num;
-//     uint8_t buf[8];
-//     res = lv_fs_read(&file, buf, 8, &read_num);
-//     printf("---> res: %d num: %d\n", res, read_num);
-//     for(int i = 0; i < read_num; i++){
-//         printf("%02X ", buf[i]);
-//     }
-//     printf("\r\n");
-
-//     lv_obj_t *img1 = lv_img_create(lv_scr_act());
-//     lv_img_set_src(img1, "4:/dog.jpg");
-//     lv_obj_center(img1);
-// }
-
 
 static void lvgl_task_start(void *data)
 {
@@ -122,7 +104,10 @@ static void lvgl_task_start(void *data)
     lv_port_disp_init();
 
     lv_port_indev_init();
-    
+
+#if (USE_INTERNAL_FLASH_FATFS || USE_EXTERNAL_FLASH_FATFS)
+    fatfs_disk_mount();
+#endif
 
     LV_LOG("Running LVGL Benchmark...");
     LV_LOG("Please stand by...");
@@ -136,8 +121,12 @@ static void lvgl_task_start(void *data)
 
     // lv_demo_benchmark_run_scene(1);      // run scene no 31
 
-    // lv_demo_widgets();                
+    // lv_demo_widgets();   
+#if (USE_INTERNAL_FLASH_FATFS || USE_EXTERNAL_FLASH_FATFS)      
+    lv_demo_fatfs_jpeg_decode();
+#else
     lv_demo_keypad_encoder();     
+#endif
     // fatfs_jpg_decode_display();
     // lv_demo_music();           
     // lv_demo_stress();            

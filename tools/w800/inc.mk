@@ -54,6 +54,8 @@ INCLUDES += -I $(TOP_DIR)/components/lvgl_drivers/lcd
 INCLUDES += -I $(TOP_DIR)/components/lvgl_drivers/psram
 INCLUDES += -I $(TOP_DIR)/components/lvgl_drivers/spiflash
 INCLUDES += -I $(TOP_DIR)/components/lvgl_drivers/touchpad
+INCLUDES += -I $(TOP_DIR)/components/lvgl_drivers/fatfs
+INCLUDES += -I $(TOP_DIR)/components/lvgl_drivers/libjpeg
 INCLUDES += -I $(TOP_DIR)/app
 #nimble host
 INCLUDES += -I $(TOP_DIR)/src/bt/blehost/ext/tinycrypt/include

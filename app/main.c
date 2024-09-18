@@ -72,11 +72,6 @@ void UserMain(void)
 	printf("\n+---------------------Oooo------------+\n");
 	printf("\n user task \n");
 
-#if USE_FLASH_FATFS
-    extern int user_fatfs_test(void);
-    user_fatfs_test();
-#endif
-
     /* 初始化LCD总线 */
     bsp_lcd_init();
 #if  (RUN_DEMO_NUM == 0) // 使能lvgl任务
