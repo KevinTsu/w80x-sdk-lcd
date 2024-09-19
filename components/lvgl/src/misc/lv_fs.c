@@ -81,8 +81,13 @@ lv_fs_res_t lv_fs_open(lv_fs_file_t * file_p, const char * path, lv_fs_mode_t mo
         return LV_FS_RES_NOT_IMP;
     }
 
+#if 1
+    // 不用lvgl自带盘符，所以不用去掉。
+    void * file_d = drv->open_cb(drv, path, mode);
+#else
     const char * real_path = lv_fs_get_real_path(path);
     void * file_d = drv->open_cb(drv, real_path, mode);
+#endif
 
     if(file_d == NULL || file_d == (void *)(-1)) {
         return LV_FS_RES_UNKNOWN;
@@ -411,9 +416,14 @@ lv_fs_drv_t * lv_fs_get_drv(char letter)
     lv_fs_drv_t ** drv;
 
     _LV_LL_READ(&LV_GC_ROOT(_lv_fsdrv_ll), drv) {
+#if 1
+        // 不用lvgl自带盘符, 所以直接返回。
+        return *drv;
+#else
         if((*drv)->letter == letter) {
             return *drv;
         }
+#endif
     }
 
     return NULL;

@@ -11,7 +11,7 @@
 #ifndef TLS_EXSPIFLS_H
 #define TLS_EXSPIFLS_H
 
-#define SPI_SCLK							(10000000)  /** 10MHz. */
+#define SPI_SCLK					(20000000)  /** 20MHz. */
 #define FLASH_TOTAL_SIZE            (1024*1024)
 #define PAGE_SIZE						256
 #define PROGRAM_SIZE					256

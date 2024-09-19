@@ -1340,7 +1340,7 @@ int tls_spi_init(void)
     }
 
 
-    port->speed_hz = SPI_DEFAULT_SPEED; /* д╛хо2M */
+    port->speed_hz = SPI_DEFAULT_SPEED; /* д╛хо20M */
     port->cs_active = SPI_CS_ACTIVE_MODE;
     port->mode = SPI_DEFAULT_MODE;  /* CPHA = 0,CPOL = 0 */
     port->reconfig = 0;

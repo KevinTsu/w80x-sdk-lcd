@@ -1,6 +1,8 @@
 #include "fatfs.h"
 #include "../../user_config.h"
 
+#if (USE_INTERNAL_FLASH_FATFS || USE_EXTERNAL_FLASH_FATFS)
+
 #define FATFS_DEBUG_EN           1
 #if FATFS_DEBUG_EN
 #define FATFS_DEBUG(fmt, ...)    printf("%s: "fmt, __func__, ##__VA_ARGS__)
@@ -8,11 +10,18 @@
 #define FATFS_DEBUG(fmt, ...)
 #endif
 
-FATFS fs_internal_flash; //FatFs文件系统对象
-FATFS fs_external_flash; //FatFs文件系统对象
+#if USE_EXTERNAL_FLASH_FATFS
+FATFS fs_external_flash; // FatFs文件系统对象
+#endif
+
+#if USE_INTERNAL_FLASH_FATFS
+FATFS fs_internal_flash; // FatFs文件系统对象
+#endif
+
 
 FRESULT scan_files(char *path)
 {
+    printf("---> Scanning files: \"%s\" \r\n", path);
 	FRESULT res;                                  // 定义结果对象
 	DIR dir;                                      // 定义目录对象
 	FILINFO fno;                                  // 定义静态文件信息结构对象
@@ -48,12 +57,13 @@ void fatfs_disk_mount()
     BYTE work[FF_MAX_SS];
     char logical_drives[4] = {0};
 
-#if USE_INTERNAL_FLASH_FATFS
-    sprintf(logical_drives, "%s", "4:");
-	res_sd = f_mount(&fs_internal_flash, logical_drives, 1);
+#if USE_EXTERNAL_FLASH_FATFS
+    sprintf(logical_drives, "%s", "3:");
+	res_sd = f_mount(&fs_external_flash, logical_drives, 1);
 	
 	//***********************格式化测试****************************
-	if(res_sd == FR_NO_FILESYSTEM)
+	// if(res_sd == FR_NO_FILESYSTEM)
+    if(1)
 	{
 		while(1)
 		{
@@ -68,7 +78,7 @@ void fatfs_disk_mount()
 				//格式化后先取消挂载
 				res_sd = f_mount(NULL, logical_drives, 1);
 				//再重新挂载
-				res_sd = f_mount(&fs_internal_flash, logical_drives, 1);
+				res_sd = f_mount(&fs_external_flash, logical_drives, 1);
 				break;
 			}
 			else
@@ -88,12 +98,13 @@ void fatfs_disk_mount()
 	}
 #endif
 
-#if USE_EXTERNAL_FLASH_FATFS
-    sprintf(logical_drives, "%s", "3:");
+#if USE_INTERNAL_FLASH_FATFS
+    sprintf(logical_drives, "%s", "4:");
 	res_sd = f_mount(&fs_internal_flash, logical_drives, 1);
 	
 	//***********************格式化测试****************************
-	if(res_sd == FR_NO_FILESYSTEM)
+	// if(res_sd == FR_NO_FILESYSTEM)
+    if(1)
 	{
 		while(1)
 		{
@@ -129,3 +140,4 @@ void fatfs_disk_mount()
 #endif
 }
 
+#endif

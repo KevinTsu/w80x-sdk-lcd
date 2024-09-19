@@ -625,6 +625,7 @@
 /*API for FATFS (needs to be added separately). Uses f_open, f_read, etc*/
 #define LV_USE_FS_FATFS 1
 #if LV_USE_FS_FATFS
+    // 为了方便访问多个磁盘，所以不用lvgl的盘符，所以这里配置LV_FS_FATFS_LETTER不会生效。
     #define LV_FS_FATFS_LETTER '4'     /*Set an upper cased letter on which the drive will accessible (e.g. 'A')*/
     #define LV_FS_FATFS_CACHE_SIZE 0    /*>0 to cache this number of bytes in lv_fs_read()*/
 #endif

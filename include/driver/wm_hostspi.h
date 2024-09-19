@@ -53,7 +53,7 @@
 
 
 /**    default configuration data.    */
-#define SPI_DEFAULT_SPEED      (2000000)    /** default clock rate is 2MHz. */
+#define SPI_DEFAULT_SPEED      (20000000)    /** default clock rate is 20MHz. */
 #define SPI_DEFAULT_MODE      (TLS_SPI_MODE_0)  /** default mode MODE_0. */
 #define SPI_CS_ACTIVE_MODE      (TLS_SPI_CS_LOW)    /** default chipselect mode is active low. */
 #define SPI_CS_INACTIVE_MODE      (TLS_SPI_CS_HIGH)

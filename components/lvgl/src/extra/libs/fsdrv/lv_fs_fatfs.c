@@ -92,9 +92,9 @@ static void fs_init(void)
 {
     /*Initialize the SD card and FatFS itself.
      *Better to do it in your code to keep this library untouched for easy updating*/
-    char name[4] = {0};
-    sprintf(name, "%c:", LV_FS_FATFS_LETTER);
-    f_chdrive(name);
+    // char name[4] = {0};
+    // sprintf(name, "%c:", LV_FS_FATFS_LETTER);
+    // f_chdrive(name);
 }
 
 /**
