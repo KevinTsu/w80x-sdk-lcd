@@ -1247,7 +1247,7 @@ void  SendDataSPI(unsigned char dat)
    }
 }
 
-void WriteComm(unsigned int i)
+__attribute__((unused)) static void WriteComm(unsigned int i)
 {
 
     tls_bitband_write(HR_GPIOA_DATA, LCD_CS, 0);
@@ -1259,7 +1259,7 @@ void WriteComm(unsigned int i)
 
 }
 
-void WriteData(unsigned int i)
+__attribute__((unused)) static void WriteData(unsigned int i)
 {
     // printf("---> %s\r\n",__func__);
     tls_bitband_write(HR_GPIOA_DATA, LCD_CS, 0);

@@ -133,6 +133,10 @@ void array_jpeg_to_fatfs_test(char *file_path)
 
 void jpeg_to_rgb563_test(char *input_path, char *output_path)
 {
+    ///////////////////// TEST JPEG SETTINGS ////////////////////
+#if USE_JPEG != 1
+    #error "---> components/user_config.h - USE_JPEG should be 1"
+#endif
     jpeg_to_rgb565(input_path, output_path);
 }
 
