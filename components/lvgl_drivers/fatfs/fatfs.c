@@ -62,8 +62,7 @@ void fatfs_disk_mount()
 	res_sd = f_mount(&fs_external_flash, logical_drives, 1);
 	
 	//***********************格式化测试****************************
-	// if(res_sd == FR_NO_FILESYSTEM)
-    if(1)
+	if(res_sd == FR_NO_FILESYSTEM)
 	{
 		while(1)
 		{
@@ -103,8 +102,7 @@ void fatfs_disk_mount()
 	res_sd = f_mount(&fs_internal_flash, logical_drives, 1);
 	
 	//***********************格式化测试****************************
-	// if(res_sd == FR_NO_FILESYSTEM)
-    if(1)
+	if(res_sd == FR_NO_FILESYSTEM)
 	{
 		while(1)
 		{
