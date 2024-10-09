@@ -3,8 +3,8 @@
 #include "wm_include.h"
 
 #define USE_LCD         1   // 必须使能
-#define USE_ENCODE      1
-#define USE_TOUCHPAD    1
+#define USE_ENCODE      0
+#define USE_TOUCHPAD    0
 #define USE_PSRAM       0
 
 // 外部FLASH 文件系统
