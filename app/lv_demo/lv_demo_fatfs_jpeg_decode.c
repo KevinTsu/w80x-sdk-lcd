@@ -149,11 +149,11 @@ void lv_demo_fatfs_jpeg_decode()
     uint8_t buf[8] = {0};
 
 #if USE_EXTERNAL_FLASH_FATFS
-    fatfs_read_write_test("3:/FatFsTestFiles.txt");
-    array_jpeg_to_fatfs_test("3:/television.jpg", image_television_jpg_data, sizeof(image_television_jpg_data));
-    jpeg_to_rgb563_test("3:/television.jpg", "3:/television.bin");
-    scan_files("3:/");
-    res = lv_fs_open(&file, "3:/television.bin", LV_FS_MODE_RD);
+    fatfs_read_write_test("D:/FatFsTestFiles.txt");
+    array_jpeg_to_fatfs_test("D:/television.jpg", image_television_jpg_data, sizeof(image_television_jpg_data));
+    jpeg_to_rgb563_test("D:/television.jpg", "D:/television.bin");
+    scan_files("D:/");
+    res = lv_fs_open(&file, "D:/television.bin", LV_FS_MODE_RD);
     if(res != FR_OK){
         printf("---> File opening failure! %d\n", res);;
         return;
@@ -171,16 +171,16 @@ void lv_demo_fatfs_jpeg_decode()
 
     lv_obj_t *img_television;
     img_television = lv_img_create(lv_scr_act());
-    lv_img_set_src(img_television, "3:/television.bin");
+    lv_img_set_src(img_television, "D:/television.bin");
     lv_obj_center(img_television);
 
 #endif
 #if USE_INTERNAL_FLASH_FATFS
-    fatfs_read_write_test("4:/FatFsTestFiles.txt");
-    array_jpeg_to_fatfs_test("4:/winnermicro.jpg", image_winnermicro_jpg_data, sizeof(image_winnermicro_jpg_data));
-    jpeg_to_rgb563_test("4:/winnermicro.jpg", "4:/winnermicro.bin");
-    scan_files("4:/");
-    res = lv_fs_open(&file, "4:/winnermicro.bin", LV_FS_MODE_RD);
+    fatfs_read_write_test("E:/FatFsTestFiles.txt");
+    array_jpeg_to_fatfs_test("E:/winnermicro.jpg", image_winnermicro_jpg_data, sizeof(image_winnermicro_jpg_data));
+    jpeg_to_rgb563_test("E:/winnermicro.jpg", "E:/winnermicro.bin");
+    scan_files("E:/");
+    res = lv_fs_open(&file, "E:/winnermicro.bin", LV_FS_MODE_RD);
     if(res != FR_OK){
         printf("---> File opening failure! %d\n", res);;
         return;
@@ -198,7 +198,7 @@ void lv_demo_fatfs_jpeg_decode()
 
     lv_obj_t *img_winnermicro;
     img_winnermicro = lv_img_create(lv_scr_act());
-    lv_img_set_src(img_winnermicro, "4:/winnermicro.bin");
+    lv_img_set_src(img_winnermicro, "E:/winnermicro.bin");
     lv_obj_center(img_winnermicro);
     lv_obj_set_y(img_winnermicro, -15);
 #endif

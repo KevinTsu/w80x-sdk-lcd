@@ -58,7 +58,7 @@ void fatfs_disk_mount()
     char logical_drives[4] = {0};
 
 #if USE_EXTERNAL_FLASH_FATFS
-    sprintf(logical_drives, "%s", "3:");
+    sprintf(logical_drives, "%s", "D:");
 	res_sd = f_mount(&fs_external_flash, logical_drives, 1);
 	
 	//***********************格式化测试****************************
@@ -98,7 +98,7 @@ void fatfs_disk_mount()
 #endif
 
 #if USE_INTERNAL_FLASH_FATFS
-    sprintf(logical_drives, "%s", "4:");
+    sprintf(logical_drives, "%s", "E:");
 	res_sd = f_mount(&fs_internal_flash, logical_drives, 1);
 	
 	//***********************格式化测试****************************
