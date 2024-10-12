@@ -7,13 +7,13 @@
 #define USE_TOUCHPAD    0
 #define USE_PSRAM       0
 
-// 外部FLASH 文件系统
+// 外部FLASH 文件系统 fatfs 盘符为 "3:" 或者 "D:"
 #define USE_EXTERNAL_FLASH_FATFS 0
 // 默认FLASH布局
 #define OUTSIDE_FLS_FATFS_SIZE       0x0200000UL // 2M
 #define OUTSIDE_FLS_FATFS_BASE_ADDR  0x0000000UL
 
-// 内部FLASH 文件系统
+// 内部FLASH 文件系统 fatfs 盘符为 "4:" 或者 "E:"
 #define USE_INTERNAL_FLASH_FATFS 0
 #if 1
 // 默认FLASH布局
