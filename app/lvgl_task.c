@@ -7,7 +7,7 @@
 #include "user_config.h"
 #include "fatfs.h"
 #include "lv_demo/lv_demo.h"
-#include "solutions/switch_panel/ui.h"
+#include "solutions/ui.h"
 
 
 static OS_STK TaskStk[LVGL_TASK_STACK_SIZE/4];
@@ -113,28 +113,39 @@ static void lvgl_task_start(void *data)
     LV_LOG("Please stand by...");
     LV_LOG("NOTE: You will NOT see anything until the end.");
 
+    /* 每次只允许运行以下中的一个demo，否则会显示异常。*/
+
+    /* lvgl demo 触摸屏 编码器 */
+    lv_demo_keypad_encoder();  
+
+    /* lvgl demo fatfs文件系统 jpeg图片解码显示demo */
+    // lv_demo_fatfs_jpeg_decode();
+
+    /* lvgl demo 压力测试 */
     // disp_disable_update();
-    
     // lv_demo_benchmark_set_finished_cb(&on_benchmark_finished);
     // lv_demo_benchmark_set_max_speed(true);
     // lv_demo_benchmark();
 
+    /* lvgl demo 压力测试 运行某个特定场景 */
     // lv_demo_benchmark_run_scene(1);      // run scene no 31
 
+    /* lvgl demo widgets */
     // lv_demo_widgets();   
-#if (USE_INTERNAL_FLASH_FATFS || USE_EXTERNAL_FLASH_FATFS)      
-    lv_demo_fatfs_jpeg_decode();
-#else
-    lv_demo_keypad_encoder();     
-#endif
-    // fatfs_jpg_decode_display();
-    // lv_demo_music();           
-    // lv_demo_stress();            
+
+    /* lvgl demo 音乐播放器 */
+    // lv_demo_music();   
+
+    /* lvgl demo stress */
+    // lv_demo_stress(); 
+   
+    /* lvgl demo example */
     // lv_example_flex_5();
     // lv_example_get_started_1();
-
     // lv_example_meter_1();
     // lv_example_meter_2();
+
+    // SquareLine Studio导出ui程序入口
     // ui_init();
 
     // u32 tick = 0;

@@ -15,7 +15,7 @@
 
 // 内部FLASH 文件系统 fatfs 盘符为 "4:" 或者 "E:"
 #define USE_INTERNAL_FLASH_FATFS 0
-#if 1
+#if 0
 // 默认FLASH布局
 #define INSIDE_FLS_FATFS_SIZE       0x0019000UL // 100k
 #define INSIDE_FLS_FATFS_BASE_ADDR  0x81E0000UL
@@ -26,7 +26,7 @@
 #endif
 
 // JPEG解码库
-#define USE_JPEG        1
+#define USE_JPEG        0
 
 
 #if USE_LCD
