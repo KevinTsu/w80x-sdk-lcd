@@ -160,6 +160,12 @@ uint8_t I2C_Read_Byte(void)
 	return temp;
 }
 
+void  I2C_Gpio_Init(void)
+{
+    tls_gpio_cfg(I2C_SCL,  WM_GPIO_DIR_OUTPUT,  WM_GPIO_ATTR_FLOATING);
+    tls_gpio_cfg(I2C_SDA,  WM_GPIO_DIR_OUTPUT,  WM_GPIO_ATTR_FLOATING);
+}
+
 uint32_t I2C_Write(uint8_t DevAddress, uint8_t MemAddress, uint8_t *pData, uint16_t Size)
 {
 	uint32_t i, ret = 1;
