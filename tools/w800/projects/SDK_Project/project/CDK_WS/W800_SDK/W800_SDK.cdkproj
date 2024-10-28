@@ -5216,45 +5216,21 @@
         </File>
       </VirtualDirectory>
       <VirtualDirectory Name="touchpad">
-        <File Name="../../../../../../../components/lvgl_drivers/touchpad/cst816t.c">
-          <FileOption/>
-        </File>
-        <File Name="../../../../../../../components/lvgl_drivers/touchpad/cst816t.h">
-          <FileOption/>
-        </File>
-        <File Name="../../../../../../../components/lvgl_drivers/touchpad/ft5206.c">
-          <FileOption/>
-        </File>
-        <File Name="../../../../../../../components/lvgl_drivers/touchpad/ft5206.h">
-          <FileOption/>
-        </File>
-        <File Name="../../../../../../../components/lvgl_drivers/touchpad/gt911.c">
-          <FileOption/>
-        </File>
-        <File Name="../../../../../../../components/lvgl_drivers/touchpad/gt911.h">
-          <FileOption/>
-        </File>
-        <File Name="../../../../../../../components/lvgl_drivers/touchpad/iic.c">
-          <FileOption/>
-        </File>
-        <File Name="../../../../../../../components/lvgl_drivers/touchpad/iic.h">
-          <FileOption/>
-        </File>
-        <File Name="../../../../../../../components/lvgl_drivers/touchpad/Makefile">
-          <FileOption/>
-        </File>
-        <File Name="../../../../../../../components/lvgl_drivers/touchpad/touchpad.c">
-          <FileOption/>
-        </File>
-        <File Name="../../../../../../../components/lvgl_drivers/touchpad/touchpad.h">
-          <FileOption/>
-        </File>
-        <File Name="../../../../../../../components/lvgl_drivers/touchpad/xpt2046.c">
-          <FileOption/>
-        </File>
-        <File Name="../../../../../../../components/lvgl_drivers/touchpad/xpt2046.h">
-          <FileOption/>
-        </File>
+        <File Name="../../../../../../../components/lvgl_drivers/touchpad/cst816t.c"/>
+        <File Name="../../../../../../../components/lvgl_drivers/touchpad/cst816t.h"/>
+        <File Name="../../../../../../../components/lvgl_drivers/touchpad/ft5206.c"/>
+        <File Name="../../../../../../../components/lvgl_drivers/touchpad/ft5206.h"/>
+        <File Name="../../../../../../../components/lvgl_drivers/touchpad/ft6336.c"/>
+        <File Name="../../../../../../../components/lvgl_drivers/touchpad/ft6336.h"/>
+        <File Name="../../../../../../../components/lvgl_drivers/touchpad/gt911.c"/>
+        <File Name="../../../../../../../components/lvgl_drivers/touchpad/gt911.h"/>
+        <File Name="../../../../../../../components/lvgl_drivers/touchpad/iic.c"/>
+        <File Name="../../../../../../../components/lvgl_drivers/touchpad/iic.h"/>
+        <File Name="../../../../../../../components/lvgl_drivers/touchpad/Makefile"/>
+        <File Name="../../../../../../../components/lvgl_drivers/touchpad/touchpad.c"/>
+        <File Name="../../../../../../../components/lvgl_drivers/touchpad/touchpad.h"/>
+        <File Name="../../../../../../../components/lvgl_drivers/touchpad/xpt2046.c"/>
+        <File Name="../../../../../../../components/lvgl_drivers/touchpad/xpt2046.h"/>
       </VirtualDirectory>
     </VirtualDirectory>
     <VirtualDirectory Name="lvgl_port">
@@ -5292,49 +5268,123 @@
   </VirtualDirectory>
   <VirtualDirectory Name="app">
     <VirtualDirectory Name="button">
-      <File Name="../../../../../../../app/button/Makefile"/>
-      <File Name="../../../../../../../app/button/multi_button.c"/>
-      <File Name="../../../../../../../app/button/multi_button.h"/>
-      <File Name="../../../../../../../app/button/README.md"/>
+      <File Name="../../../../../../../app/button/Makefile">
+        <FileOption/>
+      </File>
+      <File Name="../../../../../../../app/button/multi_button.c">
+        <FileOption/>
+      </File>
+      <File Name="../../../../../../../app/button/multi_button.h">
+        <FileOption/>
+      </File>
+      <File Name="../../../../../../../app/button/README.md">
+        <FileOption/>
+      </File>
     </VirtualDirectory>
-    <File Name="../../../../../../../app/lvgl_task.c"/>
-    <File Name="../../../../../../../app/lvgl_task.h"/>
+    <File Name="../../../../../../../app/lvgl_task.c">
+      <FileOption/>
+    </File>
+    <File Name="../../../../../../../app/lvgl_task.h">
+      <FileOption/>
+    </File>
     <VirtualDirectory Name="lv_demo">
-      <File Name="../../../../../../../app/lv_demo/lv_demo.h"/>
-      <File Name="../../../../../../../app/lv_demo/lv_demo_fatfs_jpeg_decode.c"/>
-      <File Name="../../../../../../../app/lv_demo/Makefile"/>
+      <File Name="../../../../../../../app/lv_demo/lv_demo.h">
+        <FileOption/>
+      </File>
+      <File Name="../../../../../../../app/lv_demo/lv_demo_fatfs_jpeg_decode.c">
+        <FileOption/>
+      </File>
+      <File Name="../../../../../../../app/lv_demo/Makefile">
+        <FileOption/>
+      </File>
     </VirtualDirectory>
-    <File Name="../../../../../../../app/main.c"/>
-    <File Name="../../../../../../../app/Makefile"/>
-    <File Name="../../../../../../../app/picture.h"/>
+    <File Name="../../../../../../../app/main.c">
+      <FileOption/>
+    </File>
+    <File Name="../../../../../../../app/Makefile">
+      <FileOption/>
+    </File>
+    <File Name="../../../../../../../app/picture.h">
+      <FileOption/>
+    </File>
     <VirtualDirectory Name="solutions">
-      <File Name="../../../../../../../app/solutions/Makefile"/>
-      <File Name="../../../../../../../app/solutions/ui.c"/>
-      <File Name="../../../../../../../app/solutions/ui.h"/>
-      <File Name="../../../../../../../app/solutions/ui_events.h"/>
-      <File Name="../../../../../../../app/solutions/ui_helpers.c"/>
-      <File Name="../../../../../../../app/solutions/ui_helpers.h"/>
-      <File Name="../../../../../../../app/solutions/ui_img_320x240_bg_png.c"/>
-      <File Name="../../../../../../../app/solutions/ui_img_icn_bluetooth_png.c"/>
-      <File Name="../../../../../../../app/solutions/ui_img_icn_clock_png.c"/>
-      <File Name="../../../../../../../app/solutions/ui_img_icn_snow_png.c"/>
-      <File Name="../../../../../../../app/solutions/ui_img_icn_wifi_28x22_png.c"/>
-      <File Name="../../../../../../../app/solutions/ui_img_icn_wifi_png.c"/>
-      <File Name="../../../../../../../app/solutions/ui_img_icn_wind_speed_1_png.c"/>
-      <File Name="../../../../../../../app/solutions/ui_img_icn_wind_speed_2_png.c"/>
-      <File Name="../../../../../../../app/solutions/ui_img_icn_wind_speed_3_png.c"/>
-      <File Name="../../../../../../../app/solutions/ui_img_icn_wind_speed_4_png.c"/>
-      <File Name="../../../../../../../app/solutions/ui_img_icn_wind_speed_5_png.c"/>
-      <File Name="../../../../../../../app/solutions/ui_img_icn_wind_speed_png.c"/>
-      <File Name="../../../../../../../app/solutions/ui_img_weather_cloud_fog_png.c"/>
-      <File Name="../../../../../../../app/solutions/ui_img_weather_cloud_png.c"/>
-      <File Name="../../../../../../../app/solutions/ui_img_weather_sun_cloud_png.c"/>
-      <File Name="../../../../../../../app/solutions/ui_img_weather_sun_png.c"/>
+      <File Name="../../../../../../../app/solutions/Makefile">
+        <FileOption/>
+      </File>
+      <File Name="../../../../../../../app/solutions/ui.c">
+        <FileOption/>
+      </File>
+      <File Name="../../../../../../../app/solutions/ui.h">
+        <FileOption/>
+      </File>
+      <File Name="../../../../../../../app/solutions/ui_events.h">
+        <FileOption/>
+      </File>
+      <File Name="../../../../../../../app/solutions/ui_helpers.c">
+        <FileOption/>
+      </File>
+      <File Name="../../../../../../../app/solutions/ui_helpers.h">
+        <FileOption/>
+      </File>
+      <File Name="../../../../../../../app/solutions/ui_img_320x240_bg_png.c">
+        <FileOption/>
+      </File>
+      <File Name="../../../../../../../app/solutions/ui_img_icn_bluetooth_png.c">
+        <FileOption/>
+      </File>
+      <File Name="../../../../../../../app/solutions/ui_img_icn_clock_png.c">
+        <FileOption/>
+      </File>
+      <File Name="../../../../../../../app/solutions/ui_img_icn_snow_png.c">
+        <FileOption/>
+      </File>
+      <File Name="../../../../../../../app/solutions/ui_img_icn_wifi_28x22_png.c">
+        <FileOption/>
+      </File>
+      <File Name="../../../../../../../app/solutions/ui_img_icn_wifi_png.c">
+        <FileOption/>
+      </File>
+      <File Name="../../../../../../../app/solutions/ui_img_icn_wind_speed_1_png.c">
+        <FileOption/>
+      </File>
+      <File Name="../../../../../../../app/solutions/ui_img_icn_wind_speed_2_png.c">
+        <FileOption/>
+      </File>
+      <File Name="../../../../../../../app/solutions/ui_img_icn_wind_speed_3_png.c">
+        <FileOption/>
+      </File>
+      <File Name="../../../../../../../app/solutions/ui_img_icn_wind_speed_4_png.c">
+        <FileOption/>
+      </File>
+      <File Name="../../../../../../../app/solutions/ui_img_icn_wind_speed_5_png.c">
+        <FileOption/>
+      </File>
+      <File Name="../../../../../../../app/solutions/ui_img_icn_wind_speed_png.c">
+        <FileOption/>
+      </File>
+      <File Name="../../../../../../../app/solutions/ui_img_weather_cloud_fog_png.c">
+        <FileOption/>
+      </File>
+      <File Name="../../../../../../../app/solutions/ui_img_weather_cloud_png.c">
+        <FileOption/>
+      </File>
+      <File Name="../../../../../../../app/solutions/ui_img_weather_sun_cloud_png.c">
+        <FileOption/>
+      </File>
+      <File Name="../../../../../../../app/solutions/ui_img_weather_sun_png.c">
+        <FileOption/>
+      </File>
     </VirtualDirectory>
     <VirtualDirectory Name="xmodem">
-      <File Name="../../../../../../../app/xmodem/Makefile"/>
-      <File Name="../../../../../../../app/xmodem/xmodem.c"/>
-      <File Name="../../../../../../../app/xmodem/xmodem.h"/>
+      <File Name="../../../../../../../app/xmodem/Makefile">
+        <FileOption/>
+      </File>
+      <File Name="../../../../../../../app/xmodem/xmodem.c">
+        <FileOption/>
+      </File>
+      <File Name="../../../../../../../app/xmodem/xmodem.h">
+        <FileOption/>
+      </File>
     </VirtualDirectory>
   </VirtualDirectory>
   <BuildConfigs>
