@@ -132,21 +132,10 @@
 *   3   gt911     320*320
 *   4   xpt2046   480*272
 *   5   cst816t   240*280
+*   6   ft6366
 *****************************************************************************/ 
 
 #define TOUCHPAD_TYPE  0
-
-// #if   LCD_TYPE == 1 
-// #define TOUCHPAD_TYPE  0
-// #elif LCD_TYPE == 2
-// #define TOUCHPAD_TYPE  1
-// #elif LCD_TYPE == 5
-// #define TOUCHPAD_TYPE  2
-// #elif LCD_TYPE == 6
-// #define TOUCHPAD_TYPE  3
-// #elif LCD_TYPE == 4
-// #define TOUCHPAD_TYPE  4
-// #endif 
 
 
 // i2c touchpad
@@ -170,6 +159,11 @@
 #define I2C_SDA	 WM_IO_PA_04 
 #define TIRQ     WM_IO_PB_00
 #define TRST     WM_IO_PB_01
+#define I2C_SCL	 WM_IO_PA_01
+#elif   (TOUCHPAD_TYPE == 6)
+#define I2C_SDA	 WM_IO_PA_04 
+#define TIRQ     WM_IO_PB_08
+#define TRST     WM_IO_PB_09
 #define I2C_SCL	 WM_IO_PA_01
 #else
 // spi touchpad

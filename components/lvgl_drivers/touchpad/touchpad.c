@@ -7,7 +7,7 @@
 #if USE_TOUCHPAD
 
 #define TOUCH_TASK_PRORITY 56
-#define TOUCH_TASK_STACK_SIZE 1024/2
+#define TOUCH_TASK_STACK_SIZE 1024
 
 static OS_STK TouchPadTaskStk[TOUCH_TASK_STACK_SIZE/4];
 
@@ -79,7 +79,14 @@ bool TP_Update_Coord(void)
     else{
         g_Coord.isPressed = 0;
     }
-
+#elif (TOUCHPAD_TYPE == 6)
+    sta = ft6336_read_coord(&x, &y);
+    if(true == sta){
+        g_Coord.xCoord = x;
+        g_Coord.yCoord = y;
+        g_Coord.xIndev = x;
+        g_Coord.yIndex = y;
+    }
     
 #endif
     return sta;
@@ -128,6 +135,8 @@ static void touchpad_task_start(void *data)
     g_Coord.yRate = 15.21;  // y轴比例系数10.94
 #elif (TOUCHPAD_TYPE == 5)
     cst816t_init();
+#elif (TOUCHPAD_TYPE == 6)
+    ft6336_init();
 #endif
 
     while(1)
@@ -144,6 +153,8 @@ static void touchpad_task_start(void *data)
             g_Coord.isPressed = 0;
         }
 #elif(TOUCHPAD_TYPE == 5)
+        TP_Update_Coord();
+#elif(TOUCHPAD_TYPE == 6)
         TP_Update_Coord();
 #else
         if(tls_gpio_read(TIRQ) == 0)
