@@ -5,6 +5,7 @@
 #include "wm_flash.h"
 #include "lcd_task.h"
 #include "wm_internal_flash.h"
+#include "user_config.h"
 
 
 static void WriteComm(unsigned int i);
@@ -1226,58 +1227,229 @@ const uint8_t gc9307_init_seq[] = {
 //     WriteComm(0x29);
 //     // WriteComm(0x2c);
 // }
+#elif (LCD_TYPE == 9)
+void nv3031a_init(void)
+{
+    WriteComm(0xFD);
+    WriteData(0x06);
+    WriteData(0x08);
+    WriteComm(0x61);
+    WriteData(0x07);
+    WriteData(0x07);
+    WriteComm(0x73);
+    WriteData(0x70);
+    WriteComm(0x73);
+    WriteData(0x00); //07
+    //bias
+    WriteComm(0x62);//
+    WriteData(0x00);
+    WriteData(0x44);
+    WriteData(0x48);  //40
+
+    WriteComm(0x63);// 
+    WriteData(0x41);//
+    WriteData(0x07);//
+    WriteData(0x18);//	12
+    WriteData(0x18);//	12
+
+    //VSP
+    WriteComm(0x65);//Pump1=4.7MHz //PUMP1 VSP
+    WriteData(0x08);//D6-5:pump1_clk[1:0] clamp 28 2b
+    WriteData(0x10);//6.26
+    WriteData(0x21);
+    //VSN
+    WriteComm(0x66); //pump=2 AVCL
+    WriteData(0x08); //clamp 08 0b 09
+    WriteData(0x10); //10
+    WriteData(0x21);
+    //add source_neg_time
+    WriteComm(0x67);//pump_sel
+    WriteData(0x21);//21 20
+    WriteData(0x40);
+
+    WriteComm(0x68);//gamma vap/van
+    WriteData(0x90);//78-90-af	 90
+    WriteData(0x4f);//	  4c
+    WriteData(0x27);// 
+    WriteData(0x0A);//0C
+
+    WriteComm(0xb1);//frame rate 	
+    WriteData(0x0f);//0x0f fr_h[5:0]
+    WriteData(0x02);//0x02 fr_v[4:0]
+    WriteData(0x05);//0x04 fr_div[2:0]
+
+    WriteComm(0xB4);	
+    WriteData(0x01);	//1dot 
+
+    WriteComm(0xB5);////porch	
+    WriteData(0x02);//0x02 vfp[6:0]	
+    WriteData(0x02);//0x02 vbp[6:0]	
+    WriteData(0x0a);//0x0A hfp[6:0]	
+    WriteData(0x14);//0x14 hbp[6:0]
+
+    WriteComm(0xB6);         //display function                                                                                                     
+    WriteData(0x44);   //rev  sm                                                                                                   
+    WriteData(0x00); 	//gs  norblack
+    WriteData(0x9f);                                                                                                        
+    WriteData(0x00);
+    WriteData(0x02);    	
+                        
+    WriteComm(0xdf);//	
+    WriteData(0x11);//gofc_gamma_en_sel=1
+
+    ////gamma_test1	A1#_wangly
+    //GAMMA---------------------------------/////////////
+    ///////////NV3030A2 GAMMA/////////////////
+    WriteComm(0xe0); //gmama set 2.2
+    WriteData(0x06); //PKP0[4:0]//pkp0[4:0] V60        
+    WriteData(0x06); //PKP1[4:0]//pkp1[4:0] V56       
+    WriteData(0x0A); //PKP2[4:0]//pkp2[4:0] V45       
+    WriteData(0x10); //PKP3[4:0]//pkp3[4:0] V37    
+    WriteData(0x0F); //PKP4[4:0]//pkp4[4:0] V29      
+    WriteData(0x10); //PKP5[4:0]//pkp5[4:0] V21        
+    WriteData(0x12); //PKP6[4:0]//pkp6[4:0] V7        
+    WriteData(0x14); //PKP6[4:0]//pkp7[4:0] V3        
+    WriteComm(0xe3);                                   
+    WriteData(0x1A); //PKN0[4:0]//pkn0[4:0] V3        
+    WriteData(0x13); //PKN1[4:0]//pkn1[4:0] V7        
+    WriteData(0x10); //PKN2[4:0]//pkn2[4:0] V21       
+    WriteData(0x0E); //PKN3[4:0]//pkn3[4:0] V29       
+    WriteData(0x12); //PKN4[4:0]//pkn4[4:0] V37   
+    WriteData(0x09); //PKN5[4:0]//pkn5[4:0] V45       
+    WriteData(0x08); //PKN6[4:0]//pkn6[4:0] V56        
+    WriteData(0x07); //PKN6[4:0]//pkn7[4:0] V60       
+    WriteComm(0xe1);                                   
+    WriteData(0x1F); //PRP0[6:0]//prp0[6:0] V51      
+    WriteData(0x62); //PRP1[6:0]//prp1[6:0] V15      
+    WriteComm(0xe4);						                       
+    WriteData(0x63); //PRN0[6:0]//prn0[6:0] V15      
+    WriteData(0x17); //PRN1[6:0]//prn1[6:0] V51      
+    WriteComm(0xe2);                                   
+    WriteData(0x00); //VRP0[5:0]//vrp0[5:0] V63        
+    WriteData(0x06); //VRP1[5:0]//vrp1[5:0] V62       
+    WriteData(0x06); //VRP2[5:0]//vrp2[5:0] V61      
+    WriteData(0x2A); //VRP3[5:0]//vrp3[5:0] V2        
+    WriteData(0x2E); //VRP4[5:0]//vrp4[5:0] V1        
+    WriteData(0x3f); //VRP5[5:0]//vrp5[5:0] V0         
+    WriteComm(0xe5);                                   
+    WriteData(0x3f); //VRN0[5:0]//vrn0[5:0] V0         
+    WriteData(0x2E); //VRN1[5:0]//vrn1[5:0] V1       
+    WriteData(0x29); //VRN2[5:0]//vrn2[5:0] V2        
+    WriteData(0x06); //VRN3[5:0]//vrn3[5:0] V61       
+    WriteData(0x06); //VRN4[5:0]//vrn4[5:0] V62       
+    WriteData(0x00); //VRN5[5:0]//vrn5[5:0] V63        
+    //GAMMA---------------------------------/////////////
+
+    WriteComm(0xE6);	
+    WriteData(0x00);	
+    WriteData(0xff);//SC_EN_START[7:0]  f0	
+
+    WriteComm(0xE7);	
+    WriteData(0x01);//CS_START[3:0]  01	
+    WriteData(0x04);//scdt_inv_sel cs_vp_en	
+    WriteData(0x03);//CS1_WIDTH[7:0]	12
+    WriteData(0x03);//CS2_WIDTH[7:0]	12
+    WriteData(0x00);//PREC_START[7:0]  06 	
+    WriteData(0x12);//PREC_WIDTH[7:0]  12
+
+    WriteComm(0xE8);	//source
+    WriteData(0x00); //VCMP_OUT_EN	 81-vcmp/vref_output pad
+    WriteData(0x70);	//chopper_sel[6:4]
+    WriteData(0x00); //gchopper_sel[6:4]	 60
+
+    ////gate 
+    WriteComm(0xEc);	
+    WriteData(0x52);//47  43
+
+    WriteComm(0xF1);
+    WriteData(0x01);//te_pol tem_extend 00 01 03
+    WriteData(0x01);
+    WriteData(0x02);
+    WriteComm(0xF6);
+    WriteData(0x01);
+    WriteData(0x30);//epf[1:0]
+    WriteData(0x00);
+    WriteData(0x00);//SPI2L: 40
+
+    WriteComm(0xfd);	
+    WriteData(0xfa);	
+    WriteData(0xfc);
+        
+    WriteComm(0x3a);	
+    WriteData(0x55);//SH 0x66
+
+    WriteComm(0x35);	
+    WriteData(0x00);
+                                
+#if BSP_LCD_Direction == 0
+    WriteComm(0x36);
+    WriteData(0x00); 	// 0°
+#else
+    WriteComm(0x36);
+    WriteData(0B01100000); 	// 90°
+#endif
+    WriteComm(0x11); // exit sleep                                                                                           
+    tls_os_time_delay(200);                                                                                                                     
+    WriteComm(0x29); // display on                                                                                                                  
+    tls_os_time_delay(20);
+}
 #endif
 
+void user_bitband_write(enum tls_io_name io, u8 val)
+{
+    if(io > WM_IO_PA_15){
+        tls_bitband_write(HR_GPIOB_DATA, io - 16, val);
+    }
+    else{
+        tls_bitband_write(HR_GPIOA_DATA, io, val);
+    }
+}
 
 /************************** io模拟spi ****************************/
 void  SendDataSPI(unsigned char dat)
 {  
-//    printf("---> %s\r\n",__func__);
+    // printf("---> %s\r\n",__func__);
    unsigned char i;
-   
    for(i=0; i<8; i++)			
    {  
-      if( (dat&0x80)!=0 ) tls_bitband_write(HR_GPIOA_DATA, LCD_MOSI, 1);
-        else tls_bitband_write(HR_GPIOA_DATA, LCD_MOSI, 0);
-
+        if((dat&0x80)!=0){
+            user_bitband_write(LCD_MOSI, 1);
+        }
+        else{
+            user_bitband_write(LCD_MOSI, 0);
+        } 
       dat <<= 1;
-
-	  tls_bitband_write(HR_GPIOA_DATA, LCD_SCL, 0);
-      tls_bitband_write(HR_GPIOA_DATA, LCD_SCL, 1);			
+	  user_bitband_write(LCD_SCL, 0);
+      user_bitband_write(LCD_SCL, 1);			
    }
 }
 
 __attribute__((unused)) static void WriteComm(unsigned int i)
 {
-
-    tls_bitband_write(HR_GPIOA_DATA, LCD_CS, 0);
-	tls_bitband_write(HR_GPIOA_DATA, LCD_DC, 0);
-
+    // printf("---> %s\r\n",__func__);
+    user_bitband_write(LCD_CS, 0);
+	user_bitband_write(LCD_DC, 0);
 	SendDataSPI(i);
-
-	tls_bitband_write(HR_GPIOA_DATA, LCD_CS, 1);
-
+	user_bitband_write(LCD_CS, 1);
 }
 
 __attribute__((unused)) static void WriteData(unsigned int i)
 {
     // printf("---> %s\r\n",__func__);
-    tls_bitband_write(HR_GPIOA_DATA, LCD_CS, 0);
-	tls_bitband_write(HR_GPIOA_DATA, LCD_DC, 1);
-
+    user_bitband_write(LCD_CS, 0);
+	user_bitband_write(LCD_DC, 1);
 	SendDataSPI(i);
-
-	tls_bitband_write(HR_GPIOA_DATA, LCD_CS, 1);
+	user_bitband_write(LCD_CS, 1);
 }
 
 //---------Reset LCD Driver -------// 
 void lcd_reset_pin()
 {
-    tls_gpio_write(LCD_RST, 1);
+    user_bitband_write(LCD_RST, 1);
     tls_os_time_delay(20);
-    tls_gpio_write(LCD_RST, 0);
+    user_bitband_write(LCD_RST, 0);
     tls_os_time_delay(200);
-    tls_gpio_write(LCD_RST, 1);
+    user_bitband_write(LCD_RST, 1);
     tls_os_time_delay(120);
 }
 
@@ -1290,11 +1462,11 @@ void lcd_gpio_init()
     tls_gpio_cfg(LCD_SCL,  WM_GPIO_DIR_OUTPUT, WM_GPIO_ATTR_FLOATING);
 	tls_gpio_cfg(LCD_MOSI, WM_GPIO_DIR_OUTPUT, WM_GPIO_ATTR_PULLHIGH);
 
-    tls_gpio_write(LCD_LED, 0);
-    tls_gpio_write(LCD_CS, 1);
-    tls_gpio_write(LCD_DC, 1);
+    user_bitband_write(LCD_LED, 0);
+    user_bitband_write(LCD_CS, 1);
+    user_bitband_write(LCD_DC, 1);
     // tls_gpio_cfg(WM_IO_PA_07, WM_GPIO_DIR_OUTPUT, WM_GPIO_ATTR_PULLHIGH);
-    // tls_gpio_write(WM_IO_PA_07, 1);
+    // user_bitband_write(WM_IO_PA_07, 1);
 #if 0
 
     for(u8 i = WM_IO_PA_08; i <= WM_IO_PA_13; i++)
@@ -1307,62 +1479,29 @@ void lcd_gpio_init()
         for(u8 i = WM_IO_PA_08; i <= WM_IO_PA_13; i++)
         {
             printf("%d\n", i);
-            tls_gpio_write(i, val);
+            user_bitband_write(i, val);
         }
         val = !val;
     }
 #endif
 }
 
-#if (CHIP_TYPE == 0 || CHIP_TYPE == 2)
 void lcd_back_on()
 {
-    tls_bitband_write(HR_GPIOA_DATA, LCD_LED, 1);
+    user_bitband_write(LCD_LED, 1);
 }
 
 void lcd_back_off(void)
 {
-    tls_bitband_write(HR_GPIOA_DATA, LCD_LED, 0);
+    user_bitband_write(LCD_LED, 0);
 }
 
 void lcd_set_dc_cs(bool dc, bool cs) 
 {
-    tls_bitband_write(HR_GPIOA_DATA, LCD_DC, dc);
-    tls_bitband_write(HR_GPIOA_DATA, LCD_CS, cs);
-}
-#elif (CHIP_TYPE == 1)
-void lcd_back_on()
-{
-    tls_bitband_write(HR_GPIOB_DATA, LCD_LED - 16, 1);
+    user_bitband_write(LCD_DC, dc);
+    user_bitband_write(LCD_CS, cs);
 }
 
-void lcd_back_off(void)
-{
-    tls_bitband_write(HR_GPIOB_DATA, LCD_LED - 16, 0);
-}
-
-void lcd_set_dc_cs(bool dc, bool cs) 
-{
-    tls_bitband_write(HR_GPIOB_DATA, LCD_DC - 16, dc);
-    tls_bitband_write(HR_GPIOB_DATA, LCD_CS - 16, cs);
-}
-#else
-void lcd_back_on()
-{
-	tls_gpio_write(LCD_LED, 1);
-}
-
-void lcd_back_off(void)
-{
-	tls_gpio_write(LCD_LED, 0);
-}
-
-void lcd_set_dc_cs(bool dc, bool cs) 
-{
-    tls_gpio_write(LCD_DC, dc);
-    tls_gpio_write(LCD_CS, cs);
-}
-#endif
 
 
 void lcd_write_cmd(const uint8_t cmd) 
@@ -1460,6 +1599,10 @@ void bsp_lcd_init()
     init_sdio_spi_mode();
     spi_lcd_init_cmd(gc9307_init_seq); 
     printf("---> LCD TYPE [%d] GC9307\n", LCD_TYPE);
+#elif (LCD_TYPE == 9)
+    nv3031a_init();
+    init_sdio_spi_mode();
+    printf("---> LCD TYPE [%d] NV3031A\n", LCD_TYPE);
 #else
     printf("---> lcd driver module not beed installed!\n");
     return;
@@ -1676,6 +1819,10 @@ void bsp_lcd_draw_rect(unsigned short x, unsigned short y, unsigned short width,
 
 #if(COLOR_FORMAT == 0) // RGB565
 
+    // #if(LCD_TYPE == 9)
+    //     x += 2;
+    //     y += 28;
+    // #endif 
     #if LCD_ASYNC_SEND
         lcd_dma_queue_write(x, y, x + width - 1, y + height - 1, (u32 *)data, width * height * 2);
     #else
