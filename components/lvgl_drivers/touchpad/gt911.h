@@ -10,6 +10,7 @@
 #define GT_CTRL_REG 	0x8040   	// GT9147控制寄存器
 #define GT_CFGS_REG 	0x8047   	// GT9147配置起始地址寄存器
 #define GT_CHECK_REG 	0x80FF   	// GT9147校验和寄存器
+#define GT_FRESH_REG    0x8100      // 配置已更新标记(由主控写入标记)
 #define GT_PID_REG 		0x8140   	// GT9147产品ID寄存器
 
 #define GT_GSTID_REG 	0x814E   	// GT9147当前检测到的触摸情况

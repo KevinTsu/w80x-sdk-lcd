@@ -1395,7 +1395,7 @@ void nv3031a_init(void)
 }
 #endif
 
-void user_bitband_write(enum tls_io_name io, u8 val)
+static void user_bitband_write(enum tls_io_name io, u8 val)
 {
     if(io > WM_IO_PA_15){
         tls_bitband_write(HR_GPIOB_DATA, io - 16, val);

@@ -8,8 +8,12 @@
 
 #if(USE_TOUCHPAD == 1 && TOUCHPAD_TYPE == 3)
 
+// 硬件i2c只有一路 PA1 clk PA4 data
+#define USE_HARD_IIC 0
+
+
 #if 0
-// 单点触摸
+// 320*320 单点触摸
 const u8 GT911_CFG_TBL[]=
 { 
     0x6A,0x40,0x01,0x40,0x01,0x01,0x05,0x00,0x01,0x2F,0x28,0x0F,0x50,0x32,0x03,0x05,
@@ -25,8 +29,8 @@ const u8 GT911_CFG_TBL[]=
     0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,
     0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0x27,0x01
 };  
-#else
-// 多点触摸
+#elif 0
+// 320*320 多点触摸
 const u8 GT911_CFG_TBL[]=
 { 
     0x6B,0x40,0x01,0x40,0x01,0x05,0x05,0x00,0x01,0x2F,0x28,0x0F,0x50,0x32,0x03,0x05,
@@ -42,10 +46,28 @@ const u8 GT911_CFG_TBL[]=
     0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,
     0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0x22,0x01
 };  
+#else
+// 480*272
+const u8 GT911_CFG_TBL[]=
+{ 
+    0x42,0xE0,0x01,0x10,0x01,0x0A,0xCD,0x00,0x01,0x08,0x28,0x05,0x50,0x32,0x03,0x05,
+    0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x87,0x28,0x09,0x17,0x15,
+    0x31,0x0D,0x00,0x00,0x01,0xB9,0x04,0x24,0x00,0x00,0x00,0x00,0x00,0x03,0x64,0x32,
+    0x00,0x00,0x00,0x0F,0x94,0x94,0xC5,0x02,0x07,0x00,0x00,0x04,0x8D,0x13,0x00,0x5D,
+    0x1E,0x00,0x3F,0x30,0x00,0x2E,0x4C,0x00,0x26,0x78,0x00,0x26,0x00,0x00,0x00,0x00,
+    0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x01,0x14,0x10,0x04,0x14,
+    0x27,0x03,0x02,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+    0x02,0x04,0x06,0x08,0x0A,0x0C,0x0E,0x10,0x12,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,
+    0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0x00,0x02,
+    0x04,0x06,0x08,0x0A,0x0C,0x1D,0x1E,0x1F,0x20,0x21,0x22,0x24,0x26,0xFF,0xFF,0xFF,
+    0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,
+    0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0x04,0x01
+};  
 #endif
 
 u8 gt911_write_reg(u16 reg, u8 *buf, u8 len)
 {
+#if USE_HARD_IIC
     // printf("---> %s\r\n", __func__);
 	u8 ret=0;
 	// vTaskSuspendAll();
@@ -65,11 +87,17 @@ u8 gt911_write_reg(u16 reg, u8 *buf, u8 len)
     // xTaskResumeAll();
     tls_os_time_delay(1);                       // 不加延时会导致i2c通讯失败
 	return ret; 
+#else
+    int ret = 1;
+    ret = I2C_Write_Addr16(GT_CMD_WR, reg, buf, len);
+	return ret; 
+#endif
 }
 
 
 void gt911_read_reg(u16 reg, u8 *buf, u8 len)
 {
+#if USE_HARD_IIC
     // vTaskSuspendAll();
     // printf("---> %s\r\n", __func__);
     tls_i2c_write_byte(GT_CMD_WR, 1); 
@@ -91,8 +119,10 @@ void gt911_read_reg(u16 reg, u8 *buf, u8 len)
    	*buf = tls_i2c_read_byte(0,1);	  
     // xTaskResumeAll(); 
     tls_os_time_delay(1);                       // 不加延时会导致i2c通讯失败
+#else
+    I2C_Read_Addr16(GT_CMD_WR, reg, buf, len);
+#endif
 } 
-
 
 void gt911_gpio_init(void)
 {
@@ -100,27 +130,31 @@ void gt911_gpio_init(void)
     tls_gpio_cfg(TRST,  WM_GPIO_DIR_OUTPUT,  WM_GPIO_ATTR_PULLHIGH);
     tls_gpio_cfg(TIRQ,  WM_GPIO_DIR_OUTPUT,  WM_GPIO_ATTR_FLOATING);
     tls_gpio_write(TIRQ, 1);
-    // tls_gpio_cfg(I2C_SCL,  WM_GPIO_DIR_OUTPUT, WM_GPIO_ATTR_PULLHIGH);
-    // tls_gpio_cfg(I2C_SDA,  WM_GPIO_DIR_OUTPUT, WM_GPIO_ATTR_PULLHIGH);
-    // tls_gpio_write(I2C_SCL, 1);
-    // tls_gpio_write(I2C_SDA, 1);
 
+#if(USE_HARD_IIC)
     wm_i2c_scl_config(I2C_SCL);
     wm_i2c_sda_config(I2C_SDA);
-	tls_i2c_init(400000);
+	tls_i2c_init(200000);
+#else
+    I2C_Gpio_Init();
+#endif
+
 }
 
 //驱动写入配置
 u8 gt911_send_cfg(u8 mode)
 {
-	u8 buf[2];
-	u8 i = 0;
-	buf[0] = 0;
-	buf[1] = mode;	                                                          // 是否写入到GT911 FLASH?  即是否掉电保存
-	for(i=0; i<sizeof(GT911_CFG_TBL); i++) buf[0] += GT911_CFG_TBL[i];        // 计算校验和
-    buf[0] = (~buf[0])+1;
-	gt911_write_reg(GT_CFGS_REG, (u8*)GT911_CFG_TBL, sizeof(GT911_CFG_TBL));  // 发送寄存器配置
-	gt911_write_reg(GT_CHECK_REG, buf, 2);                                    // 写入校验和,和配置更新标记
+    printf("---> cfg tab sizeof: %d\n", sizeof(GT911_CFG_TBL));
+	u8 check = 0;                                                   
+	for(u16 i=0; i<sizeof(GT911_CFG_TBL)-2; i++)        // 计算校验和
+    {
+        check += GT911_CFG_TBL[i]; 
+        
+    }
+    check = (~check)+1;
+	gt911_write_reg(GT_CFGS_REG, (u8*)GT911_CFG_TBL, sizeof(GT911_CFG_TBL)-2);  // 发送寄存器配置
+	gt911_write_reg(GT_CHECK_REG, &check, 1);                                  // 写入校验和
+    gt911_write_reg(GT_FRESH_REG, &mode, 1);                                   // 配置更新标记
 	return 0;
 } 
 
@@ -219,10 +253,23 @@ bool gt911_read_coord(uint16_t *x, uint16_t *y)
 {
     *x = tp_x[0];
     *y = tp_y[0];
-    // printf("---> %d %d\n", *x, *y);
+    printf("---> %d %d\n", *x, *y);
     return 1;
 }
 
+void gt911_read_cfg()
+{
+    u8 test_buf[186]={0};
+    gt911_read_reg(GT_CFGS_REG, test_buf, 186);     	
+    printf("---> read: \n");
+    for(u16 i = 0; i < 186; i++)
+    {
+        if(i%16 == 0 && i != 0) printf("\n");
+        printf("%02X ", test_buf[i]);
+        
+    }
+    printf("\r\n");
+}
 u8 gt911_init(void)
 {
     printf("---> %s\r\n", __func__);
@@ -239,20 +286,25 @@ u8 gt911_init(void)
 	gt911_read_reg(GT_PID_REG, temp, 4);	    // 读取产品ID
 
 	printf("---> Touchpad id: %s\r\n", temp);   // 打印ID
+
 	if(strcmp((char*)temp, "911") == 0)	        // ID==911
 	{
 		temp[0] = 0x02;			
 		gt911_write_reg(GT_CTRL_REG, temp, 1);  // 软复位GT9147
  		gt911_read_reg(GT_CFGS_REG, temp, 1);   // 读取GT_CFGS_REG寄存器
         printf("---> Current version: %02X\n", temp[0]);
-		if(temp[0] < 0x6A)                      // 默认版本比较低,需要更新flash配置
+        
+		if(temp[0] < 0x42)                      // 默认版本比较低,需要更新flash配置
 		{
 			printf("---> Upgrade firmware\r\n");
+            gt911_read_cfg();
 			gt911_send_cfg(1);                  // 更新并保存配置
-		}
+            gt911_read_cfg();
+        }
 		tls_os_time_delay(10);
 		temp[0]=0x00;	 
-		gt911_write_reg(GT_CTRL_REG, temp, 1);   // 结束复位   	
+		gt911_write_reg(GT_CTRL_REG, temp, 1);   // 结束复位  
+
 		return 0;
 	} 
     return 1;

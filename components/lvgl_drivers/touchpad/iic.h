@@ -23,4 +23,8 @@ uint32_t I2C_Write(uint8_t DevAddress, uint8_t MemAddress, uint8_t *pData, uint1
 
 uint32_t I2C_Read(uint8_t DevAddress, uint8_t MemAddress, uint8_t *pData, uint16_t Size);
 
+uint32_t I2C_Write_Addr16(uint8_t DevAddress, uint16_t MemAddress, uint8_t *pData, uint16_t Size);
+
+uint32_t I2C_Read_Addr16(uint8_t DevAddress, uint16_t MemAddress, uint8_t *pData, uint16_t Size);
+
 #endif
