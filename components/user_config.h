@@ -129,7 +129,7 @@
 *   0   xpt2046   320*480               
 *   1   xpt2046   240*320
 *   2   ft5206    320*320
-*   3   gt911     320*320
+*   3   gt911     320*320 & 480*272
 *   4   xpt2046   480*272
 *   5   cst816t   240*280
 *   6   ft6366
@@ -145,10 +145,17 @@
 #define TRST     WM_IO_PA_02
 #define I2C_SCL	 WM_IO_PA_01
 #elif   (TOUCHPAD_TYPE == 3)
-#define I2C_SDA	 WM_IO_PA_04 
-#define TIRQ     WM_IO_PB_08
-#define TRST     WM_IO_PB_09
-#define I2C_SCL	 WM_IO_PA_01
+#if 1
+    #define I2C_SDA	 WM_IO_PB_25
+    #define TIRQ     WM_IO_PB_22
+    #define TRST     WM_IO_PB_21
+    #define I2C_SCL	 WM_IO_PB_24
+#else
+    #define I2C_SDA	 WM_IO_PA_04 
+    #define TIRQ     WM_IO_PB_08
+    #define TRST     WM_IO_PB_09
+    #define I2C_SCL	 WM_IO_PA_01
+#endif
 #elif   (TOUCHPAD_TYPE == 4)
 #define TCLK     WM_IO_PB_08
 #define TCS      WM_IO_PB_09
