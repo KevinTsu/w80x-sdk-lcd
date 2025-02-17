@@ -6,7 +6,7 @@
 #define USE_ENCODE      0
 #define USE_TOUCHPAD    0
 #define USE_PSRAM       0
-
+// !!!!!!! 修改flash相关，如果是命令行编译，需要 make lib && make
 // 外部FLASH 文件系统 fatfs 盘符为 "3:" 或者 "D:"
 #define USE_EXTERNAL_FLASH_FATFS 0
 // 默认FLASH布局
