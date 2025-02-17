@@ -253,7 +253,7 @@ bool gt911_read_coord(uint16_t *x, uint16_t *y)
 {
     *x = tp_x[0];
     *y = tp_y[0];
-    printf("---> %d %d\n", *x, *y);
+    // printf("---> %d %d\n", *x, *y);
     return 1;
 }
 
