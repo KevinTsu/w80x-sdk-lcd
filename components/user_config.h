@@ -42,8 +42,10 @@
 *   6   st7796s     320*320                   touchpad √
 *   7   GC9A01      240*240
 *   8   GC9307      240*320
+*   9   NV3031A     
+*   10  ST77921     240*240
 *****************************************************************************/ 
-#define LCD_TYPE  (1)
+#define LCD_TYPE  (10)
 
 
 /***************************************************************************** 
@@ -51,7 +53,7 @@
 *   0 : 不旋转          
 *   1 : 旋转90度
 *****************************************************************************/ 
-#define BSP_LCD_Direction (1)
+#define BSP_LCD_Direction (0)
 
 
 /***************************************************************************** 
@@ -65,7 +67,7 @@
 *   6   240*240
 *   7   240*280
 *****************************************************************************/ 
-#define LCD_SIZE  (1)
+#define LCD_SIZE  (6)
 
 
 /******************************************
@@ -73,7 +75,7 @@
 *   sdio_ck	    PB_06	PA_09	CLK
 *   sdio_cmd	PB_07	PA_10	MOSI
 *******************************************/
-#define CHIP_TYPE (0)
+#define CHIP_TYPE (3)
 #if   (CHIP_TYPE == 0)  // GPIOA ---> W801
 #define LCD_LED        	WM_IO_PA_08 //--->>TFT --LED
 #define LCD_SCL        	WM_IO_PA_09 //--->>TFT --SCL
@@ -99,13 +101,13 @@
 #define LCD_RST        	WM_IO_PA_07 //--->>TFT --RST
 #define LCD_CS        	WM_IO_PA_14 //--->>TFT --CS
 #else                   // Customer 自定义（除SCL和MOSI外，其余可以用普通GPIO）
-#define LCD_LED         WM_IO_PB_05 //--->>TFT --LED
+#define LCD_LED         WM_IO_PB_03 //--->>TFT --LED
 #define LCD_SCL         WM_IO_PB_06 //--->>TFT --SCL
 #define LCD_MOSI        WM_IO_PB_07 //--->>TFT --DO
-#define LCD_TE          WM_IO_PB_08	//--->>TFT --TE
-#define LCD_DC       	WM_IO_PB_10	//--->>TFT --RS/DC
+#define LCD_TE          WM_IO_PB_31	//--->>TFT --TE
+#define LCD_DC       	WM_IO_PB_08	//--->>TFT --RS/DC
 #define LCD_RST        	WM_IO_PB_09 //--->>TFT --RST
-#define LCD_CS        	WM_IO_PB_11 //--->>TFT --CS
+#define LCD_CS        	WM_IO_PB_10 //--->>TFT --CS
 #endif
 #endif
 
