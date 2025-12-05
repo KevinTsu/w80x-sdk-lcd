@@ -71,7 +71,7 @@ void sdio_spi_put(u8 d)
     while ((SDIO_HOST->MMC_IO & 0x01));
     // 清除中断标志
     SDIO_HOST->MMC_INT_SRC |= 0x7ff; 
-    SDIO_HOST->BUF_CTL = 0x4820;
+    SDIO_HOST->BUF_CTL = 0xC820;
     SDIO_HOST->DATA_BUF[0] = d;
     SDIO_HOST->MMC_BYTECNTL = 1;
     SDIO_HOST->MMC_IO = 0x01;
@@ -118,7 +118,7 @@ void sdio_spi_dma_write_async(u32* data, u32 len)
 
     while ((SDIO_HOST->MMC_IO & 0x01));
 
-    SDIO_HOST->BUF_CTL = 0x4000; // disable dma,
+    SDIO_HOST->BUF_CTL = 0xC000; // disable dma,
     sdio_spi_dma_channel = tls_dma_request(0, 0);
     DMA_CHNLCTRL_REG(sdio_spi_dma_channel) = DMA_CHNL_CTRL_CHNL_OFF;
     DMA_SRCADDR_REG(sdio_spi_dma_channel) = (unsigned int)data;
@@ -130,7 +130,7 @@ void sdio_spi_dma_write_async(u32* data, u32 len)
     tls_dma_irq_register(sdio_spi_dma_channel, (void (*))sdio_dma_callback, NULL, TLS_DMA_IRQ_TRANSFER_DONE);
     DMA_CHNLCTRL_REG(sdio_spi_dma_channel) = DMA_CHNL_CTRL_CHNL_ON;
 
-    SDIO_HOST->BUF_CTL = 0xC20; // enable dma, write sd card
+    SDIO_HOST->BUF_CTL = 0x8C20; // enable dma, write sd card
     SDIO_HOST->MMC_INT_SRC |= 0x7ff; // clear all firstly
     SDIO_HOST->MMC_BYTECNTL = len;
     SDIO_HOST->MMC_IO = 0x01;
@@ -178,9 +178,9 @@ void write_sdio_spi_dma(u32* data, u32 len)
         {
             dma_len += (4 - (dma_len%4)); // 这个是dma搬运长度，len为sdio实际发送长度。
         }
-        SDIO_HOST->BUF_CTL = 0x4000; //disable dma,
+        SDIO_HOST->BUF_CTL = 0xC000; //disable dma,
         sdio_spi_dma_channel = sdio_spi_dma_cfg((u32 *) data+offset, dma_len, 1);
-        SDIO_HOST->BUF_CTL = 0xC20; //enable dma, write sd card
+        SDIO_HOST->BUF_CTL = 0x8C20; //enable dma, write sd card
         SDIO_HOST->MMC_INT_SRC |= 0x7ff; // clear all firstly
         SDIO_HOST->MMC_BYTECNTL = tx_len;
         SDIO_HOST->MMC_IO = 0x01;
