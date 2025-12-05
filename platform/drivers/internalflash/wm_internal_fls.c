@@ -666,11 +666,16 @@ int tls_fls_read_unique_id(unsigned  char *uuid)
 			uni_bytes = 16;
 			break;
 		case SPIFLASH_MID_UC:
+		case SPIFLASH_MID_PY:
 		case SPIFLASH_MID_WINBOND:
 		case SPIFLASH_MID_FUDANMICRO:
 		case SPIFLASH_MID_BOYA:
 		case SPIFLASH_MID_XMC:
 			dumy_bytes = 4;
+			uni_bytes = 8;
+			break;
+        case SPIFLASH_MID_ZB:
+			dumy_bytes = 1;
 			uni_bytes = 8;
 			break;
 		case SPIFLASH_MID_ESMT:
@@ -724,6 +729,10 @@ void tls_fls_qspi_enable(void)
 	switch(rid)
 	{
 		case SPIFLASH_MID_UC:
+        case SPIFLASH_MID_ZB:
+        case SPIFLASH_MID_PY:
+        case SPIFLASH_MID_PUYA:
+        case SPIFLASH_MID_BOYA:
 		case SPIFLASH_MID_WINBOND:
 			M32(HR_FLASH_CMD_ADDR) = 0x0C035;
 			M32(HR_FLASH_CMD_START) = CMD_START_Msk;
@@ -1493,7 +1502,7 @@ int tls_fls_init(void)
         return TLS_FLS_STATUS_ENOMEM;
     }
 	fls->flashid = readRID();
-	// printf("flashid %x\n", fls->flashid);
+	printf("flashid %x\n", fls->flashid);
 	fls->density = getFlashDensity();
 	fls->OTPWRParam.pageSize = 256;
 	switch(fls->flashid)
@@ -1513,6 +1522,10 @@ int tls_fls_init(void)
 		}
 		break;	
 	case SPIFLASH_MID_GD:
+	case SPIFLASH_MID_UC:
+    case SPIFLASH_MID_ZB:
+    case SPIFLASH_MID_BOYA:
+    case SPIFLASH_MID_PY:
 		fls->OTPWRParam.eraseSize = 1024;
 		break;
 	case SPIFLASH_MID_FUDANMICRO:
@@ -1523,9 +1536,7 @@ int tls_fls_init(void)
 		}
 		break;
 	case SPIFLASH_MID_TSINGTENG:
-	case SPIFLASH_MID_BOYA:
 	case SPIFLASH_MID_XMC:
-	case SPIFLASH_MID_UC:
 	case SPIFLASH_MID_WINBOND:
 		fls->OTPWRParam.eraseSize = 256;
 		break;
