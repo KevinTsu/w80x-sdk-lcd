@@ -1,0 +1,9 @@
+D:/learn/github/w80x-sdk-lcd/build/CMakeFiles/lvgl.dir
+D:/learn/github/w80x-sdk-lcd/build/CMakeFiles/lvgl_examples.dir
+D:/learn/github/w80x-sdk-lcd/build/CMakeFiles/lvgl_demos.dir
+D:/learn/github/w80x-sdk-lcd/build/CMakeFiles/edit_cache.dir
+D:/learn/github/w80x-sdk-lcd/build/CMakeFiles/rebuild_cache.dir
+D:/learn/github/w80x-sdk-lcd/build/CMakeFiles/list_install_components.dir
+D:/learn/github/w80x-sdk-lcd/build/CMakeFiles/install.dir
+D:/learn/github/w80x-sdk-lcd/build/CMakeFiles/install/local.dir
+D:/learn/github/w80x-sdk-lcd/build/CMakeFiles/install/strip.dir
