@@ -15,7 +15,7 @@
 #include "wm_include.h"
 #include "wm_demo.h"
 
-#if DEMO_SOFT_AP
+#if 1
 /*1)Add sta add callback function
   2)Add sta list monitor task*/
 static tls_os_timer_t *sta_monitor_tim = NULL;
@@ -155,8 +155,8 @@ int demo_create_softap(u8 *ssid, u8 *key, int chan, int encrypt, int format)
     /*ip info:ipaddress, netmask, dns*/
     ipinfo->ip_addr[0] = 192;
     ipinfo->ip_addr[1] = 168;
-    ipinfo->ip_addr[2] = 1;
-    ipinfo->ip_addr[3] = 1;
+    ipinfo->ip_addr[2] = 6;
+    ipinfo->ip_addr[3] = 6;
     ipinfo->netmask[0] = 255;
     ipinfo->netmask[1] = 255;
     ipinfo->netmask[2] = 255;
@@ -169,16 +169,16 @@ int demo_create_softap(u8 *ssid, u8 *key, int chan, int encrypt, int format)
     ret = tls_wifi_softap_create(apinfo, ipinfo);
     wm_printf("\n ap create %s ! \n", (ret == WM_SUCCESS) ? "Successfully" : "Error");
 
-    if (WM_SUCCESS == ret)
-    {
-        if (sta_monitor_tim)
-        {
-            tls_os_timer_delete(sta_monitor_tim);
-            sta_monitor_tim = NULL;
-        }
-        tls_os_timer_create(&sta_monitor_tim, demo_monitor_stalist_tim, NULL, 500, TRUE, NULL);
-        tls_os_timer_start(sta_monitor_tim);
-    }
+    // if (WM_SUCCESS == ret)
+    // {
+    //     if (sta_monitor_tim)
+    //     {
+    //         tls_os_timer_delete(sta_monitor_tim);
+    //         sta_monitor_tim = NULL;
+    //     }
+    //     tls_os_timer_create(&sta_monitor_tim, demo_monitor_stalist_tim, NULL, 500, TRUE, NULL);
+    //     tls_os_timer_start(sta_monitor_tim);
+    // }
 
     tls_mem_free(ipinfo);
     tls_mem_free(apinfo);

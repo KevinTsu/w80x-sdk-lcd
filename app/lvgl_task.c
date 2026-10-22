@@ -9,6 +9,9 @@
 #include "lv_demo/lv_demo.h"
 #include "solutions/ui.h"
 
+#include "../demo/wm_softap_demo.h"
+#include "../demo/wm_http_server_demo.h"
+
 
 static OS_STK TaskStk[LVGL_TASK_STACK_SIZE/4];
 
@@ -116,7 +119,7 @@ static void lvgl_task_start(void *data)
     /* 每次只允许运行以下中的一个demo，否则会显示异常。*/
 
     /* lvgl demo 触摸屏 编码器 */
-    lv_demo_keypad_encoder();  
+    // lv_demo_keypad_encoder();  
 
     /* lvgl demo fatfs文件系统 jpeg图片解码显示demo */
     // lv_demo_fatfs_jpeg_decode();
@@ -148,6 +151,10 @@ static void lvgl_task_start(void *data)
     // SquareLine Studio导出ui程序入口
     // ui_init();
 
+    // CreateHTTPServerDemoTask();
+    // CreateDnsServerDemoTask();
+    // demo_create_softap("softap1s", (u8 *)"12345678", 6, 4, 1);
+    
     // u32 tick = 0;
     while(1) {
 

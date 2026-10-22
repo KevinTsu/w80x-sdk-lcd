@@ -10,8 +10,8 @@ zip_type=1
 sec_img_header=8002000
 sec_img_pos=8002400
 sec_img_type=0
-run_img_header=80d0000
-run_img_pos=80d0400
+run_img_header=8010000
+run_img_pos=8010400
 upd_img_pos=8010000
 
 

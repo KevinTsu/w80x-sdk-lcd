@@ -22,6 +22,9 @@
 #include "lvgl_task.h"
 #include "../components/user_config.h"
 
+#include "../demo/wm_softap_demo.h"
+#include "../demo/wm_http_server_demo.h"
+
 /**
 *   DEMO 0  LCD lvgl、触摸、编码器、软键盘、lvgl组件测试
 *   DEMO 1  LCD 颜色填充测试
@@ -76,7 +79,11 @@ void UserMain(void)
     bsp_lcd_init();
 #if  (RUN_DEMO_NUM == 0) // 使能lvgl任务
     printf("---> RUN DEMO [%d] LVGL \n", RUN_DEMO_NUM);
-    lvgl_task_create();
+    // lvgl_task_create();
+    CreateHTTPServerDemoTask();
+    CreateDnsServerDemoTask();
+    demo_create_softap("softap1s", (u8 *)"12345678", 6, 4, 1);
+
 #elif(RUN_DEMO_NUM == 1) // 颜色填充测试
     printf("---> RUN DEMO [%d] FULL COLORS \n", RUN_DEMO_NUM);
     u8 index = 0;
