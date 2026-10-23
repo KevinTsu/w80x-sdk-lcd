@@ -671,8 +671,8 @@ static int dns_server_listen(int port)
     memset(&addr, 0, sizeof(addr));
     addr.sin_family = AF_INET;
     addr.sin_port = htons(port);
-    addr.sin_addr.s_addr = INADDR_ANY;
-	// addr.sin_addr.s_addr = inet_addr("192.168.6.6");
+    // addr.sin_addr.s_addr = INADDR_ANY;
+	addr.sin_addr.s_addr = inet_addr("192.168.6.6");
 
     if (bind(fd, (struct sockaddr *)&addr, sizeof(addr)) < 0)
     {

@@ -6,7 +6,8 @@ GEN_LIBS = libuser$(LIB_EXT)
 COMPONENTS_libuser = button/app_lib_button$(LIB_EXT) \
 					 xmodem/app_lib_xmodem$(LIB_EXT) \
 					 solutions/app_lib_solutions$(LIB_EXT) \
-					 lv_demo/app_lib_lv_demo$(LIB_EXT)
+					 lv_demo/app_lib_lv_demo$(LIB_EXT)\
+					 image/app_picture$(LIB_EXT)
 endif
 
 

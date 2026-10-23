@@ -13,6 +13,7 @@
 #include "../demo/wm_http_server_demo.h"
 
 
+
 static OS_STK TaskStk[LVGL_TASK_STACK_SIZE/4];
 
 
@@ -98,7 +99,34 @@ void lv_example_get_started_1(void)
 // {
 //     LV_LOG("On benchmark finished");
 // }
+LV_IMG_DECLARE(pupil1);   // 对应转换生成的变量名
+LV_IMG_DECLARE(pupil2);   // 对应转换生成的变量名
+LV_IMG_DECLARE(pupil3);   // 对应转换生成的变量名
+LV_IMG_DECLARE(pupil4);   // 对应转换生成的变量名
+LV_IMG_DECLARE(pupil5);   // 对应转换生成的变量名
+LV_IMG_DECLARE(pupil6);   // 对应转换生成的变量名
+static const void *pupil_frames[3] = {
+    &pupil1,
+    // &pupil2,
+    &pupil3,
+    // &pupil4,
+    &pupil5,
+    // &pupil6
+};
+static lv_obj_t *s_pupil_anim;
 
+void pupil_anim_init(void) {
+    s_pupil_anim = lv_animimg_create(lv_scr_act());
+    lv_obj_align(s_pupil_anim, LV_ALIGN_CENTER, 0, 0);
+    // lv_animimg_set_src(s_pupil_anim, (const void **)pupil_frames, 6);
+    lv_animimg_set_src(s_pupil_anim, (const void **)pupil_frames, 3);
+    // 6 帧总时长 1200ms，即每帧 200ms
+    lv_animimg_set_duration(s_pupil_anim, 100);
+    // 无限循环
+    lv_animimg_set_repeat_count(s_pupil_anim, LV_ANIM_REPEAT_INFINITE);
+    // 开始播放
+    lv_animimg_start(s_pupil_anim);
+}
 
 static void lvgl_task_start(void *data)
 {
@@ -151,9 +179,12 @@ static void lvgl_task_start(void *data)
     // SquareLine Studio导出ui程序入口
     // ui_init();
 
-    // CreateHTTPServerDemoTask();
-    // CreateDnsServerDemoTask();
-    // demo_create_softap("softap1s", (u8 *)"12345678", 6, 4, 1);
+    CreateHTTPServerDemoTask();
+    CreateDnsServerDemoTask();
+    tls_os_time_delay(100);     //太快dns bind会失败
+    demo_create_softap("softap1s", (u8 *)"12345678", 6, 4, 1);
+
+    pupil_anim_init();
     
     // u32 tick = 0;
     while(1) {

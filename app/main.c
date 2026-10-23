@@ -79,10 +79,11 @@ void UserMain(void)
     bsp_lcd_init();
 #if  (RUN_DEMO_NUM == 0) // 使能lvgl任务
     printf("---> RUN DEMO [%d] LVGL \n", RUN_DEMO_NUM);
-    // lvgl_task_create();
-    CreateHTTPServerDemoTask();
-    CreateDnsServerDemoTask();
-    demo_create_softap("softap1s", (u8 *)"12345678", 6, 4, 1);
+    // CreateHTTPServerDemoTask();
+    // CreateDnsServerDemoTask();
+    // tls_os_time_delay(100);
+    // demo_create_softap("softap1s", (u8 *)"12345678", 6, 4, 1);
+    lvgl_task_create();
 
 #elif(RUN_DEMO_NUM == 1) // 颜色填充测试
     printf("---> RUN DEMO [%d] FULL COLORS \n", RUN_DEMO_NUM);

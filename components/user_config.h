@@ -45,7 +45,7 @@
 *   9   NV3031A     
 *   10  ST77921     240*240
 *****************************************************************************/ 
-#define LCD_TYPE  (10)
+#define LCD_TYPE  (7)
 
 
 /***************************************************************************** 
@@ -75,7 +75,7 @@
 *   sdio_ck	    PB_06	PA_09	CLK
 *   sdio_cmd	PB_07	PA_10	MOSI
 *******************************************/
-#define CHIP_TYPE (3)
+#define CHIP_TYPE (1)
 #if   (CHIP_TYPE == 0)  // GPIOA ---> W801
 #define LCD_LED        	WM_IO_PA_08 //--->>TFT --LED
 #define LCD_SCL        	WM_IO_PA_09 //--->>TFT --SCL
