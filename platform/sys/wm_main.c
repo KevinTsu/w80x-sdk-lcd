@@ -127,7 +127,7 @@ extern void tls_bt_entry();
 extern int tls_uart_get_at_cmd_port(void);
 extern void tls_uart_set_at_cmd_port(int at_cmd_port);
 #endif
-void tls_mem_get_init_available_size(void);
+
 void task_start (void *data);
 
 /****************/
@@ -319,24 +319,6 @@ void disp_version_info(void)
     TLS_DBGPRT_INFO("* WinnerMicro Wi-Fi Lib Version: %x.%x.%x                         *\n",
                     WiFiVer[0], WiFiVer[1], WiFiVer[2]);
     TLS_DBGPRT_INFO("****************************************************************\n");
-}
-
-unsigned int total_mem_size;
-void tls_mem_get_init_available_size(void)
-{
-	u8 *p = NULL;
-	total_mem_size = (unsigned int)&__heap_end - (unsigned int)&__heap_start;
-	while(total_mem_size > 512)
-	{
-		p = malloc(total_mem_size);
-		if (p)
-		{
-			free(p);
-			p = NULL;
-			break;
-		}
-		total_mem_size = total_mem_size - 512;
-	}
 }
 
 void tls_pmu_chipsleep_callback(int sleeptime)

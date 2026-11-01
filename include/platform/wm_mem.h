@@ -84,6 +84,7 @@ void * mem_alloc_debug(u32 size);
 void mem_free_debug(void *p);
 void * mem_realloc_debug(void *mem_address, u32 size);
 void *mem_calloc_debug(u32 length, u32 size);
+void tls_mem_get_init_available_size(void);
 
 /**
  * @defgroup System_APIs System APIs

@@ -33,7 +33,7 @@ extern int tls_filter_module_srcmac(u8 *mac);
 
 /* ONE SHOT */
 /** UDP MULTICAST ONE SHOT */
-#define TLS_CONFIG_UDP_ONE_SHOT          ONESHOT_ON
+#define TLS_CONFIG_UDP_ONE_SHOT          ONESHOT_OFF
 
 /** WinnerMicro ONSHOT */
 #define TLS_CONFIG_UDP_LSD_SPECIAL	 	(ONESHOT_ON&& TLS_CONFIG_UDP_ONE_SHOT)

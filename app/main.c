@@ -69,7 +69,12 @@ void UserMain(void)
 	printf(" ---> Compile "__DATE__", "__TIME__"\n");
 	printf(" ---> %s\r\n",__func__);
     printf(" ---> SDK: %c%x.%02x.%02x\n", FirmWareVer[0], FirmWareVer[1], FirmWareVer[2], FirmWareVer[3]);
-	printf(" ---> GetHeap:%d\n",tls_mem_get_avail_heapsize());
+	printf(" ---> GetHeap1:%d\n",tls_mem_get_avail_heapsize());
+    
+    printf("&__heap_start = %p\n", (void *)&__heap_start);
+    printf("&__heap_end   = %p\n", (void *)&__heap_end);
+    printf("sizeof heap_start = %d, heap_end = %d\n",
+           (int)sizeof(__heap_start), (int)sizeof(__heap_end));
 	// printf(" ---> BLE  MAC:%02X%02X%02X%02X%02X%02X\n",ble_mac[0],ble_mac[1],ble_mac[2],ble_mac[3],ble_mac[4],ble_mac[5]);
 	// printf(" ---> WIFI MAC:%02X%02X%02X%02X%02X%02X\n",wifi_mac[0],wifi_mac[1],wifi_mac[2],wifi_mac[3],wifi_mac[4],wifi_mac[5]);
 	printf("\n+---------------------Oooo------------+\n");
@@ -78,7 +83,7 @@ void UserMain(void)
     /* 初始化LCD总线 */
     bsp_lcd_init();
 #if  (RUN_DEMO_NUM == 0) // 使能lvgl任务
-    printf("---> RUN DEMO [%d] LVGL \n", RUN_DEMO_NUM);
+    // printf("---> RUN DEMO [%d] LVGL \n", RUN_DEMO_NUM);
     // CreateHTTPServerDemoTask();
     // CreateDnsServerDemoTask();
     // tls_os_time_delay(100);

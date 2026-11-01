@@ -16,7 +16,7 @@
 
 #define WM_CONFIG_DEBUG_UART1							CFG_OFF/*PRINTF PORT USE UART1*/
 /**Driver Support**/
-#define TLS_CONFIG_HS_SPI          						CFG_ON /*High Speed SPI*/
+#define TLS_CONFIG_HS_SPI          						CFG_OFF /*High Speed SPI*/
 #define TLS_CONFIG_LS_SPI          						CFG_ON /*Low Speed SPI*/
 #define TLS_CONFIG_UART									CFG_ON  /*UART*/
 
@@ -80,7 +80,7 @@ CRYPTO
 #define TLS_CONFIG_BR_EDR								CFG_OFF
 #else
 #define TLS_CONFIG_BLE                                  CFG_OFF
-#define TLS_CONFIG_BR_EDR								CFG_ON
+#define TLS_CONFIG_BR_EDR								CFG_OFF
 #endif
 
 #define TLS_CONFIG_BT                                  (TLS_CONFIG_BR_EDR || TLS_CONFIG_BLE)

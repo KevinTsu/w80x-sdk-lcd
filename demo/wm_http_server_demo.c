@@ -17,13 +17,13 @@
 #if 1
 // #if DEMO_HTTP_SERVER
 
-#define HTTP_SERVER_TASK_SIZE   2000
+#define HTTP_SERVER_TASK_SIZE   512
 #define HTTP_PORT               80
 #define BACKLOG                 7
 #define RECV_BUF_LEN            1024
 
 #define DNS_PORT            53
-#define DNS_TASK_SIZE       1024
+#define DNS_TASK_SIZE       512
 #define DNS_BUF_SIZE        512
 
 static OS_STK HttpServerTaskStk[HTTP_SERVER_TASK_SIZE];
@@ -350,10 +350,10 @@ static int http_parse_request(const char *buf, char *method, int mlen,
 	return 0;
 }
 
+char recvbuf[RECV_BUF_LEN];
 /* 服务器主循环 */
 static void http_server_loop(int lfd) {
 	struct sockaddr_in client_addr;
-	char recvbuf[RECV_BUF_LEN];
 	char method[16];
 	char path[128];
 	int fd, rc;
@@ -622,13 +622,13 @@ static int dns_build_response(const u8 *query, int qlen,
     return 0;
 }
 
+u8 query[DNS_BUF_SIZE];
+u8 resp[DNS_BUF_SIZE];
 /* DNS 服务器主循环 */
 static void dns_server_loop(int fd)
 {
     struct sockaddr_in client_addr;
     socklen_t addrlen;
-    u8 query[DNS_BUF_SIZE];
-    u8 resp[DNS_BUF_SIZE];
     int qlen, rlen;
     int rc;
 

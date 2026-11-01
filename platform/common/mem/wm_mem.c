@@ -505,7 +505,7 @@ u32 alloc_heap_mem_max_size = 0;
 #endif
 
 #define USING_ADD_HEADER   1
-extern u32 total_mem_size;
+u32 total_mem_size;
 void * mem_alloc_debug(u32 size)
 {
     u32 cpu_sr = 0;
@@ -767,6 +767,11 @@ u32 tls_mem_get_avail_heapsize(void)
 	u32 availablemem = 0;
 	u32 cpu_sr;
 
+    // printf("&__heap_start = %p\n", (void *)&__heap_start);
+    // printf("&__heap_end   = %p\n", (void *)&__heap_end);
+    // printf("sizeof heap_start = %d, heap_end = %d\n",
+    //        (int)sizeof(__heap_start), (int)sizeof(__heap_end));
+
 	tls_os_sem_acquire(mem_sem, 0);
 	cpu_sr = tls_os_set_critical();
 	availablemem = total_mem_size;
@@ -850,6 +855,25 @@ END:
 	tls_os_sem_release(mem_sem);	
 	return startpos;
 #endif	
+}
+
+// unsigned int total_mem_size;
+void tls_mem_get_init_available_size(void)
+{
+	u8 *p = NULL;
+
+	total_mem_size = (unsigned int)&__heap_end - (unsigned int)&__heap_start;
+	while(total_mem_size > 512)
+	{
+		p = malloc(total_mem_size);
+		if (p)
+		{
+			free(p);
+			p = NULL;
+			break;
+		}
+		total_mem_size = total_mem_size - 512;
+	}
 }
 
 
