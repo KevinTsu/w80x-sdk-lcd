@@ -59,20 +59,29 @@
 #define COLOR_FORMAT    0  // 0 : RGB565  1 : RGB666
 #define LCD_ASYNC_SEND  1  // 0 : sync    1 : async
 
+typedef struct {
+    uint32_t cs_pin;      // 片选引脚
+    // uint16_t width;       // 屏幕宽
+    // uint16_t height;      // 屏幕高
+    // 可以继续添加各自的坐标系偏移等参数
+} lcd_dev_t;
+
+void lcd_set_dc_cs(lcd_dev_t *dev,bool dc, bool cs);
+
 void bsp_lcd_init();
 
-void lcd_set_windows(u16 x_start, u16 y_start, u16 x_end, u16 y_end);
+void lcd_set_windows(lcd_dev_t *dev, u16 x_start, u16 y_start, u16 x_end, u16 y_end);
 
-void lcd_clear(u16 Color);
+void lcd_clear(lcd_dev_t *dev, u16 Color);
 
-void lcd_show_picture(u8 *data);
+void lcd_show_picture(lcd_dev_t *dev, u8 *data);
 
-void lcd_full_picture(u16 image_width, u16 image_height, u8 *image_buf);
+void lcd_full_picture(lcd_dev_t *dev, u16 image_width, u16 image_height, u8 *image_buf);
 
-void lcd_full_picture_from_spiflash(u16 image_width, u16 image_height, u32 offset);
+void lcd_full_picture_from_spiflash(lcd_dev_t *dev, u16 image_width, u16 image_height, u32 offset);
 
 void bsp_lcd_draw_rect_wait(void);
 
-void bsp_lcd_draw_rect(unsigned short x, unsigned short y, unsigned short width, unsigned short height, unsigned char *data);
+void bsp_lcd_draw_rect(lcd_dev_t *dev, unsigned short x, unsigned short y, unsigned short width, unsigned short height, unsigned char *data);
 
 #endif

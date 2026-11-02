@@ -9,7 +9,7 @@
 
 void lcd_task_create(void);
 
-int lcd_dma_queue_write(u16 x_start, u16 y_start, u16 x_end, u16 y_end, u32* data, u32 len);
+int lcd_dma_queue_write(lcd_dev_t *dev, u16 x_start, u16 y_start, u16 x_end, u16 y_end, u32* data, u32 len);
 
 
 #endif

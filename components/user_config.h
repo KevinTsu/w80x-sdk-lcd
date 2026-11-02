@@ -92,6 +92,8 @@
 #define LCD_DC       	WM_IO_PB_09	//--->>TFT --RS/DC
 #define LCD_RST        	WM_IO_PB_10 //--->>TFT --RST
 #define LCD_CS        	WM_IO_PB_11 //--->>TFT --CS
+#define LCD_CS_LEFT     WM_IO_PB_12 //--->>TFT --CS
+#define LCD_CS_RIGHT    WM_IO_PB_13 //--->>TFT --CS
 #elif (CHIP_TYPE == 2)  // GPIOA ---> W802
 #define LCD_LED        	WM_IO_PA_02 //--->>TFT --LED
 #define LCD_SCL        	WM_IO_PA_09 //--->>TFT --SCL

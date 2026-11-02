@@ -13,6 +13,8 @@
 static tls_os_sem_t *sdio_spi_dma_ready = NULL;
 static unsigned char sdio_spi_dma_channel  = 0xFF;
 
+extern lcd_dev_t *current_dma_dev;
+
 void init_sdio_spi_mode()
 {
     if(LCD_SCL == WM_IO_PA_09)
@@ -96,6 +98,10 @@ void wait_sdio_prev_data_completion()
 
 static void sdio_dma_callback(void)
 {
+    if (current_dma_dev != NULL) {
+        lcd_set_dc_cs(current_dma_dev, 1, 1);
+        current_dma_dev = NULL;
+    }
     tls_dma_free(sdio_spi_dma_channel);
     // 释放信号量
     tls_os_sem_release(sdio_spi_dma_ready);

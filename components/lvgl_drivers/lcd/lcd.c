@@ -12,6 +12,10 @@ static void WriteComm(unsigned int i);
 static void WriteData(unsigned int i);
 static void SendDataSPI(unsigned char dat);
 
+lcd_dev_t lcd_left  = { .cs_pin = LCD_CS_LEFT};
+lcd_dev_t lcd_right = { .cs_pin = LCD_CS_RIGHT};
+
+
 #if   (LCD_TYPE == 0)
 #if 1
 // ST7789初始化
@@ -1931,6 +1935,10 @@ void lcd_gpio_init()
 {
     tls_gpio_cfg(LCD_LED, WM_GPIO_DIR_OUTPUT, WM_GPIO_ATTR_FLOATING);
     tls_gpio_cfg(LCD_CS,  WM_GPIO_DIR_OUTPUT, WM_GPIO_ATTR_FLOATING);
+
+    tls_gpio_cfg(LCD_CS_LEFT,  WM_GPIO_DIR_OUTPUT, WM_GPIO_ATTR_FLOATING);
+    tls_gpio_cfg(LCD_CS_RIGHT,  WM_GPIO_DIR_OUTPUT, WM_GPIO_ATTR_FLOATING);
+
     tls_gpio_cfg(LCD_DC,  WM_GPIO_DIR_OUTPUT, WM_GPIO_ATTR_FLOATING);
 	tls_gpio_cfg(LCD_RST, WM_GPIO_DIR_OUTPUT, WM_GPIO_ATTR_PULLHIGH);
     tls_gpio_cfg(LCD_SCL,  WM_GPIO_DIR_OUTPUT, WM_GPIO_ATTR_FLOATING);
@@ -1938,6 +1946,8 @@ void lcd_gpio_init()
 
     user_bitband_write(LCD_LED, 0);
     user_bitband_write(LCD_CS, 1);
+    user_bitband_write(LCD_CS_LEFT, 1);
+    user_bitband_write(LCD_CS_RIGHT, 1);
     user_bitband_write(LCD_DC, 1);
     // tls_gpio_cfg(WM_IO_PA_07, WM_GPIO_DIR_OUTPUT, WM_GPIO_ATTR_PULLHIGH);
     // user_bitband_write(WM_IO_PA_07, 1);
@@ -1970,52 +1980,57 @@ void lcd_back_off(void)
     user_bitband_write(LCD_LED, 0);
 }
 
-void lcd_set_dc_cs(bool dc, bool cs) 
+
+void lcd_set_dc_cs(lcd_dev_t *dev,bool dc, bool cs) 
 {
+    // 确保另一个屏幕是取消选中的（防止总线冲突）
+    tls_gpio_write(lcd_left.cs_pin, 1);
+    tls_gpio_write(lcd_right.cs_pin, 1);
+    // 选中当前屏幕
+    tls_gpio_write(dev->cs_pin, cs);
     user_bitband_write(LCD_DC, dc);
-    user_bitband_write(LCD_CS, cs);
 }
 
 
 
-void lcd_write_cmd(const uint8_t cmd) 
+void lcd_write_cmd(lcd_dev_t *dev, const uint8_t cmd) 
 {
-    lcd_set_dc_cs(0, 0);
+    lcd_set_dc_cs(dev, 0, 0);
     sdio_spi_put(cmd);
-    lcd_set_dc_cs(1, 1);
+    lcd_set_dc_cs(dev, 1, 1);
 }
 
-void lcd_write_data(const uint8_t data) 
+void lcd_write_data(lcd_dev_t *dev, const uint8_t data) 
 {
-    lcd_set_dc_cs(1, 0);
+    lcd_set_dc_cs(dev, 1, 0);
     sdio_spi_put(data);
-    lcd_set_dc_cs(1, 1);
+    lcd_set_dc_cs(dev, 1, 1);
 }
 
-void lcd_write_cmd_data(const uint8_t *cmd, size_t count) 
+void lcd_write_cmd_data(lcd_dev_t *dev, const uint8_t *cmd, size_t count) 
 {
-    lcd_set_dc_cs(0, 0);
+    lcd_set_dc_cs(dev, 0, 0);
     sdio_spi_put(*cmd++);
     if (count >= 2) {
-        lcd_set_dc_cs(1, 0);
+        lcd_set_dc_cs(dev, 1, 0);
         for (size_t i = 0; i < count - 1; ++i)
             sdio_spi_put( *cmd++);
     }
-    lcd_set_dc_cs(1, 1);
+    lcd_set_dc_cs(dev, 1, 1);
 }
 
-void lcd_write_ram_preare()
+void lcd_write_ram_preare(lcd_dev_t *dev)
 {
     uint8_t cmd = 0x2c; // RAMWR
-    lcd_write_cmd_data( &cmd, 1);
-    lcd_set_dc_cs(1, 0);
+    lcd_write_cmd_data(dev, &cmd, 1);
+    lcd_set_dc_cs(dev, 1, 0);
 }
 
-void spi_lcd_init_cmd(const uint8_t *cmd)
+void spi_lcd_init_cmd(lcd_dev_t *dev, const uint8_t *cmd)
 {
     while (*cmd) 
     {
-        lcd_write_cmd_data(cmd + 2, *cmd);
+        lcd_write_cmd_data(dev, cmd + 2, *cmd);
         u16 delay = *(cmd + 1);
         tls_os_time_delay(delay);
         cmd += *cmd + 2;
@@ -2064,22 +2079,30 @@ void bsp_lcd_init()
 #elif (LCD_TYPE == 6)
     st7796S_init();
     init_sdio_spi_mode();
+    spi_lcd_init_cmd(&lcd_left, st7796s_init_seq);
+    spi_lcd_init_cmd(&lcd_right, st7796s_init_seq);
     printf("---> LCD TYPE [%d] ST7796S\n", LCD_TYPE);
 #elif (LCD_TYPE == 7)
     init_sdio_spi_mode();
-    spi_lcd_init_cmd(gc9a01_init_seq);
+    spi_lcd_init_cmd(&lcd_left, gc9a01_init_seq);
+    spi_lcd_init_cmd(&lcd_right, gc9a01_init_seq);
     printf("---> LCD TYPE [%d] GC9A01\n", LCD_TYPE);
 #elif (LCD_TYPE == 8)
     init_sdio_spi_mode();
-    spi_lcd_init_cmd(gc9307_init_seq); 
+    spi_lcd_init_cmd(&lcd_left, gc9307_init_seq); 
+    spi_lcd_init_cmd(&lcd_right, gc9307_init_seq);
     printf("---> LCD TYPE [%d] GC9307\n", LCD_TYPE);
 #elif (LCD_TYPE == 9)
     nv3031a_init();
     init_sdio_spi_mode();
+    spi_lcd_init_cmd(&lcd_left, nv3031a_init_seq);
+    spi_lcd_init_cmd(&lcd_right, nv3031a_init_seq);
     printf("---> LCD TYPE [%d] NV3031A\n", LCD_TYPE);
 #elif (LCD_TYPE == 10)
     st77921_init();
     init_sdio_spi_mode();
+    spi_lcd_init_cmd(&lcd_left, st77921_init_seq);
+    spi_lcd_init_cmd(&lcd_right, st77921_init_seq);
     printf("---> LCD TYPE [%d] ST77921\n", LCD_TYPE);
 #else
     printf("---> lcd driver module not beed installed!\n");
@@ -2088,25 +2111,25 @@ void bsp_lcd_init()
     lcd_back_on();
 }
 
-void lcd_set_windows(u16 x_start, u16 y_start, u16 x_end, u16 y_end)
+void lcd_set_windows(lcd_dev_t *dev, u16 x_start, u16 y_start, u16 x_end, u16 y_end)
 {	
     // printf("---> x:%d y:%d x: %d y: %d\n", x_start, y_start, x_end, y_end);
-	lcd_write_cmd(0x2A);	
-	lcd_write_data(x_start>>8);
-	lcd_write_data(0x00FF&x_start);		
-	lcd_write_data(x_end>>8);
-	lcd_write_data(0x00FF&x_end);
+	lcd_write_cmd(dev, 0x2A);	
+	lcd_write_data(dev, x_start>>8);
+	lcd_write_data(dev, 0x00FF&x_start);		
+	lcd_write_data(dev, x_end>>8);
+	lcd_write_data(dev, 0x00FF&x_end);
 
-	lcd_write_cmd(0x2B);	
-	lcd_write_data(y_start>>8);
-	lcd_write_data(0x00FF&y_start);		
-	lcd_write_data(y_end>>8);
-	lcd_write_data(0x00FF&y_end);
+	lcd_write_cmd(dev, 0x2B);	
+	lcd_write_data(dev, y_start>>8);
+	lcd_write_data(dev, 0x00FF&y_start);		
+	lcd_write_data(dev, y_end>>8);
+	lcd_write_data(dev, 0x00FF&y_end);
 
-	lcd_write_ram_preare();	//开始写入GRAM	
+	lcd_write_ram_preare(dev);	//开始写入GRAM	
 }   
 
-void lcd_clear(u16 Color)
+void lcd_clear(lcd_dev_t *dev, u16 Color)
 {
     u32 width  = BSP_LCD_X_PIXELS;
     u32 height = BSP_LCD_Y_PIXELS;
@@ -2141,9 +2164,9 @@ void lcd_clear(u16 Color)
     for(u8 i = 0; i < block; i++){
 #if LCD_ASYNC_SEND
         wait_for_prev_frame_completion();
-        lcd_dma_queue_write(0, height/block*i, width-1, height/block*(i+1)-1, (u32 *)buf, block_size);
+        lcd_dma_queue_write(dev, height/block*i, width-1, height/block*(i+1)-1, (u32 *)buf, block_size);
 #else
-        lcd_set_windows(0, height/block*i, width-1, height/block*(i+1)-1);
+        lcd_set_windows(dev, height/block*i, width-1, height/block*(i+1)-1);
         write_sdio_spi_dma((u32 *)buf, block_size);
 #endif
         // tls_os_time_delay(HZ/1);
@@ -2152,7 +2175,7 @@ void lcd_clear(u16 Color)
     tls_mem_free(buf);
 }
 
-void lcd_full_picture(u16 image_width, u16 image_height, u8 *image_buf)
+void lcd_full_picture(lcd_dev_t *dev, u16 image_width, u16 image_height, u8 *image_buf)
 {
     if(image_width > BSP_LCD_X_PIXELS)
     {
@@ -2184,7 +2207,7 @@ void lcd_full_picture(u16 image_width, u16 image_height, u8 *image_buf)
 #if LCD_ASYNC_SEND
         wait_for_prev_frame_completion();
         memcpy(buf, &img[i*block_size], block_size);
-        lcd_dma_queue_write(0, height/block*i, width-1, height/block*(i+1)-1, (u32 *)buf, block_size);
+        lcd_dma_queue_write(dev, 0, height/block*i, width-1, height/block*(i+1)-1, (u32 *)buf, block_size);
 #else
         memcpy(buf, &img[i*block_size], block_size);
         lcd_set_windows(0, height/block*i, width-1, height/block*(i+1)-1);
@@ -2197,7 +2220,7 @@ void lcd_full_picture(u16 image_width, u16 image_height, u8 *image_buf)
     printf("---> use %d ms\n", tls_os_get_time() - time);
 }
 
-void lcd_full_picture_from_spiflash(u16 image_width, u16 image_height, u32 offset)
+void lcd_full_picture_from_spiflash(lcd_dev_t *dev, u16 image_width, u16 image_height, u32 offset)
 {
     if(image_width > BSP_LCD_X_PIXELS)
     {
@@ -2230,7 +2253,7 @@ void lcd_full_picture_from_spiflash(u16 image_width, u16 image_height, u32 offse
 
 #if LCD_ASYNC_SEND
         wait_for_prev_frame_completion();
-        lcd_dma_queue_write(0, height/block*i, width-1, height/block*(i+1)-1, (u32 *)buf, block_size);
+        lcd_dma_queue_write(dev, 0, height/block*i, width-1, height/block*(i+1)-1, (u32 *)buf, block_size);
 #else
         lcd_set_windows(0, height/block*i, width-1, height/block*(i+1)-1);
         write_sdio_spi_dma((u32 *)buf, block_size);
@@ -2243,7 +2266,7 @@ void lcd_full_picture_from_spiflash(u16 image_width, u16 image_height, u32 offse
     
 }
 
-void lcd_show_picture(u8 *data)
+void lcd_show_picture(lcd_dev_t *dev, u8 *data)
 {
     u32 time = tls_os_get_time();
     u32 width  = 320;
@@ -2265,9 +2288,9 @@ void lcd_show_picture(u8 *data)
         memcpy(buf, &img[i*block_size], block_size);
 #if LCD_ASYNC_SEND
         wait_for_prev_frame_completion();
-        lcd_dma_queue_write(0, height/block*i, width-1, height/block*(i+1)-1, (u32 *)buf, block_size);
+        lcd_dma_queue_write(dev, 0, height/block*i, width-1, height/block*(i+1)-1, (u32 *)buf, block_size);
 #else
-        lcd_set_windows(0, height/block*i, width-1, height/block*(i+1)-1);
+        lcd_set_windows(dev, 0, height/block*i, width-1, height/block*(i+1)-1);
         write_sdio_spi_dma((u32 *)buf, block_size);
 #endif
         // tls_os_time_delay(HZ/1);
@@ -2283,7 +2306,7 @@ void bsp_lcd_draw_rect_wait(void)
     wait_for_prev_frame_completion();
 }
 
-void bsp_lcd_draw_rect(unsigned short x, unsigned short y, unsigned short width, unsigned short height, unsigned char *data)
+void bsp_lcd_draw_rect(lcd_dev_t *dev, unsigned short x, unsigned short y, unsigned short width, unsigned short height, unsigned char *data)
 {
 #if 0
     printf("x: %d y:%d, width %d height %d\n", x, y, width, height);
@@ -2302,10 +2325,10 @@ void bsp_lcd_draw_rect(unsigned short x, unsigned short y, unsigned short width,
     //     y += 28;
     // #endif 
     #if LCD_ASYNC_SEND
-        lcd_dma_queue_write(x, y, x + width - 1, y + height - 1, (u32 *)data, width * height * 2);
+        lcd_dma_queue_write(dev, x, y, x + width - 1, y + height - 1, (u32 *)data, width * height * 2);
     #else
-        lcd_set_windows(x, y, x + width - 1, y + height - 1);
-        write_sdio_spi_dma((u32 *)data, width * height * 2);
+        lcd_set_windows(dev, x, y, x + width - 1, y + height - 1);
+        write_sdio_spi_dma(dev, (u32 *)data, width * height * 2);
     #endif
 
 #else                  // RGB666
@@ -2326,10 +2349,10 @@ void bsp_lcd_draw_rect(unsigned short x, unsigned short y, unsigned short width,
     }
 
     #if LCD_ASYNC_SEND
-    lcd_dma_queue_write(x, y, x + width - 1, y + height - 1, (u32 *)buf, width * height * 3);
+    lcd_dma_queue_write(dev, x, y, x + width - 1, y + height - 1, (u32 *)buf, width * height * 3);
     #else
-    lcd_set_windows(x, y, x + width - 1, y + height - 1);
-    write_sdio_spi_dma((u32 *)buf, width * height * 3);
+    lcd_set_windows(dev, x, y, x + width - 1, y + height - 1);
+    write_sdio_spi_dma(dev, (u32 *)buf, width * height * 3);
     #endif
     tls_mem_free(buf);
 

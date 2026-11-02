@@ -12,6 +12,14 @@
 #define USER_TASK_QUEUE_STOP              0x03
 #define USER_TASK_QUEUE_SIZE              0x03
 
+typedef struct {
+    lcd_dev_t *dev;
+    uint32_t msg_type; // START, SEND, STOP
+} lcd_msg_t;
+
+lcd_dev_t *current_dma_dev;
+
+
 static tls_os_queue_t   *user_task_queue = NULL;
 static OS_STK LcdTaskStk[LCD_TASK_STACK_SIZE/4];
 
@@ -38,15 +46,20 @@ void wait_for_prev_frame_completion()
     }
 }
 
-int lcd_dma_queue_write(u16 x_start, u16 y_start, u16 x_end, u16 y_end, u32* data, u32 len)
-{
+int lcd_dma_queue_write(lcd_dev_t *dev, u16 x_start, u16 y_start, u16 x_end, u16 y_end, u32* data, u32 len) {
+    lcd_msg_t *msg;
     // printf("---> len :%d\n", len);
     prev_frame_completion_flag = false;
     g_data_offset  = 0;
     g_data_len     = len;
     g_data_addr    = data;
-    lcd_set_windows(x_start, y_start, x_end, y_end);
-    tls_os_queue_send(user_task_queue, (void *)USER_TASK_QUEUE_START, 0);
+    lcd_set_windows(dev, x_start, y_start, x_end, y_end);
+    //记录当前dma设备
+    current_dma_dev = dev;
+    // 投递异步消息给 LCD 任务
+    msg->dev = dev;
+    msg->msg_type = USER_TASK_QUEUE_START;
+    tls_os_queue_send(user_task_queue, (void *)msg, 0);
     return 0;
 }
 

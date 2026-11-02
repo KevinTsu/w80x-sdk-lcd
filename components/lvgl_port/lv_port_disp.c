@@ -12,11 +12,14 @@ static lv_color_t *lvgl_draw_buff2 = NULL;
 #define LVGL_PORT_BUFF_SIZE (BSP_LCD_X_PIXELS*BSP_LCD_Y_PIXELS/8) // 1/8屏幕分辨率
 static lv_color_t lvgl_draw_buff1[LVGL_PORT_BUFF_SIZE];
 static lv_color_t lvgl_draw_buff2[LVGL_PORT_BUFF_SIZE];
+
+extern lcd_dev_t lcd_left;
+extern lcd_dev_t lcd_right;
 #endif
 
 // static u32 run_time = 0;
 
-static void disp_flush(lv_disp_drv_t *disp_drv, const lv_area_t *area, lv_color_t *color_p)
+static void disp_flush_left(lv_disp_drv_t *disp_drv, const lv_area_t *area, lv_color_t *color_p)
 {
     // printf("---> use1 %d ms\n", tls_os_get_time() - run_time);
     // run_time = tls_os_get_time();
@@ -25,7 +28,25 @@ static void disp_flush(lv_disp_drv_t *disp_drv, const lv_area_t *area, lv_color_
     // printf("---> use2 %d ms\n", tls_os_get_time() - run_time);
     // run_time = tls_os_get_time();
     /* 启动新的传输 */
-    bsp_lcd_draw_rect(area->x1,area->y1,area->x2 - area->x1 + 1,area->y2 - area->y1 + 1,(uint8_t *)color_p);
+    bsp_lcd_draw_rect(&lcd_left, area->x1,area->y1,area->x2 - area->x1 + 1,area->y2 - area->y1 + 1,(uint8_t *)color_p);
+    // printf("---> use3 %d ms\n", tls_os_get_time() - run_time);
+    // run_time = tls_os_get_time();
+    /* 通知lvgl传输已完成 */
+    lv_disp_flush_ready(disp_drv);
+    // printf("---> use4 %d ms\n", tls_os_get_time() - run_time);
+    // run_time = tls_os_get_time();
+}
+
+static void disp_flush_right(lv_disp_drv_t *disp_drv, const lv_area_t *area, lv_color_t *color_p)
+{
+    // printf("---> use1 %d ms\n", tls_os_get_time() - run_time);
+    // run_time = tls_os_get_time();
+    /* 等待上次传输完成 */
+    bsp_lcd_draw_rect_wait();
+    // printf("---> use2 %d ms\n", tls_os_get_time() - run_time);
+    // run_time = tls_os_get_time();
+    /* 启动新的传输 */
+    bsp_lcd_draw_rect(&lcd_right, area->x1,area->y1,area->x2 - area->x1 + 1,area->y2 - area->y1 + 1,(uint8_t *)color_p);
     // printf("---> use3 %d ms\n", tls_os_get_time() - run_time);
     // run_time = tls_os_get_time();
     /* 通知lvgl传输已完成 */
@@ -37,7 +58,8 @@ static void disp_flush(lv_disp_drv_t *disp_drv, const lv_area_t *area, lv_color_
 void lv_port_disp_init()
 {
     /* 向lvgl注册缓冲区 */
-    static lv_disp_draw_buf_t draw_buf_dsc; //需要全程生命周期，设置为静态变量
+    static lv_disp_draw_buf_t draw_buf_dsc_left; //需要全程生命周期，设置为静态变量
+    static lv_disp_draw_buf_t draw_buf_dsc_right; //需要全程生命周期，设置为静态变量
 
 #if USE_PSRAM
     lvgl_draw_buff1 = dram_heap_malloc(LVGL_PORT_BUFF_SIZE*2);
@@ -51,8 +73,9 @@ void lv_port_disp_init()
         return;
     }
 #endif
+// left
     /* LVGL内存初始化*/
-    lv_disp_draw_buf_init(&draw_buf_dsc, lvgl_draw_buff1, lvgl_draw_buff2, LVGL_PORT_BUFF_SIZE);
+    lv_disp_draw_buf_init(&draw_buf_dsc_left, lvgl_draw_buff1, NULL, LVGL_PORT_BUFF_SIZE);
     /* 创建并初始化用于在lvgl中注册显示设备的结构 */
     static lv_disp_drv_t disp_drv;
     lv_disp_drv_init(&disp_drv); //使用默认值初始化该结构
@@ -60,11 +83,19 @@ void lv_port_disp_init()
     disp_drv.hor_res = BSP_LCD_X_PIXELS;
     disp_drv.ver_res = BSP_LCD_Y_PIXELS;
     /* 设置显示矩形函数，用于将矩形缓冲区刷新到屏幕上 */
-    disp_drv.flush_cb = disp_flush;
+    disp_drv.flush_cb = disp_flush_left;
     /* 设置缓冲区 */
-    disp_drv.draw_buf = &draw_buf_dsc;
+    disp_drv.draw_buf = &draw_buf_dsc_left;
     /* 每次更新一整屏 */
     disp_drv.full_refresh = 0;
     /* 注册显示设备 */
+    lv_disp_drv_register(&disp_drv);
+// right
+    /* LVGL内存初始化*/
+    lv_disp_draw_buf_init(&draw_buf_dsc_right, lvgl_draw_buff2, NULL, LVGL_PORT_BUFF_SIZE);
+    /* 创建并初始化用于在lvgl中注册显示设备的结构 */
+    disp_drv.flush_cb = disp_flush_right;
+    disp_drv.draw_buf = &draw_buf_dsc_right;
+    disp_drv.full_refresh = 0;
     lv_disp_drv_register(&disp_drv);
 }
